@@ -7,7 +7,6 @@ package BackEndTesting;
 
 import be.usgictprofessionals.usgfinancewebapp.Model.CalculatedDataResource;
 import be.usgictprofessionals.usgfinancewebapp.jsonrecources.InputData;
-import java.time.Year;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
