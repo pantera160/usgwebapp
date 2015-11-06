@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+
+<html ng-app="Router">
+<head>
+    <title>USG WORKING CAPITAL SCAN</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <!-- reset the browser css -->
+    <link rel="stylesheet" type="text/css" href="reset.css">
+    <link rel="stylesheet" type="text/css" href="inputcss.css">
+    <link rel="stylesheet" type="text/css" href="ratios.css">
+    <link rel="stylesheet" type="text/css" href="portal.css">
+    <link rel="stylesheet" type="text/css" href="wcmsavings.css">
+    <link rel="stylesheet" type="text/css" href="login.css">
+    <link rel="stylesheet" type="text/css" href="overview.css">
+    <link rel="stylesheet" type="text/css" href="admin.css">
+    <link rel="stylesheet" type="text/css" href="Libs/Angular-chart/angular-chart.css">
+    <link rel="stylesheet" type="text/css" href="Libs/angular-tooltips/src/css/angular-tooltips.css">
+    <link rel="stylesheet" type="text/css" href="Libs/ng-dialog/css/ngDialog.min.css">
+    <link rel="stylesheet" type="text/css" href="Libs/ng-dialog/css/ngDialog-theme-default.css">
+    <!-- import angularJS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.js" type="text/javascript">
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular-route.js" type="text/javascript">
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular-cookies.js" type="text/javascript">
+</script>
+<script src="JS/app.js" type="text/javascript">
+</script>
+<script src="Libs/angular-tooltips/src/js/angular-tooltips.js"></script>
+	<script src="Libs/ng-dialog/js/ngDialog.min.js"></script>
+	<script src="Libs/Chart/Chart.js" type="text/javascript">
+</script>
+<script src="Libs/Angular-chart/angular-chart.js" type="text/javascript">
+</script>
+    <script src="JS/inputs.js" type="text/javascript">
+</script>
+	<script src="JS/balans.js" type="text/javascript">
+</script>
+<script src="JS/portal.js" type="text/javascript">
+</script>
+<script src="JS/return.js" type="text/javascript">
+</script>
+<script src="JS/cccevolution.js" type="text/javascript">
+</script>
+<script src="JS/coverage.js" type="text/javascript">
+</script>
+<script src="JS/turnover.js" type="text/javascript">
+</script>
+<script src="JS/wcmsavings.js" type="text/javascript">
+</script>
+<script src="JS/login.js" type="text/javascript">
+</script>
+<script src="JS/overview.js" type="text/javascript">
+</script>
+<script src="JS/admin.js" type="text/javascript">
+</script>
+</head>
+<body>
+	
+	<div ng-controller="LogoutCtrl" id="logout" ng-show="isLoggedin()"><button type="button" ng-click="logout()">Logout</button><button type="button" ng-click="back()">To company select</button><button type="button" ng-if="adminAccess" ng-click="admin()">To admin</button></div>
+	<div ng-view></div>
+</body>
+</html>

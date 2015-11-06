@@ -1,0 +1,187 @@
+/* 
+    Created on : Oct 2, 2015, 3:10:12 PM
+    Author     : Thomas Straetmans
+*/
+html{
+	font-size: 14px;
+}
+
+body {
+    margin-left: 25px;
+}
+
+#input{
+	padding: 15px;
+}
+
+h1{
+	font-family: Arial;
+	color: #4174d2;
+	font-size: 30px;
+	margin: 30px 35px;
+}
+
+#logout {
+	text-align: right;
+	padding: 10px;
+}
+
+#input td.sublabel{
+    padding-left: 25px;
+}
+
+#input span#tabin{
+    padding-left: 68px;
+}
+
+#input table {
+    margin: 15px 5px;    
+}
+
+#input th {
+    font-weight: bold;
+}
+
+#input th.theadlabel {
+    text-align: left;
+    color: gray;
+}
+
+#input td {
+    padding:2px 15px;
+    
+}
+
+#input tbody::before
+{
+  content: '';
+  display: block;
+  height: 15px;
+}
+
+#input h2.subheader {
+    font-weight: bold;
+    font-size: 20px;
+    padding: 10px 10px;
+    color: #4174d2;
+}
+
+div#buttonsdiv{
+    margin: 15px;
+}
+
+.centered {
+	text-align: center;
+}
+
+#buttonsdiv button {
+	-moz-box-shadow: 3px 4px 0px 0px #899599;
+	-webkit-box-shadow: 3px 4px 0px 0px #899599;
+	box-shadow: 3px 4px 0px 0px #899599;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ededed), color-stop(1, #bab1ba));
+	background:-moz-linear-gradient(top, #ededed 5%, #bab1ba 100%);
+	background:-webkit-linear-gradient(top, #ededed 5%, #bab1ba 100%);
+	background:-o-linear-gradient(top, #ededed 5%, #bab1ba 100%);
+	background:-ms-linear-gradient(top, #ededed 5%, #bab1ba 100%);
+	background:linear-gradient(to bottom, #ededed 5%, #bab1ba 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#bab1ba',GradientType=0);
+	background-color:#ededed;
+	-moz-border-radius:15px;
+	-webkit-border-radius:15px;
+	border-radius:15px;
+	border:1px solid #d6bcd6;
+	display:inline-block;
+	cursor:pointer;
+	color:#000000;
+	font-family:Arial;
+	font-size:15px;
+	padding:2px 10px;
+	text-decoration:none;
+	margin: 3px;
+}
+#buttonsdiv button:hover {
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #bab1ba), color-stop(1, #ededed));
+	background:-moz-linear-gradient(top, #bab1ba 5%, #ededed 100%);
+	background:-webkit-linear-gradient(top, #bab1ba 5%, #ededed 100%);
+	background:-o-linear-gradient(top, #bab1ba 5%, #ededed 100%);
+	background:-ms-linear-gradient(top, #bab1ba 5%, #ededed 100%);
+	background:linear-gradient(to bottom, #bab1ba 5%, #ededed 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#bab1ba', endColorstr='#ededed',GradientType=0);
+	background-color:#bab1ba;
+}
+#buttonsdiv button:active {
+	position:relative;
+	top:1px;
+}
+
+#input #headdiv{
+	font-weight: bold;
+}
+
+#input #headdiv label {
+    display: inline-block;
+    width: 400px;
+    padding-left: 15px;
+}
+
+#input #headdiv input{
+    width: 250px;
+    margin: 2px;
+}
+
+#input #headdiv label.special {
+    display: inline-block;
+    width: 610px;
+}
+
+#input #headdiv input.special{
+    width: 100px;
+}
+
+#input thead{
+	border-bottom: 3px solid #4174d2;
+}
+
+#input .source{
+	width:260px;
+}
+
+#input tr td:nth-child(1){
+    width: 323px
+}
+
+#input .input input{
+	width:100px;
+}
+
+#input .addcolumn{
+	display : block;
+}
+
+#input #template{
+	padding: 5px;
+	color: red;
+	border: 1px solid red;
+}
+
+#input #template h1{
+	font-weight: bold;
+	color: red;
+	text-align: center;
+}
+
+#input #template li{
+	margin: 3px 0px;
+}
+
+#input #titlenbutton{
+	display: inline;
+}
+
+#input #titlenbuttonbutton{
+	text-align: right;
+}
+
+#input #titlenbuttonbutton button{
+	padding: 5px;
+}

@@ -1,0 +1,108 @@
+#overview {
+}
+
+#overview h1 {
+	margin-left:100px;
+}
+
+#overview th {
+	font-weight:700;
+	padding:15px;
+}
+
+#overview #list {
+	margin:5px auto;
+	width:75%;
+}
+
+#overview td:not(:last-child) {
+	padding:15px;
+	width:350px;
+	text-align:center;
+}
+
+#overview tbody tr td:last-child {
+	padding-left:20px;
+	text-align:center;
+	width: 100px;
+	background-image: url(IMG/1446232946_f-cross_256.png);
+	background-color: #e51818;
+background-repeat:no-repeat;
+background-position: center center;
+background-size: 20px 20px;
+cursor: pointer;
+}
+
+#overview tbody tr td:last-child:hover {
+	background-color: #f53030;
+	cursor:pointer
+}
+
+#overview p{
+	margin: 20px;
+	margin-right: 45px;
+	padding: 35px;
+	border: 1px solid black;
+}
+
+#overview tbody tr .clickable {
+	background:#d7d7d7;
+}
+
+#overview tbody tr td.clickable:first-child {
+	border-top-left-radius:10px;
+}
+
+#overview tbody tr td.clickable:last-child {
+	border-top-right-radius:10px;
+}
+
+#overview tbody tr td.clickable:first-child {
+	border-bottom-left-radius:10px;
+}
+
+#overview tbody tr td.clickable:last-child {
+	border-bottom-right-radius:10px;
+}
+
+#overview tbody tr td.hover:first-child {
+	border-top-left-radius:10px;
+}
+
+#overview tbody tr td.hover:last-child {
+	border-top-right-radius:10px;
+}
+
+#overview tbody tr td.hover:first-child {
+	border-bottom-left-radius:10px;
+}
+
+#overview tbody tr td.hover:last-child {
+	border-bottom-right-radius:10px;
+}
+
+#overview tbody td.hover {
+	background:#4c4848;
+	color: #939393;
+	cursor: pointer;
+}
+
+#overview #add {
+	width:100px;
+	padding: 10px;
+	margin: 45px;
+	border-radius: 15px;
+	background-color: #d7d7d7;
+	cursor:pointer;
+	border: 2px solid #4c4848;
+}
+
+#overview #add:hover{
+	cursor: pointer;
+	background-color: #4c4848;
+	color: #939393;
+}
+
+#overview tbody tr.whitespace{
+	border: 2px solid white;
+}

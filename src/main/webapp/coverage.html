@@ -1,0 +1,101 @@
+<div id="ratios">
+	<div>
+    <div id="banner">
+        <a href="http://www.usgprofessionals.com/belgium/finance"><img src="IMG/logoUSG-Finance-Professionals.gif" alt="logo USG Finance Professionals" width="160" height="80"></a>
+
+        <h1>COVERAGE RATIO'S</h1>
+    </div>
+    <div ng-controller="headerCtrl" id="compInfo">
+	    <div><h3>Company  :</h3> <label>{{company.name}}</label></div>
+        <div><h3>Sector  :</h3> <label>{{company.sector}}</label></div>
+    </div>
+	<div id="chart-overview-div">
+    <div ng-controller="FinChargesCtrl" class="inline">
+        <div>
+            <h2>Financial charges coverage ratio<a class="questionmark" ng-click="help()"></a></h2>
+        </div>
+
+        <div class="top-border">
+            <canvas id="FinCharges" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-options="options" chart-colours="colours"></canvas>
+        </div>
+
+        <div class="top-border">
+            <table>
+                <thead>
+                    <tr>
+	                    <th></th>
+                        <th ng-repeat="label in labels track by $index">{{label}}</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+	                    <td>EBIT/Fin. Exp.</td>
+                        <td ng-repeat="item in data[0] track by $index"><div><img ng-src="{{condition(item)}}" alt="condition"/>{{item | NumberEU}}</div></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="top-border formula-div">
+	        <div class="formula"><label>Formula:</label></div><div class="formula"><label class="bottom-border">EBIT</label><br /><label>Financial Expenses</label></div>
+        </div>
+    </div>
+	
+    <div ng-controller="FinDebtEBITDACtrl" class="inline">
+        <div>
+            <h2>Net financial debt/EBITDA ratio<a class="questionmark" ng-click="help()"></a></h2>
+        </div>
+
+        <div class="top-border">
+            <canvas id="FinDebtEBITDA" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-options="options" chart-colours="colours"></canvas>
+        </div>
+
+        <div class="top-border">
+            <table>
+                <thead>
+                    <tr>
+	                    <th></th>
+                        <th ng-repeat="label in labels track by $index">{{label}}</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+	                    <td>Net Fin. Debt/EBITDA</td>
+                        <td ng-repeat="item in data[0] track by $index"><div><img ng-src="{{condition(item)}}" alt="condition"/>{{item | NumberEU}}</div></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="top-border formula-div">
+	        <div class="formula"><label>Formula:</label></div><div class="formula"><label class="bottom-border">Total Financial Debt minus Cash</label><br /><label>EBITDA</label></div>
+        </div>
+    </div>
+	</div>
+    <div id="buttonsdiv" class="centered" ng-controller="ButtonsCtrl">
+        <button type="button" ng-click="back()">Back</button>
+    </div>
+</div>
+<script type="text/ng-template" id="finchargestemplate">
+	<div class="template">
+		<h2>Financial charges coverage ratio</h2>
+		<p>Determines how easily a company can pay the interests on outstanding debts with its earnings.</p>
+		<br />
+		<h3>Interpretation of the outcome</h3>
+		<p><img src="IMG/green.png" alt="green" width="24" height="28" />A high ratio > 300%: The interests on debt expenses can be paid easily, so the debts will not put the company in difficulties. 300% is the benchmark usually taken by the banks.</p>
+		<p><img src="IMG/orange.png" alt="orange" width="27" height="31" />A ratio slightly below 300%: Be careful!</p>
+		<p><img src="IMG/red.png" alt="red" width="24" height="30" />A low ratio significantly below 300%: The debt expenses will burden the company, and this might put the company in difficulties.</p>
+	</div>
+</script>
+<script type="text/ng-template" id="findebttemplate">
+	<div class="template">
+		<h2>Net financial debt/EBITDA ratio</h2>
+		<p>Measures how many years the company needs to repay its net debt (gross debt minus the cash) with the gross cash flow. It is an interesting ratio, because it links the balance sheet with the gross cash flow. It shows whether the company has sufficient repayment capacity.</p>
+		<br />
+		<h3>Interpretation of the outcome</h3>
+		<p><img src="IMG/green.png" alt="green" width="24" height="28" />A low ratio &lt; 2,5: The debt is low and/or the EBITDA high. This means that the company is able to repay its debt. 2,5 years is the benchmark usually taken by the banks.</p>
+		<p><img src="IMG/orange.png" alt="orange" width="27" height="31" />A ratio slightly higher than 2,5 years: Be carefull!</p>
+		<p><img src="IMG/red.png" alt="red" width="24" height="30" />A high ratio significantly higher than 2,5: The debt is too high and/or the EBITDA too low. This means that the company may be unable to repay its debt and could get in trouble.</p>
+	</div>
+</script>
+</div>

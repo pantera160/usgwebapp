@@ -1,0 +1,146 @@
+<div id="ratios">
+	<div>
+    <div id="banner">
+        <a href="http://www.usgprofessionals.com/belgium/finance"><img src="IMG/logoUSG-Finance-Professionals.gif" alt="logo USG Finance Professionals" width="160" height="80"></a>
+
+        <h1>TURNOVER RATIO'S</h1>
+    </div>
+	<div ng-controller="headerCtrl" id="compInfo">
+	    <div><h3>Company  :</h3> <label>{{company.name}}</label></div>
+        <div><h3>Sector  :</h3> <label>{{company.sector}}</label></div>
+    </div>
+    <div ng-controller="DIOCtrl" class="inline">
+        <div>
+            <h2>Days inventory outstanding<a class="questionmark" ng-click="help()"></a></h2>
+        </div>
+
+        <div class="top-border">
+            <canvas id="DIO" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-options="options" chart-colours="colours"></canvas>
+        </div>
+
+        <div class="top-border">
+            <table>
+                <thead>
+                    <tr>
+	                    <th></th>
+                        <th ng-repeat="label in labels track by $index">{{label}}</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+	                    <td>DIO</td>
+                        <td ng-repeat="item in data[0] track by $index"><div><img ng-src="{{condition(item)}}" alt="condition"/>{{item | NumberEU}}</div></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="top-border formula-div">
+	        <div class="formula"><label>Formula:</label></div><div class="formula"><label class="bottom-border">Inventory x 365</label><br /><label>Cost of Sales</label></div>
+        </div>
+    </div>
+
+    <div ng-controller="DSOCtrl" class="inline">
+        <div>
+            <h2>Days sales outstanding<a class="questionmark" ng-click="help()"></a></h2>
+        </div>
+
+        <div class="top-border">
+            <canvas id="DSO" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-options="options" chart-colours="colours"></canvas>
+        </div>
+
+        <div class="top-border">
+            <table>
+                <thead>
+                    <tr>
+	                    <th></th>
+                        <th ng-repeat="label in labels track by $index">{{label}}</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+	                    <td>DSO</td>
+                        <td ng-repeat="item in data[0] track by $index"><div><img ng-src="{{condition(item)}}" alt="condition"/>{{item | NumberEU}}</div></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="top-border formula-div">
+	        <div class="formula"><label>Formula:</label></div><div class="formula"><label class="bottom-border">Receivables x 365</label><br /><label>Annual Sales</label></div>
+        </div>
+    </div>
+
+    <div ng-controller="DPOCtrl" class="inline">
+        <div>
+            <h2>Days purchases outstanding<a class="questionmark" ng-click="help()"></a></h2>
+        </div>
+
+        <div class="top-border">
+            <canvas id="DPO" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-options="options" chart-colours="colours"></canvas>
+        </div>
+
+        <div class="top-border">
+            <table>
+                <thead>
+                    <tr>
+	                    <th></th>
+                        <th ng-repeat="label in labels track by $index">{{label}}</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+	                    <td>DPO</td>
+                        <td ng-repeat="item in data[0] track by $index"><div><img ng-src="{{condition(item)}}" alt="condition"/>{{item | NumberEU}}</div></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="top-border formula-div">
+	        <div class="formula"><label>Formula: </label></div><div class="formula"><label class="bottom-border">Payables x 365</label><br /><label>Cost of Sales</label></div>
+        </div>
+    </div>
+
+    <div id="buttonsdiv" class="centered" ng-controller="ButtonsCtrl">
+        <button type="button" ng-click="back()">Back</button>
+    </div>
+</div>
+<script type="text/ng-template" id="diotemplate">
+	<div class="template">
+		<h2>Days Inventory Outstanding</h2>
+		<p>DIO is a measurement to indicate how many days on average the stock remains in the company. If you wish to work efficiently, you need to minimise the stock, whilst keeping continuity in the production process and the availability of goods. This is a good indicator of inventory quality (whether the inventory is obsolete or not), efficient buying practices, and inventory management. Sometimes this ratio is calculated by using the cost of goods sold. Others calculate this by using the sales. As the inventory is composed of finished goods, goods in process and raw materials, we consider that the best approximation is to use the cost of sales (same denominator as for the DPO).</p>
+		<br />
+		<h3>Interpretation of the outcome</h3>
+		<p><img src="IMG/green.png" alt="green" width="24" height="28" />A low DIO: Good rotation of stock with limited/no obsolete stock and good inventory management. The DIO depends from sector to sector and the sector averages.</p>
+		<p><img src="IMG/orange.png" alt="orange" width="27" height="31" />DIO slightly higher than sector averages: Be careful!</p>
+		<p><img src="IMG/red.png" alt="red" width="24" height="30" />A high DIO &gt; 60 days: This is an overall warning sign for all sectors. This means a higher risk for obsolete stock and a sign for inefficient inventory management.</p>
+	</div>
+</script>
+<script type="text/ng-template" id="dsotemplate">
+	<div class="template">
+		<h2>Days Sales Outstanding</h2>
+		<p>DSO indicates the speed of a company's debt collection.  This ratio determines the number of days, on average, that it takes a company to collect its accounts receivables, i.e. the average number of days required to convert receivables into cash. It is an important indicator of a company's financial and operational performance.</p>
+		<br />
+		<h3>Interpretation of the outcome</h3>
+		<p><img src="IMG/green.png" alt="green" width="24" height="28" />A low DSO: You will have to borrow less, and the risk of losses on the your portfolio of accounts receivable diminishes. The DSO depends from sector to sector and the sector averages.</p>
+		<p><img src="IMG/orange.png" alt="orange" width="27" height="31" />DSO slightly higher than sector averages: Be careful!</p>
+		<p><img src="IMG/red.png" alt="red" width="24" height="30" />A significant higher DSO than the sector averages: Could be an indicator that the company has inefficient debt collection processes or bad debtor problems. An overall warning sign is when the DSO exceeds 60 days. The European Payment Directive, which has been enacted in all the EU legislations, foresees for commercial transactions a maximum payment term of 60 days.</p>
+		<br />
+		<p><b>Note!</b> Changing seasonality in sales can distort DSO. For this reason, some analysts use a daily average of sales based, not on the whole year but, on the last 2 or 3 months of sales. This does not eliminate the problem of seasonal shifts, but it does mitigate the result.<p>
+	</div>
+</script>
+<script type="text/ng-template" id="dpotemplate">
+	<div class="template">
+		<h2>Days Purchases Outstanding</h2>
+		<p>DPO shows how fast a company can pay off its creditors/suppliers. DPO is impacted by both contractual terms (Payment terms) and the promptness of our payment (Actual payment delay).</p>
+		<br />
+		<h3>Interpretation of the outcome</h3>
+		<p><img src="IMG/green.png" alt="green" width="24" height="28" />A high ratio: You will be able to get better credit terms from your suppliers. From a company&#39;s prospective, an increase in DPO is an improvement, as it gets financing which is not interest bearing. The DPO depends from sector to sector and the sector averages.</p>
+		<p><img src="IMG/orange.png" alt="orange" width="27" height="31" />DSO slightly below sector averages: Be careful!</p>
+		<p><img src="IMG/red.png" alt="red" width="24" height="30" />A low ratio significant below sector averages: How quick the business pays its liabilities. It shows the average payment terms granted to a company by its suppliers. A decrease in DPO is seen as a deterioration.</p>
+		<br />
+		<p><b>Note!</b> If a company has an easy access to financing, it might be interesting to pay its suppliers quicker if it can get discounts that are higher than its financing costs.</p>
+	</div>
+</script>
+</div>

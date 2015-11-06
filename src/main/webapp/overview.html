@@ -1,0 +1,19 @@
+<div id="overview">
+	<div><a href="http://www.usgprofessionals.com/belgium/finance"><img src="IMG/logoUSG-Finance-Professionals.gif" alt="logo USG Finance Professionals" width="160" height="80"></a></div>
+	<h1>Your companies</h1>
+	<p>Click on the company you would like to return to. To add a new company click the add button.</p>
+	<div id="list" ng-controller="OverviewCtrl">
+		<table>
+			<thead>
+				<tr><th>Company name</th><th>Company sector</th><th></th></tr>
+			</thead>
+			<tbody ng-repeat="company in companies">
+				<tr>
+					<td ng-class="rows[company.id]" ng-mouseover="hovertd(company.id)" ng-mouseleave="hovertd(company.id)" ng-click="goTo(company.id)">{{company.name}}</td><td ng-class="rows[company.id]" ng-mouseover="hovertd(company.id)" ng-mouseleave="hovertd(company.id)" ng-click="goTo(company.id)">{{company.sector}}</td><td ng-click="remove(company.id)"></td>
+				</tr>
+				<tr class="whitespace"></tr>
+			</tbody>
+		</table>
+		<div id="add" ng-click="new()">New Company</div>
+	</div>
+</div>
