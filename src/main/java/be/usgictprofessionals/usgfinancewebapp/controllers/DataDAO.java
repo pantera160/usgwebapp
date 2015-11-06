@@ -9,7 +9,6 @@ import be.usgictprofessionals.usgfinancewebapp.jsonrecources.InputData;
 import be.usgictprofessionals.usgfinancewebapp.jsonrecources.ReturnRatioData;
 import be.usgictprofessionals.usgfinancewebapp.jsonrecources.TurnoverRatioData;
 import be.usgictprofessionals.usgfinancewebapp.jsonrecources.WCMData;
-import java.time.Year;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Map;
@@ -35,12 +34,12 @@ public class DataDAO {
     }
     
     public ArrayList<InputData> calcData(ArrayList<InputData> inputdata, int companyId){
-        TreeMap<Year, CalculatedDataResource> data = new TreeMap<>(Collections.reverseOrder());
+        TreeMap<Integer, CalculatedDataResource> data = new TreeMap<>(Collections.reverseOrder());
         ArrayList<InputData> datalist = new ArrayList<>();
         for(InputData i : inputdata){
-            data.put(Year.of(i.getYear()),new CalculatedDataResource(i));
+            data.put(i.getYear(),new CalculatedDataResource(i));
         }
-        for (Map.Entry<Year, CalculatedDataResource> entry : data.entrySet()) {
+        for (Map.Entry<Integer, CalculatedDataResource> entry : data.entrySet()) {
                 datalist.add(entry.getValue().getInputData());
                 JdbcDatabase.getInstance().saveInputData(entry.getValue().getInputData(), companyId);
         }
@@ -104,11 +103,11 @@ public class DataDAO {
         return true;
     }
     
-    private TreeMap<Year, CalculatedDataResource> createCalcData(int companyId){
+    private TreeMap<Integer, CalculatedDataResource> createCalcData(int companyId){
         ArrayList<InputData> inputs = JdbcDatabase.getInstance().getInputData(companyId);
-        TreeMap<Year, CalculatedDataResource> data = new TreeMap<>(Collections.reverseOrder());
+        TreeMap<Integer, CalculatedDataResource> data = new TreeMap<>(Collections.reverseOrder());
         for(InputData i : inputs){
-            data.put(Year.of(i.getYear()),new CalculatedDataResource(i));
+            data.put(i.getYear(),new CalculatedDataResource(i));
         }
         return data;
     }

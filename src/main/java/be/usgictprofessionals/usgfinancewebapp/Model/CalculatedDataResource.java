@@ -7,7 +7,7 @@ package be.usgictprofessionals.usgfinancewebapp.Model;
 
 import be.usgictprofessionals.usgfinancewebapp.jsonrecources.BalansRatioData;
 import be.usgictprofessionals.usgfinancewebapp.jsonrecources.InputData;
-import java.time.Year;
+
 
 /**
  *
@@ -18,7 +18,7 @@ public class CalculatedDataResource {
     
     private double DIO, DSO, DPO, solvency, ebit, ROE, ROA, netFin, currRatio, quickRatio;
     private final InputData inputData;
-    private Year year;
+    private int year;
     
     /**
      *
@@ -27,7 +27,7 @@ public class CalculatedDataResource {
      */
     public CalculatedDataResource(InputData inputData){
         this.inputData = inputData;
-        this.year = Year.of(inputData.getYear());
+        this.year = inputData.getYear();
         initCalc();
         calcOverview();
     }
@@ -231,7 +231,7 @@ public class CalculatedDataResource {
      *
      * @return
      */
-    public Year getYear() {
+    public int getYear() {
         return year;
     }
 
@@ -239,7 +239,7 @@ public class CalculatedDataResource {
      *
      * @param year
      */
-    public void setYear(Year year) {
+    public void setYear(int year) {
         this.year = year;
     }
     

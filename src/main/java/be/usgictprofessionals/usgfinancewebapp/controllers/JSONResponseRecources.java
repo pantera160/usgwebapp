@@ -13,8 +13,9 @@ import be.usgictprofessionals.usgfinancewebapp.jsonrecources.InputData;
 import be.usgictprofessionals.usgfinancewebapp.jsonrecources.ReturnRatioData;
 import be.usgictprofessionals.usgfinancewebapp.jsonrecources.TurnoverRatioData;
 import be.usgictprofessionals.usgfinancewebapp.jsonrecources.WCMData;
-import java.time.Year;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -34,14 +35,16 @@ public class JSONResponseRecources {
      * @return ArrayList of InputPageData elements. Each element corresponds to
      * an other year.
      */
-    public static ArrayList<InputData> getInputReturn(TreeMap<Year, CalculatedDataResource> data) {
+    public static ArrayList<InputData> getInputReturn(TreeMap<Integer, CalculatedDataResource> data) {
         ArrayList<InputData> inputreturn = new ArrayList<>();
         if (data == null) {
             InputData temp = new InputData();
-            temp.setYear(Year.now().getValue());
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(new Date());
+            temp.setYear(cal.get(Calendar.YEAR));
             inputreturn.add(temp);
         } else {
-            for (Map.Entry<Year, CalculatedDataResource> entry : data.entrySet()) {
+            for (Map.Entry<Integer, CalculatedDataResource> entry : data.entrySet()) {
                 inputreturn.add(entry.getValue().getInputData());
             }
         }
@@ -55,12 +58,12 @@ public class JSONResponseRecources {
      * with a year for which the balans data has been calculated. The elements
      * are ordered by year.
      */
-    public static ArrayList<BalansRatioData> getBalans(TreeMap<Year, CalculatedDataResource> data) {
+    public static ArrayList<BalansRatioData> getBalans(TreeMap<Integer, CalculatedDataResource> data) {
         ArrayList<BalansRatioData> balans = new ArrayList<>();
 
-        for (Map.Entry<Year, CalculatedDataResource> entry : data.entrySet()) {
+        for (Map.Entry<Integer, CalculatedDataResource> entry : data.entrySet()) {
             BalansRatioData temp = new BalansRatioData();
-            temp.setYear(entry.getKey().getValue());
+            temp.setYear(entry.getKey());
             temp.setCurrRatio(entry.getValue().getCurrRatio());
             temp.setQuickRatio(entry.getValue().getQuickRatio());
             temp.setSolvency(entry.getValue().getSolvency());
@@ -77,14 +80,14 @@ public class JSONResponseRecources {
      * corresponds with a year for which the coverage has been calculated. The
      * elements are order by year.
      */
-    public static ArrayList<CoverageRatioData> getCoverage(TreeMap<Year, CalculatedDataResource> data) {
+    public static ArrayList<CoverageRatioData> getCoverage(TreeMap<Integer, CalculatedDataResource> data) {
         ArrayList<CoverageRatioData> coverage = new ArrayList<>();
 
-        for (Map.Entry<Year, CalculatedDataResource> entry : data.entrySet()) {
+        for (Map.Entry<Integer, CalculatedDataResource> entry : data.entrySet()) {
             CoverageRatioData temp = new CoverageRatioData();
             temp.setEBITFinExp(entry.getValue().getEbit());
             temp.setNetDebtEBITDA(entry.getValue().getNetFin());
-            temp.setYear(entry.getKey().getValue());
+            temp.setYear(entry.getKey());
             coverage.add(temp);
         }
         return coverage;
@@ -97,14 +100,14 @@ public class JSONResponseRecources {
      * with a year for which the return has been calculated The elements are
      * sorted by year.
      */
-    public static ArrayList<ReturnRatioData> getReturn(TreeMap<Year, CalculatedDataResource> data) {
+    public static ArrayList<ReturnRatioData> getReturn(TreeMap<Integer, CalculatedDataResource> data) {
         ArrayList<ReturnRatioData> returnData = new ArrayList<>();
 
-        for (Map.Entry<Year, CalculatedDataResource> entry : data.entrySet()) {
+        for (Map.Entry<Integer, CalculatedDataResource> entry : data.entrySet()) {
             ReturnRatioData temp = new ReturnRatioData();
             temp.setROA(entry.getValue().getROA());
             temp.setROE(entry.getValue().getROE());
-            temp.setYear(entry.getKey().getValue());
+            temp.setYear(entry.getKey());
             returnData.add(temp);
         }
 
@@ -118,15 +121,15 @@ public class JSONResponseRecources {
      * with a year for which the turnover has been calculated. The elements are
      * sorted by year.
      */
-    public static ArrayList<TurnoverRatioData> getTurnover(TreeMap<Year, CalculatedDataResource> data) {
+    public static ArrayList<TurnoverRatioData> getTurnover(TreeMap<Integer, CalculatedDataResource> data) {
         ArrayList<TurnoverRatioData> turnover = new ArrayList<>();
 
-        for (Map.Entry<Year, CalculatedDataResource> entry : data.entrySet()) {
+        for (Map.Entry<Integer, CalculatedDataResource> entry : data.entrySet()) {
             TurnoverRatioData temp = new TurnoverRatioData();
             temp.setDIO(entry.getValue().getDIO());
             temp.setDSO(entry.getValue().getDSO());
             temp.setDPO(entry.getValue().getDPO());
-            temp.setYear(entry.getKey().getValue());
+            temp.setYear(entry.getKey());
             turnover.add(temp);
         }
         return turnover;
