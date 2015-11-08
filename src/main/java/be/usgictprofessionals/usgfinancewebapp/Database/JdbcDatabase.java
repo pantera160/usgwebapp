@@ -26,7 +26,9 @@ import java.util.HashMap;
  */
 public class JdbcDatabase implements Database {
 
-    private static final String DBURL = "jdbc:derby://localhost:1527/USGFinanceWebapp;user=Pantera;password=admin";
+    private static final String DBURL = "jdbc:mysql://localhost:3306";
+    private static final String DBUSER = "admin4mnZmIw";
+    private static final String DBPASS = "BSqdGV7HhqrE";
     private static Connection conn = null;
     private static Statement stmt = null;
     private static JdbcDatabase uniqueInstance;
@@ -120,9 +122,9 @@ public class JdbcDatabase implements Database {
     private static void createConnection() {
         if (conn == null) {
             try {
-                Class.forName("org.apache.derby.jdbc.ClientDriver").newInstance();
+                Class.forName("com.mysql.jdbc.Driver").newInstance();
                 //Get a connection
-                conn = DriverManager.getConnection(DBURL);
+                conn = DriverManager.getConnection(DBURL, DBUSER, DBPASS);
             } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | SQLException except) {
                 except.printStackTrace();
             }
