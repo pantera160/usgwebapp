@@ -21,7 +21,7 @@
 	text-align:center;
 }
 
-#overview tbody tr td:last-child {
+#overview tbody tr td.cross {
 	padding-left:20px;
 	text-align:center;
 	width: 100px;
@@ -105,4 +105,28 @@ cursor: pointer;
 
 #overview tbody tr.whitespace{
 	border: 2px solid white;
+}
+
+#overview td img{
+	margin: 0px 15px;
+	vertical-align: middle;
+}
+
+#overview td img:hover{
+	cursor: pointer;
+	opacity: 0.5;
+}
+
+#overview .wrapper{
+	height: 38px;
+	width: 200px;
+    white-space: nowrap;
+    
+    text-align: center;
+}
+
+#overview .helper{
+	display: inline-block;
+    height: 100%;
+    vertical-align: middle;
 }

@@ -33,7 +33,7 @@ import javax.ws.rs.core.MediaType;
  * @author Pantera
  */
 @Path("/data")
-public class RESTDataResource {
+public class RESTDataResources {
 
     /**
      *

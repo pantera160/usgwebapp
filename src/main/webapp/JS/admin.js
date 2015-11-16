@@ -4,28 +4,28 @@ app.service('adminService', function($http) {
 		// $http() returns a $promise that we can add handlers with .then()
 		return $http({
 			method: 'GET',
-			url: 'http://localhost:8080/USGFinanceWebapp/rest/crm/users'
+			url: 'http://wcstool-usg.rhcloud.com/rest/crm/users'
 		});
 	}
 	this.resetMail = function($id) {
 		// $http() returns a $promise that we can add handlers with .then()
 		return $http({
 			method: 'PUT',
-			url: 'http://localhost:8080/USGFinanceWebapp/rest/crm/user/'+$id
+			url: 'http://wcstool-usg.rhcloud.com/rest/crm/user/'+$id
 		});
 	}
 	this.deleteUser = function($id) {
 		// $http() returns a $promise that we can add handlers with .then()
 		return $http({
 			method: 'DELETE',
-			url: 'http://localhost:8080/USGFinanceWebapp/rest/crm/user/'+$id
+			url: 'http://wcstool-usg.rhcloud.com/rest/crm/user/'+$id
 		});
 	}
 	this.newuser = function($name, $email){
 		// $http() returns a $promise that we can add handlers with .then()
 		return $http({
 			method: 'POST',
-			url: 'http://localhost:8080/USGFinanceWebapp/rest/crm/newuser',
+			url: 'http://wcstool-usg.rhcloud.com/rest/crm/newuser',
 			data: {username : $name, email: $email}
 		});
 	}

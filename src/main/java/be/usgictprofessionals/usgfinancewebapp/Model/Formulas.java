@@ -46,7 +46,7 @@ public class Formulas {
      * @return
      */
     public static double calcNetFin(double ltFin, double stFin, double cash, double ebitda, int numberOfMonths) {
-        return round(((ltFin + stFin - cash) / ebitda)*12/numberOfMonths, 1);
+        return round(((ltFin + stFin - cash) / ebitda)*numberOfMonths/12, 1);
     }
 
     /**

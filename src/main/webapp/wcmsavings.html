@@ -166,31 +166,31 @@
                         <tr>
                             <td>Debit Interest</td>
 
-                            <td class="inputtd"><input my-numberformat type="text" ng-model="data.debitInterest"></td>
+                            <td class="inputtd"><input my-numberformat2 type="text" ng-model="data.debitInterest"></td>
                         </tr>
 
                         <tr>
                             <td>Credit Interest (only if net debt &gt; 0)</td>
 
-                            <td class="inputtd"><input my-numberformat type="text" ng-model="data.creditInterest"></td>
+                            <td class="inputtd"><input my-numberformat2 type="text" ng-model="data.creditInterest"></td>
                         </tr>
 
                         <tr>
                             <td>Cost of Accounts Receivable</td>
 
-                            <td class="inputtd"><input my-numberformat type="text" ng-model="data.costAR"></td>
+                            <td class="inputtd"><input my-numberformat2 type="text" ng-model="data.costAR"></td>
                         </tr>
 
                         <tr>
                             <td>Cost of Inventory</td>
 
-                            <td class="inputtd"><input my-numberformat type="text" ng-model="data.costInv"></td>
+                            <td class="inputtd"><input my-numberformat2 type="text" ng-model="data.costInv"></td>
                         </tr>
 
                         <tr>
                             <td>Cost of Accounts Payable</td>
 
-                            <td class="inputtd"><input my-numberformat type="text" ng-model="data.costAP"></td>
+                            <td class="inputtd"><input my-numberformat2 type="text" ng-model="data.costAP"></td>
                         </tr>
                     </tbody>
                 </table>
@@ -210,37 +210,37 @@
                         <tr>
                             <td>Debit interest</td>
 
-                            <td>{{data.debitInterestSavings | NumberEU}}</td>
+                            <td>{{data.debitInterestSavings | NumberEU2}}</td>
                         </tr>
 
                         <tr>
                             <td>Credit interest</td>
 
-                            <td>{{data.creditInterestSavings | NumberEU}}</td>
+                            <td>{{data.creditInterestSavings | NumberEU2}}</td>
                         </tr>
 
                         <tr>
                             <td>Cost of Accounts Receivable</td>
 
-                            <td>{{data.costARSavings | NumberEU}}</td>
+                            <td>{{data.costARSavings | NumberEU2}}</td>
                         </tr>
 
                         <tr>
                             <td>Cost of Inventory</td>
 
-                            <td>{{data.costInvSavings | NumberEU}}</td>
+                            <td>{{data.costInvSavings | NumberEU2}}</td>
                         </tr>
 
                         <tr>
                             <td>Cost of Accounts Payable</td>
 
-                            <td>{{data.costAPSavings | NumberEU}}</td>
+                            <td>{{data.costAPSavings | NumberEU2}}</td>
                         </tr>
 
                         <tr id="total">
                             <td>Total Savings</td>
 
-                            <td>{{data.totalSavings | NumberEU}}</td>
+                            <td>{{data.totalSavings | NumberEU2}}</td>
                         </tr>
                     </tbody>
                 </table>

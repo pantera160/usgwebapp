@@ -4,14 +4,14 @@ app.service('dataService', function($http) {
 		// $http() returns a $promise that we can add handlers with .then()
 		return $http({
 			method: 'GET',
-			url: 'http://localhost:8080/USGFinanceWebapp/rest/data/input/'+$id
+			url: 'http://wcstool-usg.rhcloud.com/rest/data/input/'+$id
 		});
 	}
 	this.saveData = function($data, $id) {
 		// $http() returns a $promise that we can add handlers with .then()
 		return $http({
 			method: 'POST',
-			url: 'http://localhost:8080/USGFinanceWebapp/rest/data/input/'+$id,
+			url: 'http://wcstool-usg.rhcloud.com/rest/data/input/'+$id,
 			data: $data
 		});
 	}
@@ -19,14 +19,14 @@ app.service('dataService', function($http) {
 		// $http() returns a $promise that we can add handlers with .then()
 		return $http({
 			method: 'GET',
-			url: 'http://localhost:8080/USGFinanceWebapp/rest/data/company/'+$id
+			url: 'http://wcstool-usg.rhcloud.com/rest/data/company/'+$id
 		});
 	}
 	this.saveCompData = function($data, $id) {
 		// $http() returns a $promise that we can add handlers with .then()
 		return $http({
 			method: 'POST',
-			url: 'http://localhost:8080/USGFinanceWebapp/rest/data/company/'+$id,
+			url: 'http://wcstool-usg.rhcloud.com/rest/data/company/'+$id,
 			data: $data
 		});
 	}
@@ -34,9 +34,47 @@ app.service('dataService', function($http) {
 		// $http() returns a $promise that we can add handlers with .then()
 		return $http({
 			method: 'GET',
-			url: 'http://localhost:8080/USGFinanceWebapp/rest/data/sectors'
+			url: 'http://wcstool-usg.rhcloud.com/rest/data/sectors'
 		});
 	}
+});
+
+app.directive('number', function() {
+    return {
+
+      // limit usage to argument only
+      restrict: 'A',
+
+      // require NgModelController, i.e. require a controller of ngModel directive
+      require: 'ngModel',
+
+      // create linking function and pass in our NgModelController as a 4th argument
+      link: function(scope, element, attr, ctrl) {
+            
+    // please note you can name your function & argument anything you like
+    function customValidator(ngModelValue) {
+
+        // check if contains number
+        // if it does contain number, set our custom `numberValidator`  to valid/true
+        // otherwise set it to non-valid/false
+        var regex = /^\d*.\d*$/;
+        if (regex.test(ngModelValue)) {
+            ctrl.$setValidity('numberValidator', true);
+        } else {
+            ctrl.$setValidity('numberValidator', false);
+        }
+
+        // we need to return our ngModelValue, to be displayed to the user(value of the input)
+        return ngModelValue;
+    }
+
+    // we need to add our customValidator function to an array of other(build-in or custom) functions
+    // I have not notice any performance issues, but it would be worth investigating how much
+    // effect does this have on the performance of the app
+    ctrl.$parsers.push(customValidator);
+    
+}
+      };
 });
 
 app.controller("HelpCtrl", function($scope, ngDialog) {
@@ -225,6 +263,7 @@ app.controller("MyForm", function($scope, dataService, $location, $rootScope, $c
 	//used to generate the headers
 	$scope.years = [
 	startyear];
+	$scope.clear = false;
 	$scope.add = function() {
 		//for each row add an extra column
 		angular.forEach($scope.inputs, function($value) {

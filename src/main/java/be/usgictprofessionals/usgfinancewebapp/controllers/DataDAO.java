@@ -52,26 +52,26 @@ public class DataDAO {
     
     public ArrayList<BalansRatioData> getBalans(int companyId){
         ArrayList<BalansRatioData> response = JSONResponseRecources.getBalans(createCalcData(companyId));
-        response.add(JdbcDatabase.getInstance().getBalansAvg(1));
+        response.add(JdbcDatabase.getInstance().getBalansAvg(companyId));
         return response;
     }
     
     public ArrayList<CoverageRatioData> getCoverage(int companyId){
         ArrayList<CoverageRatioData> response = JSONResponseRecources.getCoverage(createCalcData(companyId));
-        response.add(JdbcDatabase.getInstance().getCoverageAvg(1));
+        response.add(JdbcDatabase.getInstance().getCoverageAvg(companyId));
         return response;
     }
     
     public ArrayList<ReturnRatioData> getReturn(int companyId){
         ArrayList<ReturnRatioData> response = JSONResponseRecources.getReturn(createCalcData(companyId));
-        ReturnRatioData avg = JdbcDatabase.getInstance().getReturnAvg(1);
+        ReturnRatioData avg = JdbcDatabase.getInstance().getReturnAvg(companyId);
         response.add(avg);
         return response;
     }
     
     public ArrayList<TurnoverRatioData> getTurnover(int companyId){
         ArrayList<TurnoverRatioData> response = JSONResponseRecources.getTurnover(createCalcData(companyId));
-        response.add(JdbcDatabase.getInstance().getTurnoverAvg(1));
+        response.add(JdbcDatabase.getInstance().getTurnoverAvg(companyId));
         return response;
     }
     

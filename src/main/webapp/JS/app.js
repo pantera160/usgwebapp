@@ -74,6 +74,38 @@ app.directive('myNumberformat', function() {
 		}
 	};
 });
+app.directive('myNumberformat2', function() {
+	/**
+	 * format(number, n, x, s, c)
+	 *
+	 * @param Number number: number to format
+	 * @param integer n: length of decimal
+	 * @param integer x: length of whole part
+	 * @param mixed   s: sections delimiter
+	 * @param mixed   c: decimal delimiter
+	 */
+	var format = function(number, n, x, s, c) {
+			var re = '\\d(?=(\\d{' + (x || 3) + '})+' + (n > 0 ? '\\D' : '$') + ')',
+				num = Number(number).toFixed(Math.max(0, ~~n));
+			return (c ? num.replace('.', c) : num).replace(new RegExp(re, 'g'), '$&' + (s || ','));
+		}
+	var validNumber = function(number) {
+			return number.replace(',', '.');
+		}
+	return {
+		require: 'ngModel',
+		link: function(scope, element, attrs, ngModelController) {
+			ngModelController.$parsers.push(function(data) {
+				//convert data from view format to model format
+				return validNumber(data); //converted
+			});
+			ngModelController.$formatters.push(function(data) {
+				//convert data from model format to view format
+				return format(data, 2, 3, '.', ','); //converted
+			});
+		}
+	};
+});
 app.filter('NumberEU', function() {
 	/**
 	 * Number.prototype.format(n, x, s, c)
@@ -90,6 +122,25 @@ app.filter('NumberEU', function() {
 	};
 	return function(input, para1) {
 		var out = Number(input).format(1, 3, '.', ',');
+		return out;
+	}
+});
+app.filter('NumberEU2', function() {
+	/**
+	 * Number.prototype.format(n, x, s, c)
+	 *
+	 * @param integer n: length of decimal
+	 * @param integer x: length of whole part
+	 * @param mixed   s: sections delimiter
+	 * @param mixed   c: decimal delimiter
+	 */
+	Number.prototype.format = function(n, x, s, c) {
+		var re = '\\d(?=(\\d{' + (x || 3) + '})+' + (n > 0 ? '\\D' : '$') + ')',
+			num = this.toFixed(Math.max(0, ~~n));
+		return (c ? num.replace('.', c) : num).replace(new RegExp(re, 'g'), '$&' + (s || ','));
+	};
+	return function(input, para1) {
+		var out = Number(input).format(2, 3, '.', ',');
 		return out;
 	}
 });

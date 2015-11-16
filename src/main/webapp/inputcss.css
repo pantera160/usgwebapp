@@ -185,3 +185,37 @@ div#buttonsdiv{
 #input #titlenbuttonbutton button{
 	padding: 5px;
 }
+
+/*
+	remove 'spinner' on input boxes of type number
+*/
+input[type="number"]::-webkit-inner-spin-button, 
+input[type="number"]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+
+#input td img{
+	margin: 0px 15px;
+	vertical-align: middle;
+}
+
+#input td img:hover{
+	cursor: pointer;
+	opacity: 0.5;
+}
+
+#input .wrapper{
+	height: 38px;
+	width: 200px;
+    white-space: nowrap;
+    
+    text-align: center;
+}
+
+#input .helper{
+	display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}

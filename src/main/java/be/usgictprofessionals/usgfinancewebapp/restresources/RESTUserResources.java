@@ -45,6 +45,7 @@ public class RESTUserResources {
     
     @DELETE
     @Path("/user/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
     public int deteteUser(@PathParam("id") String id, @Context final HttpServletResponse response){
         try{
         UserDAO.getInstance().deleteUser(Integer.parseInt(id));
@@ -67,6 +68,7 @@ public class RESTUserResources {
     
     @GET
     @Path("/companies/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
     public ArrayList<HashMap<String, String>> getCompanies(@PathParam("id") String id){
         return UserDAO.getInstance().getCompanies(Integer.parseInt(id));
     }
@@ -95,6 +97,7 @@ public class RESTUserResources {
     @POST
     @Path("/newuser")
     @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
     public HashMap<String, String> newUser(HashMap<String, String> data){
         HashMap<String, String> map = new HashMap<>();
         try{

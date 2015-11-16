@@ -5,14 +5,14 @@ app.service('CompanyService', function($http) {
 		// $http() returns a $promise that we can add handlers with .then()
 		return $http({
 			method: 'GET',
-			url: 'http://localhost:8080/USGFinanceWebapp/rest/crm/companies/'+id
+			url: 'http://wcstool-usg.rhcloud.com/rest/crm/companies/'+id
 		});
 	};
 	this.remove = function(id) {
 		// $http() returns a $promise that we can add handlers with .then()
 		return $http({
 			method: 'DELETE',
-			url: 'http://localhost:8080/USGFinanceWebapp/rest/crm/company/'+id
+			url: 'http://wcstool-usg.rhcloud.com/rest/crm/company/'+id
 		});
 	}
 });
@@ -20,6 +20,15 @@ app.service('CompanyService', function($http) {
 app.controller('OverviewCtrl', ['$rootScope', '$scope', 'CompanyService', '$location', '$cookieStore', function($scope, $rootScope, CompanyService, $location, $cookieStore){
 	
 	$scope.rows = {};
+	$scope.deleting = false;
+	
+	$scope.confirm = function(){
+		$scope.deleting = true;
+	}
+	
+	$scope.decline = function(){
+		$scope.deleting = false;
+	}
 	
 	var getCompanies = function(){
 		var userid = $rootScope.globals.currentUser.userid;

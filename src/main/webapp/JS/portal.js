@@ -3,7 +3,7 @@ var app = angular.module('Portal');
 app.controller('PortalCtrl', function($scope, $location){
 	
 	$scope.back = function(){
-		$location.path('/');
+		$location.path('/input');
 	};
 	
 	$scope.route = function(path){

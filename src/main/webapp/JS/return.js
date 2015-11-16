@@ -4,7 +4,7 @@ app.service('ReturnService', function($http) {
 		// $http() returns a $promise that we can add handlers with .then()
 		return $http({
 			method: 'GET',
-			url: 'http://localhost:8080/USGFinanceWebapp/rest/data/return/'+$id,
+			url: 'http://wcstool-usg.rhcloud.com/rest/data/return/'+$id,
 			cache : true
 		});
 	};
@@ -12,7 +12,7 @@ app.service('ReturnService', function($http) {
 		// $http() returns a $promise that we can add handlers with .then()
 		return $http({
 			method: 'GET',
-			url: 'http://localhost:8080/USGFinanceWebapp/rest/data/company/'+$id,
+			url: 'http://wcstool-usg.rhcloud.com/rest/data/company/'+$id,
 			cache : true
 		});
 	};

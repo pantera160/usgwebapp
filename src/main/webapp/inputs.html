@@ -52,7 +52,7 @@
                         <tr>
                             <td>Number of Months</td>
 
-                            <td ng-repeat="cols in inputs.numberOfMonths"><input ng-model="cols.data" type="text" required=""></td>
+                            <td ng-repeat="cols in inputs.numberOfMonths"><input ng-model="cols.data" type="text" required="" onclick="this.select()"></td>
 
                             <td class="NBBCodes"></td>
                         </tr>
@@ -66,7 +66,7 @@
                         <tr>
                             <td>Fixed assets</td>
 
-                            <td ng-repeat="cols in inputs.fixedAssets"><input my-numberformat ng-model="cols.data" type="text" required=""></td>
+                            <td ng-repeat="cols in inputs.fixedAssets"><input my-numberformat ng-model="cols.data" type="text" required="" onclick="this.select()"></td>
 
                             <td class="NBBCodes">20/28</td>
 
@@ -76,7 +76,7 @@
                         <tr>
                             <td class="sublabel">Of which intangibles / goodwill</td>
 
-                            <td ng-repeat="cols in inputs.intangiblesAssets"><input my-numberformat ng-model="cols.data" type="text" required=""></td>
+                            <td ng-repeat="cols in inputs.intangiblesAssets"><input my-numberformat ng-model="cols.data" type="text" required="" onclick="this.select()"></td>
 
                             <td class="NBBCodes"></td>
 
@@ -86,7 +86,7 @@
                         <tr>
                             <td class="sublabel">Of which property, plant and equipment</td>
 
-                            <td ng-repeat="cols in inputs.propertyAssets"><input my-numberformat ng-model="cols.data" type="text" required=""></td>
+                            <td ng-repeat="cols in inputs.propertyAssets"><input my-numberformat ng-model="cols.data" type="text" required="" onclick="this.select()"></td>
 
                             <td class="NBBCodes"></td>
 
@@ -96,7 +96,7 @@
                         <tr>
                             <td class="sublabel">Of which financial fixed assets</td>
 
-                            <td ng-repeat="cols in inputs.finFixedAssets"><input my-numberformat ng-model="cols.data" type="text" required=""></td>
+                            <td ng-repeat="cols in inputs.finFixedAssets"><input my-numberformat ng-model="cols.data" type="text" required="" onclick="this.select()"></td>
 
                             <td class="NBBCodes"></td>
 
@@ -106,7 +106,7 @@
                         <tr>
                             <td>Inventory</td>
 
-                            <td ng-repeat="cols in inputs.inventory"><input my-numberformat ng-model="cols.data" type="text" required=""></td>
+                            <td ng-repeat="cols in inputs.inventory"><input my-numberformat ng-model="cols.data" type="text" required="" onclick="this.select()"></td>
 
                             <td class="NBBCodes">3</td>
 
@@ -116,7 +116,7 @@
                         <tr>
                             <td>Accounts Receivable</td>
 
-                            <td ng-repeat="cols in inputs.ar"><input my-numberformat ng-model="cols.data" type="text" required=""></td>
+                            <td ng-repeat="cols in inputs.ar"><input my-numberformat ng-model="cols.data" type="text" required="" onclick="this.select()"></td>
 
                             <td class="NBBCodes">40</td>
 
@@ -126,7 +126,7 @@
                         <tr>
                             <td>Cash</td>
 
-                            <td ng-repeat="cols in inputs.cash"><input my-numberformat ng-model="cols.data" type="text" required=""></td>
+                            <td ng-repeat="cols in inputs.cash"><input my-numberformat ng-model="cols.data" type="text" required="" onclick="this.select()"></td>
 
                             <td class="NBBCodes">50/53+54/58</td>
 
@@ -136,7 +136,7 @@
                         <tr>
                             <td>Current assets</td>
 
-                            <td ng-repeat="cols in inputs.currAssets"><input my-numberformat ng-model="cols.data" type="text" required=""></td>
+                            <td ng-repeat="cols in inputs.currAssets"><input my-numberformat ng-model="cols.data" type="text" required="" onclick="this.select()"></td>
 
                             <td class="NBBCodes">29/58</td>
 
@@ -146,7 +146,7 @@
                         <tr>
                             <td>Total assets</td>
 
-                            <td ng-repeat="cols in inputs.totAssets"><input my-numberformat ng-model="cols.data" type="text" required=""></td>
+                            <td ng-repeat="cols in inputs.totAssets"><input my-numberformat ng-model="cols.data" type="text" required="" onclick="this.select()"></td>
 
                             <td class="NBBCodes">20/58</td>
 
@@ -156,7 +156,7 @@
                         <tr>
                             <td>Equity</td>
 
-                            <td ng-repeat="cols in inputs.equity"><input my-numberformat ng-model="cols.data" type="text" required=""></td>
+                            <td ng-repeat="cols in inputs.equity"><input my-numberformat ng-model="cols.data" type="text" required="" onclick="this.select()"></td>
 
                             <td class="NBBCodes"></td>
 
@@ -166,7 +166,7 @@
                         <tr>
                             <td>Long term financial debt</td>
 
-                            <td ng-repeat="cols in inputs.ltFinDebt"><input my-numberformat ng-model="cols.data" type="text" required=""></td>
+                            <td ng-repeat="cols in inputs.ltFinDebt"><input my-numberformat ng-model="cols.data" type="text" required="" onclick="this.select()"></td>
 
                             <td class="NBBCodes">170/4</td>
 
@@ -176,7 +176,7 @@
                         <tr>
                             <td class="sublabel">subordinated/convertible debt</td>
 
-                            <td ng-repeat="cols in inputs.subordinatedDebt"><input my-numberformat ng-model="cols.data" type="text" required=""></td>
+                            <td ng-repeat="cols in inputs.subordinatedDebt"><input my-numberformat ng-model="cols.data" type="text" required="" onclick="this.select()"></td>
 
                             <td class="NBBCodes"></td>
 
@@ -186,7 +186,7 @@
                         <tr>
                             <td>Short term financial debt</td>
 
-                            <td ng-repeat="cols in inputs.stFinDebt"><input my-numberformat ng-model="cols.data" type="text" required=""></td>
+                            <td ng-repeat="cols in inputs.stFinDebt"><input my-numberformat ng-model="cols.data" type="text" required="" onclick="this.select()"></td>
 
                             <td class="NBBCodes">42+43</td>
 
@@ -196,7 +196,7 @@
                         <tr>
                             <td>Accounts payable</td>
 
-                            <td ng-repeat="cols in inputs.ap"><input my-numberformat ng-model="cols.data" type="text" required=""></td>
+                            <td ng-repeat="cols in inputs.ap"><input my-numberformat ng-model="cols.data" type="text" required="" onclick="this.select()"></td>
 
                             <td class="NBBCodes">44</td>
 
@@ -206,7 +206,7 @@
                         <tr>
                             <td>Current liabilities</td>
 
-                            <td ng-repeat="cols in inputs.currLiabilities"><input my-numberformat ng-model="cols.data" type="text" required=""></td>
+                            <td ng-repeat="cols in inputs.currLiabilities"><input my-numberformat ng-model="cols.data" type="text" required="" onclick="this.select()"></td>
 
                             <td class="NBBCodes">17/49</td>
 
@@ -246,7 +246,7 @@
                         <tr>
                             <td>Turnover</td>
 
-                            <td ng-repeat="cols in inputs.turnover"><input my-numberformat ng-model="cols.data" type="text" required=""></td>
+                            <td ng-repeat="cols in inputs.turnover"><input my-numberformat ng-model="cols.data" type="text" required="" onclick="this.select()"></td>
 
                             <td class="NBBCodes">70/74</td>
 
@@ -256,7 +256,7 @@
                         <tr>
                             <td>Cost of sales</td>
 
-                            <td ng-repeat="cols in inputs.costOfSales"><input my-numberformat ng-model="cols.data" type="text" required=""></td>
+                            <td ng-repeat="cols in inputs.costOfSales"><input my-numberformat ng-model="cols.data" type="text" required="" onclick="this.select()"></td>
 
                             <td class="NBBCodes">60+61</td>
 
@@ -266,7 +266,7 @@
                         <tr>
                             <td>Depreciation</td>
 
-                            <td ng-repeat="cols in inputs.depreciation"><input my-numberformat ng-model="cols.data" type="text" required=""></td>
+                            <td ng-repeat="cols in inputs.depreciation"><input my-numberformat ng-model="cols.data" type="text" required="" onclick="this.select()"></td>
 
                             <td class="NBBCodes">630</td>
 
@@ -276,7 +276,7 @@
                         <tr>
                             <td>REBIT (Recurring Earnings before Interest, Taxes)</td>
 
-                            <td ng-repeat="cols in inputs.ebit"><input my-numberformat ng-model="cols.data" type="text" required=""></td>
+                            <td ng-repeat="cols in inputs.ebit"><input my-numberformat ng-model="cols.data" type="text" required="" onclick="this.select()"></td>
 
                             <td class="NBBCodes">9901</td>
 
@@ -286,7 +286,7 @@
                         <tr>
                             <td>Financial revenue</td>
 
-                            <td ng-repeat="cols in inputs.finRev"><input my-numberformat ng-model="cols.data" type="text" required=""></td>
+                            <td ng-repeat="cols in inputs.finRev"><input my-numberformat ng-model="cols.data" type="text" required="" onclick="this.select()"></td>
 
                             <td class="NBBCodes">75</td>
 
@@ -296,7 +296,7 @@
                         <tr>
                             <td>Financial expenses</td>
 
-                            <td ng-repeat="cols in inputs.finExp"><input my-numberformat ng-model="cols.data" type="text" required=""></td>
+                            <td ng-repeat="cols in inputs.finExp"><input my-numberformat ng-model="cols.data" type="text" required="" onclick="this.select()"></td>
 
                             <td class="NBBCodes">65</td>
 
@@ -306,7 +306,7 @@
                         <tr>
                             <td class="sublabel">Of which interest charges</td>
 
-                            <td ng-repeat="cols in inputs.finExpInterest"><input my-numberformat ng-model="cols.data" type="text" required=""></td>
+                            <td ng-repeat="cols in inputs.finExpInterest"><input my-numberformat ng-model="cols.data" type="text" required="" onclick="this.select()"></td>
 
                             <td class="NBBCodes">650</td>
 
@@ -316,7 +316,7 @@
                         <tr>
                             <td class="sublabel">Of which bank charges</td>
 
-                            <td ng-repeat="cols in inputs.finExpBank"><input my-numberformat ng-model="cols.data" type="text" required=""></td>
+                            <td ng-repeat="cols in inputs.finExpBank"><input my-numberformat ng-model="cols.data" type="text" required="" onclick="this.select()"></td>
 
                             <td class="NBBCodes"></td>
 
@@ -326,7 +326,7 @@
                         <tr>
                             <td class="sublabel">Of which other financial charges</td>
 
-                            <td ng-repeat="cols in inputs.finExpOther"><input my-numberformat ng-model="cols.data" type="text" required=""></td>
+                            <td ng-repeat="cols in inputs.finExpOther"><input my-numberformat ng-model="cols.data" type="text" required="" onclick="this.select()"></td>
 
                             <td class="NBBCodes"></td>
 
@@ -336,7 +336,7 @@
                         <tr>
                             <td>Non recurring income</td>
 
-                            <td ng-repeat="cols in inputs.nrIncome"><input my-numberformat ng-model="cols.data" type="text" required=""></td>
+                            <td ng-repeat="cols in inputs.nrIncome"><input my-numberformat ng-model="cols.data" type="text" required="" onclick="this.select()"></td>
 
                             <td class="NBBCodes">76</td>
 
@@ -346,7 +346,7 @@
                         <tr>
                             <td>Non recurring charges</td>
 
-                            <td ng-repeat="cols in inputs.nrCharges"><input my-numberformat ng-model="cols.data" type="text" required=""></td>
+                            <td ng-repeat="cols in inputs.nrCharges"><input my-numberformat ng-model="cols.data" type="text" required="" onclick="this.select()"></td>
 
                             <td class="NBBCodes">66</td>
 
@@ -356,7 +356,7 @@
                         <tr>
                             <td>Taxes</td>
 
-                            <td ng-repeat="cols in inputs.taxes"><input my-numberformat ng-model="cols.data" type="text" required=""></td>
+                            <td ng-repeat="cols in inputs.taxes"><input my-numberformat ng-model="cols.data" type="text" required="" onclick="this.select()"></td>
 
                             <td class="NBBCodes">70/74</td>
 
@@ -399,7 +399,13 @@
                 </table>
 
                 <div id="buttonsdiv" class="centered">
-                    <button type="button" ng-click="clear()" tooltips tooltip-side="bottom" tooltip-content="Set all data to 0">Clear</button> <button type="button" ng-click="save()" tooltips tooltip-side="top" tooltip-content="Save and stay">Save</button> <button type="button" ng-click="next()" tooltips tooltip-side="bottom" tooltip-content="Save and continue">Next</button>
+                    
+                    <button type="button" ng-click="clearing = true" ng-show="!clearing" tooltips tooltip-side="bottom" tooltip-content="Set all data to 0">Clear</button><div class="wrapper" ng-show="clearing"><span class="helper"></span><img ng-click="clear()" src="IMG/approved-151676.svg" alt="accept" width="25" height="25"><img ng-click="clearing = false" src="IMG/remove-151678.svg" alt="cancel" width="25" height="25"></div>
+                    
+                    
+                    
+                    
+                     <button type="button" ng-click="save()" tooltips tooltip-side="top" tooltip-content="Save and stay">Save</button> <button type="button" ng-click="next()" tooltips tooltip-side="bottom" tooltip-content="Save and continue">Next</button>
                 </div>
             </div>
         </div>

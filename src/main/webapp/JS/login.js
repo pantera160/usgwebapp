@@ -64,7 +64,7 @@ app.service('AuthenticationService', ['$http', 'Base64', '$rootScope', '$cookieS
 		// $http() returns a $promise that we can add handlers with .then()
 		return $http({
 			method: 'POST',
-			url: 'http://localhost:8080/USGFinanceWebapp/rest/crm/login',
+			url: 'http://wcstool-usg.rhcloud.com/rest/crm/login',
 			data: $data
 		});
 	};
@@ -72,7 +72,7 @@ app.service('AuthenticationService', ['$http', 'Base64', '$rootScope', '$cookieS
 		// $http() returns a $promise that we can add handlers with .then()
 		return $http({
 			method: 'PUT',
-			url: 'http://localhost:8080/USGFinanceWebapp/rest/crm/passchange',
+			url: 'http://wcstool-usg.rhcloud.com/rest/crm/passchange',
 			data: {
 				userid: userid,
 				pass: pass
