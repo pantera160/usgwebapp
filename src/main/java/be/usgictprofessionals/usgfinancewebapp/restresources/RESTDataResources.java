@@ -14,11 +14,11 @@ import be.usgictprofessionals.usgfinancewebapp.jsonrecources.ReturnRatioData;
 import be.usgictprofessionals.usgfinancewebapp.jsonrecources.Sector;
 import be.usgictprofessionals.usgfinancewebapp.jsonrecources.TurnoverRatioData;
 import be.usgictprofessionals.usgfinancewebapp.jsonrecources.WCMData;
+import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -206,7 +206,7 @@ public class RESTDataResources {
     @GET
     @Path("/sectors")
     @Produces(MediaType.APPLICATION_JSON)
-    public ArrayList<String> getSectors(){
+    public ArrayList<HashMap> getSectors(){
         return DataDAO.getInstance().getSectors();
     }
     

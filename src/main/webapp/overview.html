@@ -1,12 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
-
-<html>
-<head>
-    <title></title>
-</head>
-
-<body>
     <div id="overview">
+	    <!--version 1.0 -->
         <div>
             <a href="http://www.usgprofessionals.com/belgium/finance"><img src="IMG/logoUSG-Finance-Professionals.gif" alt="logo USG Finance Professionals" width="160" height="80"></a>
         </div>
@@ -33,11 +26,11 @@
 
                         <td ng-class="rows[company.id]" ng-mouseover="hovertd(company.id)" ng-mouseleave="hovertd(company.id)" ng-click="goTo(company.id)">{{company.sector}}</td>
 
-                        <td ng-if="!deleting" ng-click="confirm()" class="cross">
+                        <td ng-if="!deleting[company.id]" ng-click="confirm(company.id)" class="cross">
                         </td>
 
-                        <td ng-if="deleting" ng-click="remove(company.id)">
-                            <div class="wrapper" ng-show="deleting"><img ng-click="deleteUser(user.id)" src="IMG/approved-151676.svg" alt="accept" width="25" height="25"><img ng-click="decline()" src="IMG/remove-151678.svg" alt="cancel" width="25" height="25"></div>
+                        <td ng-if="deleting[company.id]">
+                            <div class="wrapper"><img ng-click="remove(company.id)" src="IMG/approved-151676.svg" alt="accept" width="25" height="25"><img ng-click="decline(company.id)" src="IMG/remove-151678.svg" alt="cancel" width="25" height="25"></div>
                         </td>
                     </tr>
 
@@ -52,5 +45,3 @@
             </div>
         </div>
     </div>
-</body>
-</html>

@@ -74,7 +74,8 @@ div#buttonsdiv{
 	text-align: center;
 }
 
-#buttonsdiv button {
+#buttonsdiv .button {
+	width: 80px;
 	-moz-box-shadow: 3px 4px 0px 0px #899599;
 	-webkit-box-shadow: 3px 4px 0px 0px #899599;
 	box-shadow: 3px 4px 0px 0px #899599;
@@ -99,7 +100,7 @@ div#buttonsdiv{
 	text-decoration:none;
 	margin: 3px;
 }
-#buttonsdiv button:hover {
+#buttonsdiv .button:hover {
 	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #bab1ba), color-stop(1, #ededed));
 	background:-moz-linear-gradient(top, #bab1ba 5%, #ededed 100%);
 	background:-webkit-linear-gradient(top, #bab1ba 5%, #ededed 100%);
@@ -196,26 +197,32 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 
-#input td img{
-	margin: 0px 15px;
+#input span img{
+	margin: 0px 7px;
 	vertical-align: middle;
 }
 
-#input td img:hover{
+#input span img:hover{
 	cursor: pointer;
 	opacity: 0.5;
 }
 
 #input .wrapper{
-	height: 38px;
-	width: 200px;
+	height: 25px;
     white-space: nowrap;
-    
+    width: 80px;
     text-align: center;
+    display: inline-block;
+    margin: 0px 5px;
 }
 
 #input .helper{
 	display: inline-block;
     height: 100%;
     vertical-align: middle;
+}
+
+#input td img{
+	margin: 0px 15px;
+	vertical-align: middle;
 }

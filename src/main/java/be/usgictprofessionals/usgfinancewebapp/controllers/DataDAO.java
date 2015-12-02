@@ -9,8 +9,10 @@ import be.usgictprofessionals.usgfinancewebapp.jsonrecources.InputData;
 import be.usgictprofessionals.usgfinancewebapp.jsonrecources.ReturnRatioData;
 import be.usgictprofessionals.usgfinancewebapp.jsonrecources.TurnoverRatioData;
 import be.usgictprofessionals.usgfinancewebapp.jsonrecources.WCMData;
+import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -112,7 +114,7 @@ public class DataDAO {
         return data;
     }
     
-    public ArrayList<String> getSectors(){
+    public ArrayList<HashMap> getSectors(){
         return JdbcDatabase.getInstance().getSectors();
     }
 }

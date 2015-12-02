@@ -4,8 +4,7 @@ app.service('BalansService', function($http) {
 		// $http() returns a $promise that we can add handlers with .then()
 		return $http({
 			method: 'GET',
-			url: 'http://wcstool-usg.rhcloud.com/rest/data/balans/'+$id,
-			cache: true
+			url: 'http://wcstool-usg.rhcloud.com/rest/data/balans/'+$id
 		});
 	};
 	this.getCompany = function($id){
@@ -59,7 +58,7 @@ app.controller('SolvencyCtrl', ['$scope', 'BalansService', 'helpService', '$root
 	];
 	//Array which contains the colours from each bar. If no colour is found bar will be grayish. Not standard in Chart.js!
 	//Edited chart.js 2138, 2141, 2142.
-	var colourArray = ["#D4FFEA"];
+	var colourArray = ["#6AFEB7"];
 	$scope.labels = [];
 	BalansService.getData($rootScope.globals.currentUser.companyid).then(function(result) {
 		angular.forEach(result.data, function($value) {
@@ -67,7 +66,7 @@ app.controller('SolvencyCtrl', ['$scope', 'BalansService', 'helpService', '$root
 				$scope.result = result.data;
 				$scope.data[0].push(round($value.solvency * 100));
 				$scope.labels.push($value.year);
-				colourArray.push("#EAF1F5");
+				colourArray.push("#AB7B0C");
 			} else {
 				$scope.data[0].unshift(round($value.solvency));
 				$scope.labels.unshift("Sector Average");
@@ -107,14 +106,14 @@ app.controller('CurrRatioCtrl', ['$scope', 'BalansService', 'helpService', '$roo
 	];
 	//Array which contains the colours from each bar. If no colour is found bar will be grayish. Not standard in Chart.js!
 	//Edited chart.js 2138, 2141, 2142.
-	var colourArray = ["#D4FFEA"];
+	var colourArray = ["#6AFEB7"];
 	$scope.labels = [];
 	BalansService.getData($rootScope.globals.currentUser.companyid).then(function(result) {
 		angular.forEach(result.data, function($value) {
 			if (parseInt($value.year) > 0) {
 				$scope.data[0].push(round($value.currRatio * 100));
 				$scope.labels.push($value.year);
-				colourArray.push("#EAF1F5");
+				colourArray.push("#AB7B0C");
 			} else {
 				$scope.data[0].unshift(round($value.currRatio));
 				$scope.labels.unshift("Sector Average");
@@ -154,14 +153,14 @@ app.controller('QuickRatioCtrl', ['$scope', 'BalansService', 'helpService', '$ro
 	];
 	//Array which contains the colours from each bar. If no colour is found bar will be grayish. Not standard in Chart.js!
 	//Edited chart.js 2138, 2141, 2142.
-	var colourArray = ["#D4FFEA"];
+	var colourArray = ["#6AFEB7"];
 	$scope.labels = [];
 	BalansService.getData($rootScope.globals.currentUser.companyid).then(function(result) {
 		angular.forEach(result.data, function($value) {
 			if (parseInt($value.year) > 0) {
 				$scope.data[0].push(round($value.quickRatio * 100));
 				$scope.labels.push($value.year);
-				colourArray.push("#EAF1F5");
+				colourArray.push("#AB7B0C");
 			} else {
 				$scope.data[0].unshift(round($value.quickRatio));
 				$scope.labels.unshift("Sector Average");

@@ -58,6 +58,10 @@ app.directive('myNumberformat', function() {
 			return (c ? num.replace('.', c) : num).replace(new RegExp(re, 'g'), '$&' + (s || ','));
 		}
 	var validNumber = function(number) {
+			if(number.indexOf(',') > -1){
+				var number2 = number.replace('.', '');
+				return number2.replace(',', '.');
+			}
 			return number.replace(',', '.');
 		}
 	return {
@@ -90,6 +94,10 @@ app.directive('myNumberformat2', function() {
 			return (c ? num.replace('.', c) : num).replace(new RegExp(re, 'g'), '$&' + (s || ','));
 		}
 	var validNumber = function(number) {
+		if(number.indexOf(',') > -1){
+				var number2 = number.replace('.', '');
+				return number2.replace(',', '.');
+			}
 			return number.replace(',', '.');
 		}
 	return {

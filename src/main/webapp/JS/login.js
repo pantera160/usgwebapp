@@ -147,7 +147,7 @@ app.directive('compareTo', function() {
 		}
 	};
 });
-app.controller('NewPassCtrl', ['$scope', 'AuthenticationService', '$rootScope', function($scope, AuthenticationService, $rootScope) {
+app.controller('NewPassCtrl', ['$scope', 'AuthenticationService', '$rootScope', '$location', function($scope, AuthenticationService, $rootScope, $location) {
 	$scope.password = "";
 	var userid = $rootScope.globals.currentUser.userid;
 	$scope.changePass = function() {

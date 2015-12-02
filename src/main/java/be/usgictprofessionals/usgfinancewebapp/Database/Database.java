@@ -9,6 +9,7 @@ package be.usgictprofessionals.usgfinancewebapp.Database;
 import be.usgictprofessionals.usgfinancewebapp.jsonrecources.CompanyInfoData;
 import be.usgictprofessionals.usgfinancewebapp.jsonrecources.InputData;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  *
@@ -19,5 +20,5 @@ public interface Database {
     public CompanyInfoData getCompanyInfoData(int companyID);
     public void saveInputData(InputData data, int userID);
     public ArrayList<InputData> getInputData(int userID);
-    public ArrayList<String> getSectors();
+    public ArrayList<HashMap> getSectors();
 }

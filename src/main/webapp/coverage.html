@@ -7,12 +7,12 @@
     </div>
     <div ng-controller="headerCtrl" id="compInfo">
 	    <div><h3>Company  :</h3> <label>{{company.name}}</label></div>
-        <div><h3>Sector  :</h3> <label>{{company.sector}}</label></div>
+        <div><h3>Sector  :</h3> <label>{{company.sector.name}}</label></div>
     </div>
 	<div id="chart-overview-div">
     <div ng-controller="FinChargesCtrl" class="inline">
         <div>
-            <h2>Financial charges coverage ratio<a class="questionmark" ng-click="help()"></a></h2>
+            <h2>Financial charges coverage ratio<a class="questionmark" ng-click="showHelp()"></a></h2>
         </div>
 
         <div class="top-border">
@@ -43,7 +43,7 @@
 	
     <div ng-controller="FinDebtEBITDACtrl" class="inline">
         <div>
-            <h2>Net financial debt/EBITDA ratio<a class="questionmark" ng-click="help()"></a></h2>
+            <h2>Net financial debt/EBITDA ratio<a class="questionmark" ng-click="showHelp()"></a></h2>
         </div>
 
         <div class="top-border">

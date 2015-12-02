@@ -17,17 +17,17 @@ app.service('CompanyService', function($http) {
 	}
 });
 
-app.controller('OverviewCtrl', ['$rootScope', '$scope', 'CompanyService', '$location', '$cookieStore', function($scope, $rootScope, CompanyService, $location, $cookieStore){
+app.controller('OverviewCtrl', ['$rootScope', '$scope', 'CompanyService', '$location', '$cookieStore', function($rootScope, $scope, CompanyService, $location, $cookieStore){
 	
 	$scope.rows = {};
-	$scope.deleting = false;
+	$scope.deleting = {};
 	
-	$scope.confirm = function(){
-		$scope.deleting = true;
+	$scope.confirm = function(id){
+		$scope.deleting[id] = true;
 	}
 	
-	$scope.decline = function(){
-		$scope.deleting = false;
+	$scope.decline = function(id){
+		$scope.deleting[id] = false;
 	}
 	
 	var getCompanies = function(){
@@ -36,6 +36,7 @@ app.controller('OverviewCtrl', ['$rootScope', '$scope', 'CompanyService', '$loca
 			$scope.companies = result.data;
 			angular.forEach($scope.companies, function(company){
 				var cmpid = company.id;
+				$scope.deleting[cmpid] = false;
 				$scope.rows[cmpid] = "clickable";
 			});
 		});

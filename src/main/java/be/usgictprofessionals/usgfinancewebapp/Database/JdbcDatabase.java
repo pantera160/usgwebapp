@@ -70,7 +70,7 @@ public class JdbcDatabase implements Database {
         try {
             stmt = conn.createStatement();
             stmt.execute("insert into COMPANY_DATA(sector_id, company, closingdate, countries, outsideeu, user_id) values("
-                    + "(Select sector_id from sector_averages where sector_name = '" + data.getSector() + "'), '" 
+                    + data.getSector().get("id") + ", '" 
                     + data.getCompany() + "', '" + data.getClosingDate() + "', '" + data.getCountries() + "', '" + data.getOutsideEU() + "', "+userId+")"
             );
             ResultSet result = stmt.executeQuery("SELECT last_insert_id() AS IVL from COMPANY_DATA");
@@ -89,7 +89,7 @@ public class JdbcDatabase implements Database {
         try {
             stmt = conn.createStatement();
             stmt.execute("update COMPANY_DATA set closingdate='" + data.getClosingDate() + "', countries='" + data.getCountries() + "', outsideeu='" + data.getOutsideEU()
-                    + "', sector_id = (Select sector_id from sector_averages where sector_name = '" + data.getSector() + "') where company_id = " + data.getCompanyId() + "");
+                    + "', sector_id = "+data.getSector().get("id")+" WHERE company_id = " + data.getCompanyId());
             stmt.close();
         } catch (SQLException sqlExcept) {
             sqlExcept.printStackTrace();
@@ -102,13 +102,16 @@ public class JdbcDatabase implements Database {
         createConnection();
         try {
             CompanyInfoData data = new CompanyInfoData();
-            data.setSector("0");
+            data.setSector(null);
             stmt = conn.createStatement();
-            ResultSet result = stmt.executeQuery("Select SECTOR_NAME, COMPANY, CLOSINGDATE, COUNTRIES, OUTSIDEEU "
+            ResultSet result = stmt.executeQuery("Select COMPANY_DATA.SECTOR_ID, SECTOR_NAME, COMPANY, CLOSINGDATE, COUNTRIES, OUTSIDEEU "
                     + "from COMPANY_DATA, sector_averages "
                     + "where company_id = " + companyID + " AND COMPANY_DATA.sector_id = sector_averages.sector_id");
             while (result.next()) {
-                data.setSector(result.getString("SECTOR_NAME"));
+                HashMap<String, Object> map = new HashMap<>();
+                map.put("id", result.getInt("SECTOR_ID"));
+                map.put("name", result.getString("SECTOR_NAME"));
+                data.setSector(map);
                 data.setClosingDate(result.getString("CLOSINGDATE"));
                 data.setCompany(result.getString("COMPANY"));
                 data.setCountries(result.getString("COUNTRIES"));
@@ -242,14 +245,17 @@ public class JdbcDatabase implements Database {
     }
 
     @Override
-    public ArrayList<String> getSectors() {
+    public ArrayList<HashMap> getSectors() {
         createConnection();
         try {
-            ArrayList<String> data = new ArrayList<>();
+            ArrayList<HashMap> data = new ArrayList<>();
             stmt = conn.createStatement();
-            ResultSet result = stmt.executeQuery("Select sector_name from sector_averages order by sector_id");
+            ResultSet result = stmt.executeQuery("Select sector_name, sector_id from sector_averages order by sector_id");
             while (result.next()) {
-                data.add(result.getString(1));
+                HashMap<String, Object> map = new HashMap();
+                map.put("id",result.getInt(2));
+                map.put("name", result.getString(1));
+                data.add(map);
             }
             result.close();
             stmt.close();
@@ -445,7 +451,7 @@ public class JdbcDatabase implements Database {
         try {
             stmt = conn.createStatement();
             stmt.execute("update USERS set password = '"+pass + "', new_pass = 0 where user_id = "+id);
-            ResultSet result = stmt.executeQuery("select username, user_mail, user_status_id, creationdate, user_id, new_pass from USERS where user_id = "+id);
+            ResultSet result = stmt.executeQuery("select username, user_mail, privilegelvl, creationdate, user_id, new_pass from USERS where user_id = "+id);
             while(result.next()){
                 user.setCreatedate(result.getString("CREATIONDATE"));
                 user.setEmail(result.getString("USER_MAIL"));
@@ -474,6 +480,18 @@ public class JdbcDatabase implements Database {
                 throw new DatabaseException("This username already exists. Please choose an other one.");
             }
             throw new DatabaseException("Something went wrong when creating a new user. Please reload and try again or contact support.");
+        }
+    }
+    
+    public void resetPass(int id) throws DatabaseException{
+        createConnection();
+        try {
+            stmt = conn.createStatement();
+            stmt.execute("UPDATE USERS set password = 'Temporary', new_pass = 1 where user_id = "+id);
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new DatabaseException("Something went wrong when resetting this user, please try again or contact support.");
         }
     }
 }

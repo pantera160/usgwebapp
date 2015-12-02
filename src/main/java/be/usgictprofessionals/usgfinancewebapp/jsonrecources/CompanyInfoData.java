@@ -6,6 +6,7 @@
 
 package be.usgictprofessionals.usgfinancewebapp.jsonrecources;
 
+import java.util.HashMap;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -15,8 +16,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class CompanyInfoData {
         
-    private String sector= "", company= "", closingDate = "", countries = "";
+    private String company= "", closingDate = "", countries = "";
     private String outsideEU = "";
+    private HashMap<String, Object> sector;
     private int companyId;
 
     public int getCompanyId() {
@@ -27,11 +29,11 @@ public class CompanyInfoData {
         this.companyId = companyId;
     }
 
-    public String getSector() {
+    public HashMap getSector() {
         return sector;
     }
 
-    public void setSector(String sector) {
+    public void setSector(HashMap sector) {
         this.sector = sector;
     }
 

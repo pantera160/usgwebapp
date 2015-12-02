@@ -40,7 +40,12 @@ public class RESTUserResources {
     @PUT
     @Path("/user/{id}")
     public void resetMail(@PathParam("id") String id){
-        
+        try{
+        UserDAO.getInstance().resetPass(id);
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
     }
     
     @DELETE

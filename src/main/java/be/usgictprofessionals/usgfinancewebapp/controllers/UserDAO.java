@@ -58,4 +58,8 @@ public class UserDAO {
     public void newuser(String username, String email) throws DatabaseException{
         JdbcDatabase.getInstance().newuser(email, username);
     }
+    
+    public void resetPass(String id) throws DatabaseException {
+        JdbcDatabase.getInstance().resetPass(Integer.parseInt(id));
+    }
 }

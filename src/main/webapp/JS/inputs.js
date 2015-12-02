@@ -4,14 +4,14 @@ app.service('dataService', function($http) {
 		// $http() returns a $promise that we can add handlers with .then()
 		return $http({
 			method: 'GET',
-			url: 'http://wcstool-usg.rhcloud.com/rest/data/input/'+$id
+			url: 'http://wcstool-usg.rhcloud.com/rest/data/input/' + $id
 		});
 	}
 	this.saveData = function($data, $id) {
 		// $http() returns a $promise that we can add handlers with .then()
 		return $http({
 			method: 'POST',
-			url: 'http://wcstool-usg.rhcloud.com/rest/data/input/'+$id,
+			url: 'http://wcstool-usg.rhcloud.com/rest/data/input/' + $id,
 			data: $data
 		});
 	}
@@ -19,14 +19,14 @@ app.service('dataService', function($http) {
 		// $http() returns a $promise that we can add handlers with .then()
 		return $http({
 			method: 'GET',
-			url: 'http://wcstool-usg.rhcloud.com/rest/data/company/'+$id
+			url: 'http://wcstool-usg.rhcloud.com/rest/data/company/' + $id
 		});
 	}
 	this.saveCompData = function($data, $id) {
 		// $http() returns a $promise that we can add handlers with .then()
 		return $http({
 			method: 'POST',
-			url: 'http://wcstool-usg.rhcloud.com/rest/data/company/'+$id,
+			url: 'http://wcstool-usg.rhcloud.com/rest/data/company/' + $id,
 			data: $data
 		});
 	}
@@ -38,45 +38,36 @@ app.service('dataService', function($http) {
 		});
 	}
 });
-
 app.directive('number', function() {
-    return {
+	return {
+		// limit usage to argument only
+		restrict: 'A',
+		// require NgModelController, i.e. require a controller of ngModel directive
+		require: 'ngModel',
+		// create linking function and pass in our NgModelController as a 4th argument
+		link: function(scope, element, attr, ctrl) {
+			// please note you can name your function & argument anything you like
 
-      // limit usage to argument only
-      restrict: 'A',
-
-      // require NgModelController, i.e. require a controller of ngModel directive
-      require: 'ngModel',
-
-      // create linking function and pass in our NgModelController as a 4th argument
-      link: function(scope, element, attr, ctrl) {
-            
-    // please note you can name your function & argument anything you like
-    function customValidator(ngModelValue) {
-
-        // check if contains number
-        // if it does contain number, set our custom `numberValidator`  to valid/true
-        // otherwise set it to non-valid/false
-        var regex = /^\d*.\d*$/;
-        if (regex.test(ngModelValue)) {
-            ctrl.$setValidity('numberValidator', true);
-        } else {
-            ctrl.$setValidity('numberValidator', false);
-        }
-
-        // we need to return our ngModelValue, to be displayed to the user(value of the input)
-        return ngModelValue;
-    }
-
-    // we need to add our customValidator function to an array of other(build-in or custom) functions
-    // I have not notice any performance issues, but it would be worth investigating how much
-    // effect does this have on the performance of the app
-    ctrl.$parsers.push(customValidator);
-    
-}
-      };
+			function customValidator(ngModelValue) {
+				// check if contains number
+				// if it does contain number, set our custom `numberValidator`  to valid/true
+				// otherwise set it to non-valid/false
+				var regex = /^\d*.\d*$/;
+				if (regex.test(ngModelValue)) {
+					ctrl.$setValidity('numberValidator', true);
+				} else {
+					ctrl.$setValidity('numberValidator', false);
+				}
+				// we need to return our ngModelValue, to be displayed to the user(value of the input)
+				return ngModelValue;
+			}
+			// we need to add our customValidator function to an array of other(build-in or custom) functions
+			// I have not notice any performance issues, but it would be worth investigating how much
+			// effect does this have on the performance of the app
+			ctrl.$parsers.push(customValidator);
+		}
+	};
 });
-
 app.controller("HelpCtrl", function($scope, ngDialog) {
 	$scope.help = function() {
 		ngDialog.open({
@@ -96,164 +87,166 @@ app.controller("MyForm", function($scope, dataService, $location, $rootScope, $c
 	var company_id = $rootScope.globals.currentUser.companyid;
 	var userId = $rootScope.globals.currentUser.userid;
 	//list of input fields
-	//each data element will be linked to its input/label field to save data automatically 
-	$scope.inputs = {
-		"numberOfMonths": [{
-			"data": "0",
-			"year": startyear
-		}],
-		"fixedAssets": [{
-			"data": "0",
-			"year": startyear
-		}],
-		"intangiblesAssets": [{
-			"data": "0",
-			"year": startyear
-		}],
-		"propertyAssets": [{
-			"data": "0",
-			"year": startyear
-		}],
-		"finFixedAssets": [{
-			"data": "0",
-			"year": startyear
-		}],
-		"inventory": [{
-			"data": "0",
-			"year": startyear
-		}],
-		"ar": [{
-			"data": "0",
-			"year": startyear
-		}],
-		"cash": [{
-			"data": "0",
-			"year": startyear
-		}],
-		"currAssets": [{
-			"data": "0",
-			"year": startyear
-		}],
-		"totAssets": [{
-			"data": "0",
-			"year": startyear
-		}],
-		"equity": [{
-			"data": "0",
-			"year": startyear
-		}],
-		"ltFinDebt": [{
-			"data": "0",
-			"year": startyear
-		}],
-		"subordinatedDebt": [{
-			"data": 0,
-			"year": startyear
-		}],
-		"stFinDebt": [{
-			"data": "0",
-			"year": startyear
-		}],
-		"ap": [{
-			"data": "0",
-			"year": startyear
-		}],
-		"currLiabilities": [{
-			"data": "0",
-			"year": startyear
-		}],
-		"workingCapital": [{
-			"data": "0",
-			"year": startyear
-		}],
-		"netDebt": [{
-			"data": "0",
-			"year": startyear
-		}],
-		"turnover": [{
-			"data": "0",
-			"year": startyear
-		}],
-		"costOfSales": [{
-			"data": "0",
-			"year": startyear
-		}],
-		"depreciation": [{
-			"data": "0",
-			"year": startyear
-		}],
-		"ebit": [{
-			"data": "0",
-			"year": startyear
-		}],
-		"finRev": [{
-			"data": "0",
-			"year": startyear
-		}],
-		"finExp": [{
-			"data": "0",
-			"year": startyear
-		}],
-		"finExpInterest": [{
-			"data": "0",
-			"year": startyear
-		}],
-		"finExpBank": [{
-			"data": "0",
-			"year": startyear
-		}],
-		"finExpOther": [{
-			"data": "0",
-			"year": startyear
-		}],
-		"nrIncome": [{
-			"data": "0",
-			"year": startyear
-		}],
-		"nrCharges": [{
-			"data": "0",
-			"year": startyear
-		}],
-		"taxes": [{
-			"data": "0",
-			"year": startyear
-		}],
-		"recIncome": [{
-			"data": "0",
-			"year": startyear
-		}],
-		"netIncome": [{
-			"data": "0",
-			"year": startyear
-		}],
-		"ebitda": [{
-			"data": "0",
-			"year": startyear
-		}]
-	};
-	//List of available currencies
-	$scope.currencies = [{
-		id: '1',
-		name: "EUR"
-	}, {
-		id: '2',
-		name: "GBP"
-	}, {
-		id: '3',
-		name: "USD"
-	}, {
-		id: '4',
-		name: 'CHF'
-	}, {
-		id: '5',
-		name: 'DKK'
-	}, {
-		id: '6',
-		name: 'SEK'
-	}, {
-		id: '7',
-		name: 'NOK'
-	}];
+	//each data element will be linked to its input/label field to save data automatically
+	var initialiseInput = function() {
+			$scope.inputs = {
+				"numberOfMonths": [{
+					"data": "0",
+					"year": startyear
+				}],
+				"fixedAssets": [{
+					"data": "0",
+					"year": startyear
+				}],
+				"intangiblesAssets": [{
+					"data": "0",
+					"year": startyear
+				}],
+				"propertyAssets": [{
+					"data": "0",
+					"year": startyear
+				}],
+				"finFixedAssets": [{
+					"data": "0",
+					"year": startyear
+				}],
+				"inventory": [{
+					"data": "0",
+					"year": startyear
+				}],
+				"ar": [{
+					"data": "0",
+					"year": startyear
+				}],
+				"cash": [{
+					"data": "0",
+					"year": startyear
+				}],
+				"currAssets": [{
+					"data": "0",
+					"year": startyear
+				}],
+				"totAssets": [{
+					"data": "0",
+					"year": startyear
+				}],
+				"equity": [{
+					"data": "0",
+					"year": startyear
+				}],
+				"ltFinDebt": [{
+					"data": "0",
+					"year": startyear
+				}],
+				"subordinatedDebt": [{
+					"data": 0,
+					"year": startyear
+				}],
+				"stFinDebt": [{
+					"data": "0",
+					"year": startyear
+				}],
+				"ap": [{
+					"data": "0",
+					"year": startyear
+				}],
+				"currLiabilities": [{
+					"data": "0",
+					"year": startyear
+				}],
+				"workingCapital": [{
+					"data": "0",
+					"year": startyear
+				}],
+				"netDebt": [{
+					"data": "0",
+					"year": startyear
+				}],
+				"turnover": [{
+					"data": "0",
+					"year": startyear
+				}],
+				"costOfSales": [{
+					"data": "0",
+					"year": startyear
+				}],
+				"depreciation": [{
+					"data": "0",
+					"year": startyear
+				}],
+				"ebit": [{
+					"data": "0",
+					"year": startyear
+				}],
+				"finRev": [{
+					"data": "0",
+					"year": startyear
+				}],
+				"finExp": [{
+					"data": "0",
+					"year": startyear
+				}],
+				"finExpInterest": [{
+					"data": "0",
+					"year": startyear
+				}],
+				"finExpBank": [{
+					"data": "0",
+					"year": startyear
+				}],
+				"finExpOther": [{
+					"data": "0",
+					"year": startyear
+				}],
+				"nrIncome": [{
+					"data": "0",
+					"year": startyear
+				}],
+				"nrCharges": [{
+					"data": "0",
+					"year": startyear
+				}],
+				"taxes": [{
+					"data": "0",
+					"year": startyear
+				}],
+				"recIncome": [{
+					"data": "0",
+					"year": startyear
+				}],
+				"netIncome": [{
+					"data": "0",
+					"year": startyear
+				}],
+				"ebitda": [{
+					"data": "0",
+					"year": startyear
+				}]
+			};
+		}
+		//List of available currencies
+		$scope.currencies = [{
+			id: '1',
+			name: "EUR"
+		}, {
+			id: '2',
+			name: "GBP"
+		}, {
+			id: '3',
+			name: "USD"
+		}, {
+			id: '4',
+			name: 'CHF'
+		}, {
+			id: '5',
+			name: 'DKK'
+		}, {
+			id: '6',
+			name: 'SEK'
+		}, {
+			id: '7',
+			name: 'NOK'
+		}];
 	//Set default currency
 	$scope.currency = {
 		id: "1",
@@ -277,6 +270,17 @@ app.controller("MyForm", function($scope, dataService, $location, $rootScope, $c
 		nextyear);
 		nextyear--;
 	};
+	$scope.addStartYear = function() {
+		var newstartyear = $scope.years[0] + 1;
+		//for each row add an extra column
+		angular.forEach($scope.inputs, function($value) {
+			$value.unshift({
+				"data": "0",
+				"year": newstartyear
+			});
+		});
+		$scope.years.unshift(newstartyear);
+	}
 	//Save the input data to server
 	$scope.processForm = function() {
 		$scope.data = [];
@@ -321,9 +325,6 @@ app.controller("MyForm", function($scope, dataService, $location, $rootScope, $c
 	var getCompanyData = function() {
 			dataService.getCompData(company_id).then(function(response) {
 				$scope.company = response.data;
-				if($scope.company.sector === ""){
-					$scope.company.sector = 'Select a sector';
-				}
 			});
 		}
 	var getSectors = function() {
@@ -332,8 +333,8 @@ app.controller("MyForm", function($scope, dataService, $location, $rootScope, $c
 			});
 		}
 	var saveCompanyData = function() {
-		$scope.company.companyId = company_id;
-			dataService.saveCompData($scope.company, userId).then(function(result){
+			$scope.company.companyId = company_id;
+			dataService.saveCompData($scope.company, userId).then(function(result) {
 				company_id = result.data;
 				$rootScope.globals.currentUser.companyid = company_id;
 				$cookieStore.put('globals', $rootScope.globals);
@@ -344,11 +345,16 @@ app.controller("MyForm", function($scope, dataService, $location, $rootScope, $c
 			$scope.data = dataResponse.data;
 			var count = 0;
 			angular.forEach($scope.data, function(value) {
+				if (value.year > startyear) {
+					startyear = value.year;
+					$scope.years = [startyear];
+					initialiseInput();
+				}
 				var year = value.year;
 				if ($scope.years.indexOf(year) < 0 && year !== 0) {
 					nextyear = year;
 					$scope.add();
-					if (count == 0) {
+					if (count === 0) {
 						count++;
 					}
 				}
@@ -361,6 +367,7 @@ app.controller("MyForm", function($scope, dataService, $location, $rootScope, $c
 				count++;
 			});
 		}
+	initialiseInput();
 	getSectors();
 	getCompanyData();
 	getCalcData();
