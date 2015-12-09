@@ -12,7 +12,7 @@
 
     <div ng-controller="EquityCtrl" class="inline">
         <div>
-            <h2>Return on Equity<a class="questionmark" ng-click="showHelp()"></a></h2>
+            <h2>Return on Equity<a class="questionmark" ng-click="showHelp()" print-remove></a></h2>
         </div>
 
         <div class="top-border">
@@ -46,7 +46,7 @@
 
     <div ng-controller="AssetsCtrl" class="inline">
         <div>
-            <h2>Return on Assets<a class="questionmark" ng-click="showHelp()"></a></h2>
+            <h2>Return on Assets<a class="questionmark" ng-click="showHelp()" print-remove></a></h2>
         </div>
 
         <div class="top-border"> 
@@ -78,7 +78,7 @@
         </div>
     </div>
 
-    <div id="buttonsdiv" class="centered" ng-controller="ButtonsCtrl">
+    <div id="buttonsdiv" class="centered" ng-controller="ButtonsCtrl" print-remove>
         <button type="button" ng-click="back()">Back</button>
     </div>
 </div>

@@ -1,11 +1,11 @@
-angular.module("USGFinanceWebapp", ['720kb.tooltips', 'ngDialog']);
-angular.module("BalansRatio", ['chart.js', 'ngDialog']);
+angular.module("USGFinanceWebapp", ['720kb.tooltips', 'ngDialog', 'AngularPrint']);
+angular.module("BalansRatio", ['chart.js', 'ngDialog', 'AngularPrint']);
 angular.module("Portal", []);
-angular.module("ReturnRatio", ['chart.js', 'ngDialog']);
-angular.module("CCCEvolution", ['chart.js', 'ngDialog']);
-angular.module("CoverageRatio", ['chart.js', 'ngDialog']);
-angular.module("TurnoverRatio", ['chart.js', 'ngDialog']);
-angular.module("WCMSavings", []);
+angular.module("ReturnRatio", ['chart.js', 'ngDialog', 'AngularPrint']);
+angular.module("CCCEvolution", ['chart.js', 'ngDialog', 'AngularPrint']);
+angular.module("CoverageRatio", ['chart.js', 'ngDialog', 'AngularPrint']);
+angular.module("TurnoverRatio", ['chart.js', 'ngDialog', 'AngularPrint']);
+angular.module("WCMSavings", ['AngularPrint']);
 angular.module("Login", []);
 angular.module('Overview', []);
 angular.module("Admin", []);

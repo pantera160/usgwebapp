@@ -12,7 +12,7 @@
 	<div id="chart-overview-div">
     <div ng-controller="FinChargesCtrl" class="inline">
         <div>
-            <h2>Financial charges coverage ratio<a class="questionmark" ng-click="showHelp()"></a></h2>
+            <h2>Financial charges coverage ratio<a class="questionmark" ng-click="showHelp()" print-remove></a></h2>
         </div>
 
         <div class="top-border">
@@ -43,7 +43,7 @@
 	
     <div ng-controller="FinDebtEBITDACtrl" class="inline">
         <div>
-            <h2>Net financial debt/EBITDA ratio<a class="questionmark" ng-click="showHelp()"></a></h2>
+            <h2>Net financial debt/EBITDA ratio<a class="questionmark" ng-click="showHelp()" print-remove></a></h2>
         </div>
 
         <div class="top-border">
@@ -72,7 +72,7 @@
         </div>
     </div>
 	</div>
-    <div id="buttonsdiv" class="centered" ng-controller="ButtonsCtrl">
+    <div id="buttonsdiv" class="centered" ng-controller="ButtonsCtrl" print-remove>
         <button type="button" ng-click="back()">Back</button>
     </div>
 </div>
