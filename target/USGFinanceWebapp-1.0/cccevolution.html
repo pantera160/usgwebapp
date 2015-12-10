@@ -1,0 +1,53 @@
+<div id="ratios">
+	<div>
+    <div id="banner">
+        <a href="http://www.usgprofessionals.com/belgium/finance"><img src="IMG/logoUSG-Finance-Professionals.gif" alt="logo USG Finance Professionals" width="160" height="80"></a>
+
+        <h1>CASH CONVERSION CYCLE EVOLUTION</h1>
+    </div>
+	<div ng-controller="headerCtrl" id="compInfo">
+	    <div><h3>Company  :</h3> <label>{{company.name}}</label></div>
+        <div><h3>Sector  :</h3> <label>{{company.sector}}</label></div>
+    </div>
+    
+    <div ng-controller="CCCECtrl" class="inline">
+        <div>
+            <h2>Cash Conversion Cycle Evolution<a class="questionmark" ng-click="help()"></a></h2>
+        </div>
+
+        <div class="top-border">
+            <canvas id="CCCE" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-options="options" chart-colours="colours"></canvas>
+        </div>
+
+        <div class="top-border">
+            <table>
+                <thead>
+                    <tr>
+	                    <th></th>
+                        <th ng-repeat="label in labels track by $index">{{label}}</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+	                    <td>CCC</td>
+                        <td ng-repeat="item in data[0] track by $index"><div><img ng-src="{{condition(item)}}" alt="condition"/>{{item | NumberEU}}</div></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="top-border formula-div">
+	        <div class="formula"><label>Formula:</label></div><div class="formula"><label>DIO + DSO - DPO</label></div>
+        </div>
+    </div>
+    <div id="buttonsdiv" class="centered" ng-controller="ButtonsCtrl">
+        <button type="button" ng-click="back()">Back</button>
+    </div>
+</div>
+<script type="text/ng-template" id="cccetemplate">
+	<div class="template">
+		<h2>Cash Conversion Cycle <b>OR</b> Operation Cycle</h2>
+		<p>The length of time between a firm's purchase of inventory and the receipt of cash from accounts receivable. It is the time required for a business to turn purchases into cash receipts from customers. CCC represents the number of days that a firm's cash remains tied up within the operations of the business. A cash flow analysis using CCC also reveals, how efficiently the company is managing its working capital.</p>
+	</div>
+</script>
+</div>

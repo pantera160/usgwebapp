@@ -11,13 +11,12 @@ app.service('ReturnService', function($http) {
 		// $http() returns a $promise that we can add handlers with .then()
 		return $http({
 			method: 'GET',
-			url: 'http://wcstool-usg.rhcloud.com/rest/data/company/'+$id,
-			cache : true
+			url: 'http://wcstool-usg.rhcloud.com/rest/data/company/'+$id
 		});
 	};
 });
 
-app.service('helpService', function(ngDialog){
+app.service('helpServiceReturn', function(ngDialog){
 	this.showHelp = function(controller){
 		if(angular.equals(controller, 'equity')){
 			ngDialog.open({
@@ -40,13 +39,10 @@ app.controller('headerCtrl', ['$scope', 'ReturnService', '$rootScope', function(
 	})
 }]);
 
-app.controller('EquityCtrl', ['$scope', 'ReturnService', 'helpService', '$rootScope', function($scope, ReturnService, helpService, $rootScope) {
+app.controller('EquityCtrl', ['$scope', 'ReturnService', 'helpServiceReturn', '$rootScope', function($scope, ReturnService, helpServiceReturn, $rootScope) {
 	$scope.help = function(){
 		console.log('help called');
-		helpService.showHelp('equity');
-	};
-	$scope.options = {
-		scaleShowVerticalLines: false
+		helpServiceReturn.showHelp('equity');
 	};
 	var sectorAvgE;
 	//Array which contains the colours from each bar. If no colour is found bar will be grayish. Not standard in Chart.js!
@@ -74,7 +70,8 @@ app.controller('EquityCtrl', ['$scope', 'ReturnService', 'helpService', '$rootSc
 	$scope.options = {
 		scaleLabel: function(valuePayload) {
 			return Number(valuePayload.value).toFixed(1) + '%';
-		}
+		},
+		scaleShowVerticalLines: false
 	};
 	$scope.condition = function(item){
 		if(item >= (sectorAvgE*0.95)){
@@ -88,13 +85,10 @@ app.controller('EquityCtrl', ['$scope', 'ReturnService', 'helpService', '$rootSc
 		}
 	};
 }]);
-app.controller('AssetsCtrl', ['$scope', 'ReturnService', 'helpService', '$rootScope', function($scope, ReturnService, helpService, $rootScope) {
+app.controller('AssetsCtrl', ['$scope', 'ReturnService', 'helpServiceReturn', '$rootScope', function($scope, ReturnService, helpServiceReturn, $rootScope) {
 	$scope.help = function(){
 		console.log('help called');
-		helpService.showHelp('assets');
-	};
-	$scope.options = {
-		scaleShowVerticalLines: false
+		helpServiceReturn.showHelp('assets');
 	};
 	$scope.data = [[]];
 	$scope.labels = [];
@@ -122,7 +116,8 @@ app.controller('AssetsCtrl', ['$scope', 'ReturnService', 'helpService', '$rootSc
 	$scope.options = {
 		scaleLabel: function(valuePayload) {
 			return Number(valuePayload.value).toFixed(1) + '%';
-		}
+		},
+		scaleShowVerticalLines: false
 	};
 	$scope.condition = function(item){
 		if(item >= (sectorAvgA*0.95)){

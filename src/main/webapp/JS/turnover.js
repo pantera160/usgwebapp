@@ -11,13 +11,12 @@ app.service('TurnoverService', function($http) {
 		// $http() returns a $promise that we can add handlers with .then()
 		return $http({
 			method: 'GET',
-			url: 'http://wcstool-usg.rhcloud.com/rest/data/company/'+$id,
-			cache : true
+			url: 'http://wcstool-usg.rhcloud.com/rest/data/company/'+$id
 		});
 	};
 });
 
-app.service('helpService', function(ngDialog){
+app.service('helpServiceTurnover', function(ngDialog){
 	this.showHelp = function(controller){
 		if(angular.equals(controller, 'dio')){
 			ngDialog.open({
@@ -45,10 +44,10 @@ app.controller('headerCtrl', ['$scope', 'TurnoverService', '$rootScope', functio
 	})
 }]);
 
-app.controller('DIOCtrl', ['$scope', 'TurnoverService', 'helpService', '$rootScope', function($scope, TurnoverService, helpService, $rootScope) {
+app.controller('DIOCtrl', ['$scope', 'TurnoverService', 'helpServiceTurnover', '$rootScope', function($scope, TurnoverService, helpServiceTurnover, $rootScope) {
 	$scope.help = function(){
 		console.log('help called');
-		helpService.showHelp('dio');
+		helpServiceTurnover.showHelp('dio');
 	};
 	$scope.options = {
 		scaleShowVerticalLines: false
@@ -76,8 +75,6 @@ app.controller('DIOCtrl', ['$scope', 'TurnoverService', 'helpService', '$rootSco
 		$scope.colours = [{fillColor: colourArray}];
 		
 	});
-
-	$scope.options = {};
 	$scope.condition = function(item){
 		if(item >= (sectorAvgDIO*1.15)){
 			return "IMG/red.png";
@@ -90,10 +87,10 @@ app.controller('DIOCtrl', ['$scope', 'TurnoverService', 'helpService', '$rootSco
 		}
 	}
 }]);
-app.controller('DSOCtrl', ['$scope', 'TurnoverService', 'helpService', '$rootScope', function($scope, TurnoverService, helpService, $rootScope) {
+app.controller('DSOCtrl', ['$scope', 'TurnoverService', 'helpServiceTurnover', '$rootScope', function($scope, TurnoverService, helpServiceTurnover, $rootScope) {
 	$scope.help = function(){
 		console.log('help called');
-		helpService.showHelp('dso');
+		helpServiceTurnover.showHelp('dso');
 	};
 	$scope.options = {
 		scaleShowVerticalLines: false
@@ -120,8 +117,6 @@ app.controller('DSOCtrl', ['$scope', 'TurnoverService', 'helpService', '$rootSco
 		//Add colours array to correct syntax for charts
 		$scope.colours = [{fillColor: colourArray}];
 	});
-
-	$scope.options = {};
 	$scope.condition = function(item){
 		if(item >= (sectorAvgDSO*1.15)){
 			return "IMG/red.png";
@@ -135,10 +130,10 @@ app.controller('DSOCtrl', ['$scope', 'TurnoverService', 'helpService', '$rootSco
 	}
 
 }]);
-app.controller('DPOCtrl', ['$scope', 'TurnoverService', 'helpService', '$rootScope', function($scope, TurnoverService, helpService, $rootScope) {
+app.controller('DPOCtrl', ['$scope', 'TurnoverService', 'helpServiceTurnover', '$rootScope', function($scope, TurnoverService, helpServiceTurnover, $rootScope) {
 	$scope.help = function(){
 		console.log('help called');
-		helpService.showHelp('dpo');
+		helpServiceTurnover.showHelp('dpo');
 	};
 	$scope.options = {
 		scaleShowVerticalLines: false
@@ -165,8 +160,6 @@ app.controller('DPOCtrl', ['$scope', 'TurnoverService', 'helpService', '$rootSco
 		//Add colours array to correct syntax for charts
 		$scope.colours = [{fillColor: colourArray}];
 	});
-
-	$scope.options = {};
 	$scope.condition = function(item){
 		if(item >= (sectorAvgDPO*0.95)){
 			return "IMG/green.png";

@@ -1,0 +1,79 @@
+#admin td{
+	text-align: center;
+	padding: 10px;
+	width: 200px;
+}
+
+#admin td#mail{
+	width: 300px;
+}
+
+#admin th{
+	font-weight: bold;
+	padding: 5px 10px;
+}
+
+#admin #buttonsdiv{
+	text-align: center;
+}
+
+#admin h1{
+	margin: 50px;
+}
+
+#admin table{
+	margin: 20px;
+	margin-top: 50px;
+}
+
+#admin .succes{
+	border: 2px solid green;
+	margin: 20px 120px;
+	text-align: center;
+	padding: 30px;
+}
+
+#admin .error{
+	border: 2px solid red;
+	margin: 20px 120px;
+	text-align: center;
+	padding: 30px;
+}
+
+#admin .button {
+	padding: 10px;
+	border-radius: 15px;
+	background-color: #d7d7d7;
+	cursor:pointer;
+	border: 2px solid #4c4848;
+}
+
+#admin .button:hover{
+	cursor: pointer;
+	background-color: #4c4848;
+	color: #939393;
+}
+
+#admin td img{
+	margin: 0px 15px;
+	vertical-align: middle;
+}
+
+#admin td img:hover{
+	cursor: pointer;
+	opacity: 0.5;
+}
+
+#admin .wrapper{
+	height: 38px;
+	width: 200px;
+    white-space: nowrap;
+    
+    text-align: center;
+}
+
+#admin .helper{
+	display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}

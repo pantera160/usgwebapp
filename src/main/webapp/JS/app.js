@@ -1,10 +1,18 @@
 angular.module("USGFinanceWebapp", ['720kb.tooltips', 'ngDialog', 'AngularPrint']);
+<<<<<<< HEAD
+angular.module("BalansRatio", ['chart.js', 'ngDialog','AngularPrint']);
+=======
 angular.module("BalansRatio", ['chart.js', 'ngDialog', 'AngularPrint']);
+>>>>>>> c6035b90611e03f857685d2af53b123214855447
 angular.module("Portal", []);
 angular.module("ReturnRatio", ['chart.js', 'ngDialog', 'AngularPrint']);
 angular.module("CCCEvolution", ['chart.js', 'ngDialog', 'AngularPrint']);
 angular.module("CoverageRatio", ['chart.js', 'ngDialog', 'AngularPrint']);
+<<<<<<< HEAD
+angular.module("TurnoverRatio", ['chart.js', 'ngDialog','AngularPrint']);
+=======
 angular.module("TurnoverRatio", ['chart.js', 'ngDialog', 'AngularPrint']);
+>>>>>>> c6035b90611e03f857685d2af53b123214855447
 angular.module("WCMSavings", ['AngularPrint']);
 angular.module("Login", []);
 angular.module('Overview', []);
@@ -13,25 +21,89 @@ angular.module('Sectors', []);
 var app = angular.module('Router', ['ngRoute', 'ngCookies', 'USGFinanceWebapp', 'BalansRatio', 'Portal', 'ReturnRatio', 'CCCEvolution', 'CoverageRatio', 'TurnoverRatio', 'WCMSavings', 'Login', 'Overview', 'Admin']);
 app.config(['$routeProvider', function($routeProvider) {
 	$routeProvider.when('/inputs', {
-		templateUrl: 'inputs.html'
+		templateUrl: 'inputs.html',
+		resolve: {
+      // I will cause a 1 second delay
+      delay: function($q, $timeout) {
+        var delay = $q.defer();
+        $timeout(delay.resolve, 1000);
+        return delay.promise;
+      }
+      }
 	}).when('/balans', {
-		templateUrl: 'balans.html'
+		templateUrl: 'balans.html',
+		resolve: {
+      // I will cause a 1 second delay
+      delay: function($q, $timeout) {
+        var delay = $q.defer();
+        $timeout(delay.resolve, 1000);
+        return delay.promise;
+      }
+      }
 	}).when('/portal', {
 		templateUrl: 'portal.html'
 	}).when('/return', {
-		templateUrl: 'return.html'
+		templateUrl: 'return.html',
+		resolve: {
+      // I will cause a 1 second delay
+      delay: function($q, $timeout) {
+        var delay = $q.defer();
+        $timeout(delay.resolve, 1000);
+        return delay.promise;
+      }
+      }
 	}).when('/coverage', {
-		templateUrl: 'coverage.html'
+		templateUrl: 'coverage.html',
+		resolve: {
+      // I will cause a 1 second delay
+      delay: function($q, $timeout) {
+        var delay = $q.defer();
+        $timeout(delay.resolve, 1000);
+        return delay.promise;
+      }
+      }
 	}).when('/turnover', {
-		templateUrl: 'turnover.html'
+		templateUrl: 'turnover.html',
+		resolve: {
+      // I will cause a 1 second delay
+      delay: function($q, $timeout) {
+        var delay = $q.defer();
+        $timeout(delay.resolve, 1000);
+        return delay.promise;
+      }
+      }
 	}).when('/wcmsavings', {
-		templateUrl: 'wcmsavings.html'
+		templateUrl: 'wcmsavings.html',
+		resolve: {
+      // I will cause a 1 second delay
+      delay: function($q, $timeout) {
+        var delay = $q.defer();
+        $timeout(delay.resolve, 1000);
+        return delay.promise;
+      }
+      }
 	}).when('/cccevolution', {
-		templateUrl: 'cccevolution.html'
+		templateUrl: 'cccevolution.html',
+		resolve: {
+      // I will cause a 1 second delay
+      delay: function($q, $timeout) {
+        var delay = $q.defer();
+        $timeout(delay.resolve, 1000);
+        return delay.promise;
+      }
+      }
 	}).when('/login', {
 		templateUrl: 'login.html'
 	}).when('/overview', {
-		templateUrl: 'overview.html'
+		templateUrl: 'overview.html',
+		resolve: {
+      // I will cause a 1 second delay
+      delay: function($q, $timeout) {
+        var delay = $q.defer();
+        $timeout(delay.resolve, 1000);
+        return delay.promise;
+      }
+      }
 	}).when('/admin', {
 		templateUrl: 'admin.html'
 	}).when('/newuser', {

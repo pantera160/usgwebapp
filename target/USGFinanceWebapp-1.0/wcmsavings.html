@@ -1,0 +1,253 @@
+    <div id="wcm">
+        <div id="banner">
+            <a href="http://www.usgprofessionals.com/belgium/finance"><img src="IMG/logoUSG-Finance-Professionals.gif" alt="logo USG Finance Professionals" width="160" height="80"></a>
+
+            <h1>WCM Savings</h1>
+        </div>
+
+        <div>
+            <p id="wordupfront">By accelerating sales, reducing your inventory and increasing your suppliers payment terms, you can generate a lot of savings. We have indicated some initial assumptions down below. Feel free to amend them. You will see that even small changes can generate a lot of savings!</p>
+        </div>
+
+        <div ng-controller="headerCtrl" id="compInfo">
+            <div>
+                <h3>Company :</h3><label>{{company.name}}</label>
+            </div>
+
+            <div>
+                <h3>Sector :</h3><label>{{company.sector}}</label>
+            </div>
+        </div>
+
+        <div ng-controller="WCMSCtrl">
+            <div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th></th>
+
+                            <th>Current in days</th>
+
+                            <th>Target</th>
+
+                            <th>Sector average</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>DIO (Days Inventory Outstanding)</td>
+
+                            <td>{{data.dio | NumberEU}}</td>
+
+                            <td class="inputtd"><input my-numberformat type="text" ng-model="data.targetDIO"></td>
+
+                            <td>{{sector.dio | NumberEU}}</td>
+                        </tr>
+
+                        <tr>
+                            <td>DSO (Days Sales Outstanding)</td>
+
+                            <td>{{data.dso | NumberEU}}</td>
+
+                            <td class="inputtd"><input my-numberformat type="text" ng-model="data.targetDSO"></td>
+
+                            <td>{{sector.dso | NumberEU}}</td>
+                        </tr>
+
+                        <tr>
+                            <td>DPO (Days Purchases Outstanding)</td>
+
+                            <td>{{data.dpo | NumberEU}}</td>
+
+                            <td class="inputtd"><input my-numberformat type="text" ng-model="data.targetDPO"></td>
+
+                            <td>{{sector.dpo | NumberEU}}</td>
+                        </tr>
+
+                        <tr>
+                            <td>Cash conversion cycle (DIO + DSO - DPO)</td>
+
+                            <td>{{data.cccday | NumberEU}}</td>
+
+                            <td>{{data.cccdayTarget | NumberEU}}</td>
+
+                            <td>{{sector.dio + sector.dso - sector.dpo | NumberEU}}</td>
+                        </tr>
+
+                        <tr>
+                            <td>Cash conversion cycle savings in days</td>
+
+                            <td></td>
+
+                            <td>{{data.cccsavingsDay | NumberEU}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th></th>
+
+                            <th>Current</th>
+
+                            <th>Target</th>
+
+                            <th>Savings</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="block-2">
+                        <tr>
+                            <td>Inventory</td>
+
+                            <td>{{data.invCurrent | NumberEU}}</td>
+
+                            <td>{{data.invTarget | NumberEU}}</td>
+
+                            <td>{{data.invSavings | NumberEU}}</td>
+                        </tr>
+
+                        <tr>
+                            <td>Accounts Receivable</td>
+
+                            <td>{{data.arCurrent | NumberEU}}</td>
+
+                            <td>{{data.arTarget | NumberEU}}</td>
+
+                            <td>{{data.arSavings | NumberEU}}</td>
+                        </tr>
+
+                        <tr>
+                            <td>Accounts Payable</td>
+
+                            <td>{{data.apCurrent | NumberEU}}</td>
+
+                            <td>{{data.apTarget | NumberEU}}</td>
+
+                            <td>{{data.apSavings | NumberEU}}</td>
+                        </tr>
+
+                        <tr>
+                            <td>Cash conversion cycle in EUR</td>
+
+                            <td>{{data.ccceuroCurrent | NumberEU}}</td>
+
+                            <td>{{data.ccceuroTarget | NumberEU}}</td>
+
+                            <td></td>
+                        </tr>
+
+                        <tr>
+                            <td>Cash conversion cycle savings in EUR</td>
+
+                            <td></td>
+
+                            <td>{{data.cccsavingsEuro | NumberEU}}</td>
+
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>
+                                <h2>ASSUMPTION SAVINGS (in %)</h2>
+                            </th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="block-3">
+                        <tr>
+                            <td>Debit Interest</td>
+
+                            <td class="inputtd"><input my-numberformat2 type="text" ng-model="data.debitInterest"></td>
+                        </tr>
+
+                        <tr>
+                            <td>Credit Interest (only if net debt &gt; 0)</td>
+
+                            <td class="inputtd"><input my-numberformat2 type="text" ng-model="data.creditInterest"></td>
+                        </tr>
+
+                        <tr>
+                            <td>Cost of Accounts Receivable</td>
+
+                            <td class="inputtd"><input my-numberformat2 type="text" ng-model="data.costAR"></td>
+                        </tr>
+
+                        <tr>
+                            <td>Cost of Inventory</td>
+
+                            <td class="inputtd"><input my-numberformat2 type="text" ng-model="data.costInv"></td>
+                        </tr>
+
+                        <tr>
+                            <td>Cost of Accounts Payable</td>
+
+                            <td class="inputtd"><input my-numberformat2 type="text" ng-model="data.costAP"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>
+                                <h2>POSSIBLE SAVINGS IN EUR</h2>
+                            </th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>Debit interest</td>
+
+                            <td>{{data.debitInterestSavings | NumberEU2}}</td>
+                        </tr>
+
+                        <tr>
+                            <td>Credit interest</td>
+
+                            <td>{{data.creditInterestSavings | NumberEU2}}</td>
+                        </tr>
+
+                        <tr>
+                            <td>Cost of Accounts Receivable</td>
+
+                            <td>{{data.costARSavings | NumberEU2}}</td>
+                        </tr>
+
+                        <tr>
+                            <td>Cost of Inventory</td>
+
+                            <td>{{data.costInvSavings | NumberEU2}}</td>
+                        </tr>
+
+                        <tr>
+                            <td>Cost of Accounts Payable</td>
+
+                            <td>{{data.costAPSavings | NumberEU2}}</td>
+                        </tr>
+
+                        <tr id="total">
+                            <td>Total Savings</td>
+
+                            <td>{{data.totalSavings | NumberEU2}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="buttonsdiv" class="centered">
+                <button type="button" ng-click="back()">Back</button> <button type="button" ng-click="save()">Submit</button>
+            </div>
+        </div>
+    </div>
