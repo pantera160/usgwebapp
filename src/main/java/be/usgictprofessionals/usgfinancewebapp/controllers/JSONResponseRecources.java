@@ -153,11 +153,11 @@ public class JSONResponseRecources {
         wcmInitData.setInvCurrent(mostRecentYear.getInputData().getInventory());
         wcmInitData.setCCCDay(Formulas.calcCCC(wcmInitData.getDIO(), wcmInitData.getDSO(), wcmInitData.getDPO()));
         wcmInitData.setCCCEuroCurrent(Formulas.calcCCC(wcmInitData.getInvCurrent(), wcmInitData.getArCurrent(), wcmInitData.getApCurrent()));
-        wcmInitData.setCostAP(0.1);
-        wcmInitData.setCostAR(0.1);
-        wcmInitData.setCostInv(0.1);
+        wcmInitData.setCostAP(0.05);
+        wcmInitData.setCostAR(0.05);
+        wcmInitData.setCostInv(0.05);
         wcmInitData.setDebitInterest(3.00);
-        wcmInitData.setCreditInterest(0.1);
+        wcmInitData.setCreditInterest(0.0);
         return wcmInitData;
     }
 

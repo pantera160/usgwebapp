@@ -1,0 +1,19 @@
+<div id="sectorMgmt" ng-controller="sectorCtrl">
+	<div id="banner">
+        <div><a href="http://www.usgprofessionals.com/belgium/finance"><img src="IMG/logoUSG-Finance-Professionals.gif" alt="logo USG Finance Professionals" width="160" height="80"></a></div>
+			<div>
+        <h1>Sector averages in Europe</h1></div>
+    </div>
+    <div id="sectoroverview">
+	    <table>
+		   	<thead>
+			   	<tr><th>Sectors</th><th>DIO</th><th>Source</th><th>DSO</th><th>DPO</th><th>Current Ratio</th><th>Quick Ratio</th><th>Solvency</th><th>Operating income</th><th>Financial expenses</th><th>EBIT/Financial expenses</th><th>Net financial debt/EBITDA</th><th>ROE</th><th>ROA</th><th>Result financial year</th><th>Total assets</th>
+		   	</thead>
+		   	<tbody>
+			   	<tr ng-repeat="sector in sectors">
+				   	<td>{{sector.DIO}}</td><td><select ng-model="sector.source"><option ng-repeat="source in sources" ng-value="source.id">{{source.name}}</option></select></td><td>{{sector.DSO}}</td><td>{{sector.DPO}}</td><td>{{sector.currRatio}}</td><td>{{sector.quickRatio}}</td><td>{{sector.solvency}}</td><td>{{sector.compIncome}}</td><td>{{sector.finExp}}</td><td>{{sector.ebitfin}}</td><dt>{{sector.debtebitda}}</dt><dt>{{sector.debtebitda}}</dt><dt>{{sector.roe}}</dt><dt>{{sector.roa}}</dt><dt>{{sector.yearProfit}}</dt><dt>{{sector.totAssets}}</dt><dt><select ng-model="sector.source2"><option ng-repeat="source in sources" ng-value="source.id">{{source.name}}</option></select></dt>
+			   	</tr>
+		   	</tbody>
+	    </table>
+    </div>
+</div>

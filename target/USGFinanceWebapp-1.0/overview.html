@@ -1,0 +1,47 @@
+    <div id="overview">
+	    <!--version 1.0 -->
+        <div>
+            <a href="http://www.usgprofessionals.com/belgium/finance"><img src="IMG/logoUSG-Finance-Professionals.gif" alt="logo USG Finance Professionals" width="160" height="80"></a>
+        </div>
+
+        <h1>Your companies</h1>
+
+        <p>Click on the company you would like to return to. To add a new company click the add button.</p>
+
+        <div id="list" ng-controller="OverviewCtrl">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Company name</th>
+
+                        <th>Company sector</th>
+
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tbody ng-repeat="company in companies">
+                    <tr>
+                        <td ng-class="rows[company.id]" ng-mouseover="hovertd(company.id)" ng-mouseleave="hovertd(company.id)" ng-click="goTo(company.id)">{{company.name}}</td>
+
+                        <td ng-class="rows[company.id]" ng-mouseover="hovertd(company.id)" ng-mouseleave="hovertd(company.id)" ng-click="goTo(company.id)">{{company.sector}}</td>
+
+                        <td ng-if="!deleting[company.id]" ng-click="confirm(company.id)" class="cross">
+                        </td>
+
+                        <td ng-if="deleting[company.id]">
+                            <div class="wrapper"><img ng-click="remove(company.id)" src="IMG/approved-151676.svg" alt="accept" width="25" height="25"><img ng-click="decline(company.id)" src="IMG/remove-151678.svg" alt="cancel" width="25" height="25"></div>
+                        </td>
+                    </tr>
+
+                    <tr class="whitespace">
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div id="add" ng-click="new()">
+                New Company
+            </div>
+        </div>
+    </div>

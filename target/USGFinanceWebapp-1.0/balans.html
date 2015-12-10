@@ -1,0 +1,177 @@
+<div id="ratios">
+	<div>
+    <div id="banner">
+        <a href="http://www.usgprofessionals.com/belgium/finance"><img src="IMG/logoUSG-Finance-Professionals.gif" alt="logo USG Finance Professionals" width="160" height="80"></a>
+
+        <h1>BALANCE SHEET RATIOS</h1>
+    </div>
+	
+	<div ng-controller="headerCtrl" id="compInfo">
+	    <div><h3>Company  :</h3> <label>{{company.name}}</label></div>
+        <div><h3>Sector  :</h3> <label>{{company.sector.name}}</label></div>
+    </div>
+    
+    <div ng-controller="SolvencyCtrl" class="inline">
+        <div>
+            <h2>Solvency<a class="questionmark" ng-click="showHelp()"></a></h2>
+        </div>
+
+        <div class="top-border">
+            <canvas id="Solvency" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-options="options" chart-colours="colours"></canvas>
+        </div>
+
+        <div class="top-border">
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+
+                        <th ng-repeat="label in labels track by $index">{{label}}</th>
+
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>Solvency</td>
+
+                        <td ng-repeat="item in data[0] track by $index"><div><img ng-src="{{condition(item)}}" alt="condition"/>{{item | NumberEU}} %</div></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="top-border formula-div">
+            <div class="formula">
+                <label>Formula:</label>
+            </div>
+
+            <div class="formula">
+                <label class="bottom-border">Equity</label><br>
+                <label>Total Assets</label>
+            </div>
+        </div>
+    </div>
+
+    <div ng-controller="CurrRatioCtrl" class="inline">
+        <div>
+            <h2>Current Ratio<a class="questionmark" ng-click="showHelp()"></a></h2>
+        </div>
+
+        <div class="top-border">
+            <canvas id="CurrRatio" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-options="options" chart-colours="colours"></canvas>
+        </div>
+
+        <div class="top-border">
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+
+                        <th ng-repeat="label in labels track by $index">{{label}}</th>
+                       
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>Current Ratio</td>
+
+                        <td ng-repeat="item in data[0] track by $index"><div><img ng-src="{{condition(item)}}" alt="condition"/>{{item | NumberEU}} %</div></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="top-border formula-div">
+            <div class="formula">
+                <label>Formula:</label>
+            </div>
+
+            <div class="formula">
+                <label class="bottom-border">Current Assets</label><br>
+                <label>Current Liabilities</label>
+            </div>
+        </div>
+    </div>
+
+    <div ng-controller="QuickRatioCtrl" class="inline">
+        <div>
+            <h2>Quick Ratio<a class="questionmark" ng-click="showHelp()"></a></h2>
+        </div>
+
+        <div class="top-border">
+            <canvas id="QuickRatio" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-options="options" chart-colours="colours"></canvas>
+        </div>
+
+        <div class="top-border">
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+
+                        <th ng-repeat="label in labels track by $index">{{label}}</th>
+
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>Quick Ratio</td>
+						
+                        <td ng-repeat="item in data[0] track by $index"><div><img ng-src="{{condition(item)}}" alt="condition"/>{{item | NumberEU}} %</div></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="top-border formula-div">
+            <div class="formula">
+                <label>Formula:</label>
+            </div>
+
+            <div class="formula">
+                <label class="bottom-border">Current Assets minus Inventory</label><br>
+                <label>Current Liabilities</label>
+            </div>
+        </div>
+    </div>
+
+    <div id="buttonsdiv" class="centered" ng-controller="ButtonsCtrl">
+        <button type="button" ng-click="back()">Back</button>
+    </div>
+<div>
+<script type="text/ng-template" id="solvencytemplate">
+	<div class="template">
+		<h2>Solvency</h2>
+		<p>The extent to which a company is able to pay its debts. In other words, when realising all the assets, is there some security margin for the creditors.  This measure is calculated in %.</p>
+		<br />
+		<h3>Interpretation of the outcome</h3>
+		<p><img src="IMG/green.png" alt="green" width="24" height="28" />Good solvency > 30%: The dependence in relation to debt providers will be lower, therefore creditors will be more inclined to provide additional debt. 30% is usually set as minimum benchmark by the banks.</p>
+		<p><img src="IMG/orange.png" alt="orange" width="27" height="31" />A solvency slightly below 30%: Be careful! This means that if the value of the assets would decrease by 30%, the creditors may not be able to recover their debt. However, depending on the sector, some deviations are possible.</p>
+		<p><img src="IMG/red.png" alt="red" width="24" height="30" />Low solvency significantly below 30%: The creditors will miss some security margin and will not be willing to extend additional debt.</p>
+	</div>
+</script>
+<script type="text/ng-template" id="currratiotemplate">
+	<div class="template">
+		<h2>Current Ratio</h2>
+		<p>A measurement of the liquidity of the company. It indicates how short-term debts can be repaid with the company's short term assets.</p>
+		<br />
+		<h3>Interpretation of the outcome</h3>
+		<p><img src="IMG/green.png" alt="green" width="24" height="28" />A high ratio > 125% is a positive sign: The company will have more assets to repay his short term debts. 125% is the benchmark usually taken by the banks.</p>
+		<p><img src="IMG/orange.png" alt="orange" width="27" height="31" />A ratio slightly below 125%:  Be careful!</p>
+		<p><img src="IMG/red.png" alt="red" width="24" height="30" />A low ratio significantly below 125% is a negative sign: It is possible that the company will not have enough assets to repay his short term debts.</p>
+	</div>
+</script>
+<script type="text/ng-template" id="quickratiotemplate">
+	<div class="template">
+		<h2>Quick Ratio</h2>
+		<p>A measurement of the liquidity of the company, but the stock is excluded from the short term assets. Stock is considered as less liquid because it includes raw materials, goods in transformation, and finished goods which are not yet sold.</p>
+		<br />
+		<h3>Interpretation of the outcome</h3>
+		<p><img src="IMG/green.png" alt="green" width="24" height="28" />A high ratio > 100% is a positive sign: The company will have enough assets (-stock) to repay his short term debts. 100% is the benchmark usually taken by the banks.</p>
+		<p><img src="IMG/orange.png" alt="orange" width="27" height="31" />A ratio slightly below 100%: Be careful!</p>
+		<p><img src="IMG/red.png" alt="red" width="24" height="30" />A low ratio significantly below 100% is a negative sign: It is possible that the company will not have enough assets (-stock) to repay his short term debts.</p>
+	</div>
+</script>
+</div>

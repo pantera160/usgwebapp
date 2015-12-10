@@ -1,0 +1,107 @@
+<div id="ratios">
+	<div>
+    <div id="banner">
+        <a href="http://www.usgprofessionals.com/belgium/finance"><img src="IMG/logoUSG-Finance-Professionals.gif" alt="logo USG Finance Professionals" width="160" height="80"></a>
+
+        <h1>RETURN RATIO'S</h1>
+    </div>
+    <div ng-controller="headerCtrl" id="compInfo">
+	    <div><h3>Company  :</h3> <label>{{company.name}}</label></div>
+        <div><h3>Sector  :</h3> <label>{{company.sector}}</label></div>
+    </div>
+
+    <div ng-controller="EquityCtrl" class="inline">
+        <div>
+            <h2>Return on Equity<a class="questionmark" ng-click="help()"></a></h2>
+        </div>
+
+        <div class="top-border">
+            <canvas id="ReturnEquity" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-options="options" chart-colours="colours"></canvas>
+        </div>
+
+        <div class="top-border">
+            <table>
+                <thead>
+                    <tr>
+	                    <th></th>
+	                    
+                        <th ng-repeat="label in labels track by $index">{{label}}</th>
+                        
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+	                    <td>Return on Equity</td>
+	                    
+                        <td ng-repeat="item in data[0] track by $index"><div><img ng-src="{{condition(item)}}" alt="condition"/>{{item | NumberEU}} %</div></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="top-border formula-div">
+	        <div class="formula"><label>Formula:</label></div><div class="formula"><label class="bottom-border">Net Profit</label><br /><label>Equity</label></div>
+        </div>
+    </div>
+
+    <div ng-controller="AssetsCtrl" class="inline">
+        <div>
+            <h2>Return on Assets<a class="questionmark" ng-click="help()"></a></h2>
+        </div>
+
+        <div class="top-border"> 
+            <canvas id="ReturnAssets" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-options="options" chart-colours="colours"></canvas>
+        </div>
+
+        <div class="top-border">
+            <table>
+                <thead>
+                    <tr>
+	                    <th></th>
+	                    
+                        <th ng-repeat="label in labels track by $index">{{label}}</th>
+                        
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+	                    <td>Return on Assets</td>
+	                    
+                        <td ng-repeat="item in data[0] track by $index"><div><img ng-src="{{condition(item)}}" alt="condition"/>{{item | NumberEU}} %</div></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="top-border formula-div">
+	        <div class="formula"><label>Formula:</label></div><div class="formula"><label class="bottom-border">Net Profit</label><br /><label>Total Assets</label></div>
+        </div>
+    </div>
+
+    <div id="buttonsdiv" class="centered" ng-controller="ButtonsCtrl">
+        <button type="button" ng-click="back()">Back</button>
+    </div>
+</div>
+<script type="text/ng-template" id="equitytemplate">
+	<div class="template">
+		<h2>Return on equity</h2>
+		<p>The return that the capital holders get on equity which they invested in the company. This measure is calculated in %.  The ROE is important, in particular if the company needs to attract new equity to finance its expansion.</p>
+		<br />
+		<h3>Interpretation of the outcome</h3>
+		<p><img src="IMG/green.png" alt="green" width="24" height="28" />The higher the return on equity, the more satisfied the shareholders will be. If the ROE is high enough the company will easily attract new investors/equity to finance expansion. The ROE depends from sector to sector and the sector averages.</p>
+		<p><img src="IMG/orange.png" alt="orange" width="27" height="31" />ROE slightly below sector averages: Be careful!</p>
+		<p><img src="IMG/red.png" alt="red" width="24" height="30" />A low ratio significant below sector averages will lead to unsatisfied shareholders. If the ROE is low the company will have difficulties attracting new investors/equity to finance expansion.</p>
+	</div>
+</script>
+<script type="text/ng-template" id="assetstemplate">
+	<div class="template">
+		<h2>Return on assets</h2>
+		<p>This measures the profitability of a company relative to its total assets. The ROA gives an idea as to how efficient management is at using its assets to generate earnings. It's a useful number for comparing competing companies in the same industry. The number will vary widely across different industries, as the ROA is depending on the capital intensity of the industry. Companies that are capital intensive will generally have lower return on assets.</p>
+		<br />
+		<h3>Interpretation of the outcome</h3>
+		<p><img src="IMG/green.png" alt="green" width="24" height="28" />A high ratio &gt; sector average is a positive sign: It means that there is a high profitability. The ROA depends from sector to sector and the sector averages.</p>
+		<p><img src="IMG/orange.png" alt="orange" width="27" height="31" />ROA slightly below sector averages: Be careful!</p>
+		<p><img src="IMG/red.png" alt="red" width="24" height="30" />A low ratio significantly below sector average is a negative sign: It can be an indicator of a lower profitability, or of the fact that too much assets are tied in the cash conversion cycle.</p>
+	</div>
+</script>
+</div>

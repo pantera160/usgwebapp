@@ -1,0 +1,27 @@
+<div id="login" ng-controller="adminCtrl"> 
+	<div id="banner">
+            <a href="http://www.usgprofessionals.com/belgium/finance"><img src="IMG/logoUSG-Finance-Professionals.gif" alt="logo USG Finance Professionals" width="160" height="80"></a>
+
+            <h1>Create new user</h1>
+        </div>
+
+<div ng-if="error" class="alert"><p>{{text}}</p></div>
+<div class="succes" ng-if="succes">
+			<p>{{text}}</p>
+		</div>
+<form name="form" role="form" ng-submit="newuser()" novalidate>
+    <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" name="username" id="username" ng-model="username" required />
+        <span ng-show="form.username.$dirty && form.username.$error.required" class="sub-msg">Username is required</span>
+    </div>
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" class="form-control" ng-model="email" required />
+        <span ng-show="form.email.$dirty && form.email.$invalid" class="sub-msg">A valid email is required</span>
+    </div>
+    <div class="form-actions">
+        <button type="submit" ng-disabled="form.$invalid">Submit</button>
+    </div>
+</form>
+</div>
