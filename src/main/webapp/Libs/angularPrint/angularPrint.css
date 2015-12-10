@@ -8,7 +8,12 @@
         visibility:hidden;
     }
     body {
+<<<<<<< HEAD
         margin:0mm !important;
+=======
+        margin:5mm !important;
+/*        margin:0mm !important;*/
+>>>>>>> c6035b90611e03f857685d2af53b123214855447
         -webkit-print-color-adjust:exact;
     }
     .printOnly, .printOnly *{
@@ -46,7 +51,20 @@
         margin:0px !important;
         padding:0px !important;
     }
+<<<<<<< HEAD
     @page { margin:0cm }
+=======
+    
+    @page {
+        margin: 0.5cm;
+        margin-bottom: 1cm
+     }
+    @page :first {
+      margin-top:0cm;
+    }
+    /*
+    @page { margin: 0cm }
+>>>>>>> c6035b90611e03f857685d2af53b123214855447
     @page :first {
       margin-top:0cm;
     }
@@ -57,5 +75,9 @@
     @page :right {
       margin-left:0cm;
       margin-right:0cm;
+<<<<<<< HEAD
     }
+=======
+    }*/
+>>>>>>> c6035b90611e03f857685d2af53b123214855447
 }
