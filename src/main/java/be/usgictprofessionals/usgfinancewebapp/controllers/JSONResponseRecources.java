@@ -192,7 +192,7 @@ public class JSONResponseRecources {
         wcmData.setCostARSavings(Formulas.calcCostSavingAR(wcmData.getArSavings(), data.getCostAR()/100));
         wcmData.setCostAPSavings(Formulas.calcCostSavingAP(wcmData.getApSavings(), data.getCostAP()/100));
         wcmData.setCostInvSavings(Formulas.calcCostSavingInv(wcmData.getInvSavings(), data.getCostInv()/100));
-        wcmData.setTotalSavings(wcmData.getCostARSavings() + wcmData.getCostAPSavings() + wcmData.getCostInvSavings() + wcmData.getDebitInterestSavings() + wcmData.getCreditInterestSavings()/100);
+        wcmData.setTotalSavings(wcmData.getCostARSavings() + wcmData.getCostAPSavings() + wcmData.getCostInvSavings() + wcmData.getDebitInterestSavings() + wcmData.getCreditInterestSavings());
         return wcmData;
     }
 
