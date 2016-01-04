@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite failures="0" time="0.035" errors="0" skipped="0" tests="19" name="BackEndTesting.FormulasTest">
+<testsuite failures="0" time="0.017" errors="0" skipped="0" tests="19" name="BackEndTesting.FormulasTest">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.7.0_79.jdk/Contents/Home/jre/lib"/>
@@ -63,8 +63,6 @@
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase time="0" classname="BackEndTesting.FormulasTest" name="calcEBITDATest"/>
-  <testcase time="0.001" classname="BackEndTesting.FormulasTest" name="calcRecIncomeTest"/>
   <testcase time="0" classname="BackEndTesting.FormulasTest" name="calcNetIncomeTest"/>
   <testcase time="0" classname="BackEndTesting.FormulasTest" name="calcWorkingCapitalTest"/>
   <testcase time="0" classname="BackEndTesting.FormulasTest" name="calcNetDebtTest"/>
@@ -75,11 +73,13 @@
   <testcase time="0" classname="BackEndTesting.FormulasTest" name="calcDSOTest"/>
   <testcase time="0" classname="BackEndTesting.FormulasTest" name="calcCurrRatioTest"/>
   <testcase time="0" classname="BackEndTesting.FormulasTest" name="calcQuickRatioTest"/>
-  <testcase time="0" classname="BackEndTesting.FormulasTest" name="calcCCCDaysTest"/>
+  <testcase time="0.001" classname="BackEndTesting.FormulasTest" name="calcCCCDaysTest"/>
   <testcase time="0" classname="BackEndTesting.FormulasTest" name="calcCCCEuroTest"/>
-  <testcase time="0" classname="BackEndTesting.FormulasTest" name="calcInvTargetTest"/>
-  <testcase time="0.002" classname="BackEndTesting.FormulasTest" name="calcARTargetTest"/>
+  <testcase time="0.001" classname="BackEndTesting.FormulasTest" name="calcInvTargetTest"/>
+  <testcase time="0" classname="BackEndTesting.FormulasTest" name="calcARTargetTest"/>
   <testcase time="0" classname="BackEndTesting.FormulasTest" name="calcAPTargetTest"/>
-  <testcase time="0" classname="BackEndTesting.FormulasTest" name="calcDebitInterestTest"/>
+  <testcase time="0.001" classname="BackEndTesting.FormulasTest" name="calcDebitInterestTest"/>
   <testcase time="0" classname="BackEndTesting.FormulasTest" name="calcCreditInterestTest"/>
+  <testcase time="0.001" classname="BackEndTesting.FormulasTest" name="calcRecIncomeTest"/>
+  <testcase time="0" classname="BackEndTesting.FormulasTest" name="calcEBITDATest"/>
 </testsuite>

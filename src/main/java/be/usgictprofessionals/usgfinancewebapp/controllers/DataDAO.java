@@ -77,15 +77,15 @@ public class DataDAO {
         return response;
     }
     
-    public WCMData getInitData(int companyId){
-        ArrayList<InputData> data = JdbcDatabase.getInstance().getInputData(companyId);
-        CalculatedDataResource mostRecentYear = new CalculatedDataResource(data.get(0));
+    public WCMData getInitData(int companyId, int year){
+        HashMap<Integer, InputData> data = JdbcDatabase.getInstance().getInputDataMap(companyId);
+        CalculatedDataResource mostRecentYear = new CalculatedDataResource(data.get(year));
         return (WCMData) JSONResponseRecources.WCMCalcInitData(mostRecentYear);
     }
     
-    public WCMData getCalcDataWCM(WCMData datawcm, int companyId){
-         ArrayList<InputData> data = JdbcDatabase.getInstance().getInputData(companyId);
-        CalculatedDataResource mostRecentYear = new CalculatedDataResource(data.get(0));
+    public WCMData getCalcDataWCM(WCMData datawcm, int companyId, int year){
+        HashMap<Integer,InputData> data = JdbcDatabase.getInstance().getInputDataMap(companyId);
+        CalculatedDataResource mostRecentYear = new CalculatedDataResource(data.get(year));
         return (WCMData) JSONResponseRecources.WCMCalcData(datawcm, mostRecentYear);
     }
     
@@ -116,5 +116,9 @@ public class DataDAO {
     
     public ArrayList<HashMap> getSectors(){
         return JdbcDatabase.getInstance().getSectors();
+    }
+    
+    public ArrayList<HashMap> getYears(int id){
+        return JdbcDatabase.getInstance().getYears(id);
     }
 }

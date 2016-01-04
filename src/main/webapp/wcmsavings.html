@@ -20,6 +20,10 @@
         </div>
 
         <div ng-controller="WCMSCtrl">
+	        <div>
+		        <label><b>Year</b></label> <select ng-model="year" tooltips="" tooltip-content="Please select the year you want the WCM to be calculated from." ng-options="year.name for year in years track by year.id">
+                    </select>
+	        </div>
             <div>
                 <table>
                     <thead>

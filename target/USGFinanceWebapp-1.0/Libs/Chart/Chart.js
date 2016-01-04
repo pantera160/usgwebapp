@@ -95,6 +95,9 @@
 
 			// Boolean - Whether the scale should start at zero, or an order of magnitude down from the lowest value
 			scaleBeginAtZero: false,
+			
+			// Boolean - When the scale does not start at zero make sure the max starting value is zero
+			alwaysShowZero: true,
 
 			// String - Scale label font declaration for the scale label
 			scaleFontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
@@ -109,7 +112,7 @@
 			scaleFontColor: "#666",
 
 			// Boolean - whether or not the chart should be responsive and resize when the browser does.
-			responsive: false,
+			responsive: true,
 
 			// Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
 			maintainAspectRatio: true,
@@ -380,7 +383,7 @@
 		calculateOrderOfMagnitude = helpers.calculateOrderOfMagnitude = function(val){
 			return Math.floor(Math.log(val) / Math.LN10);
 		},
-		calculateScaleRange = helpers.calculateScaleRange = function(valuesArray, drawingSize, textSize, startFromZero, integersOnly){
+		calculateScaleRange = helpers.calculateScaleRange = function(valuesArray, drawingSize, textSize, startFromZero, alwaysShowZero, integersOnly){
 
 			//Set a minimum step of two - a point at the top of the graph, and a point at the base
 			var minSteps = 2,
@@ -403,12 +406,19 @@
 					maxValue += 0.5;
 				}
 			}
-
+		
+			
+		
 			var	valueRange = Math.abs(maxValue - minValue),
 				rangeOrderOfMagnitude = calculateOrderOfMagnitude(valueRange),
 				graphMax = Math.ceil(maxValue / (1 * Math.pow(10, rangeOrderOfMagnitude))) * Math.pow(10, rangeOrderOfMagnitude),
-				graphMin = (startFromZero) ? 0 : Math.floor(minValue / (1 * Math.pow(10, rangeOrderOfMagnitude))) * Math.pow(10, rangeOrderOfMagnitude),
-				graphRange = graphMax - graphMin,
+				graphMin = (startFromZero) ? 0 : Math.floor(minValue / (1 * Math.pow(10, rangeOrderOfMagnitude))) * Math.pow(10, rangeOrderOfMagnitude);
+				
+				if(graphMin > 0 && alwaysShowZero){
+					graphMin = 0;
+				}
+				
+			var	graphRange = graphMax - graphMin,
 				stepValue = Math.pow(10, rangeOrderOfMagnitude),
 				numberOfSteps = Math.round(graphRange / stepValue);
 
@@ -1279,7 +1289,16 @@
 			return this.base - this.y;
 		},
 		inRange : function(chartX,chartY){
-			return (chartX >= this.x - this.width/2 && chartX <= this.x + this.width/2) && (chartY >= this.y && chartY <= this.base);
+			return (
+				(
+					chartX >= this.x - this.width/2
+					&& chartX <= this.x + this.width/2
+				)
+				&& (
+					chartY >= Math.min(this.y, this.base)
+					&& chartY <= Math.max(this.y, this.base)
+				)
+			);
 		}
 	});
 
@@ -2030,7 +2049,10 @@
 
 	var defaultConfig = {
 		//Boolean - Whether the scale should start at zero, or an order of magnitude down from the lowest value
-		scaleBeginAtZero : true,
+		scaleBeginAtZero : false,
+		
+		// Boolean - When the scale does not start at zero make sure the max starting value is zero
+		alwaysShowZero: true,
 
 		//Boolean - Whether grid lines are shown across the chart
 		scaleShowGridLines : true,
@@ -2046,6 +2068,9 @@
 
 		//Boolean - Whether to show vertical lines (except Y axis)
 		scaleShowVerticalLines: true,
+
+		//Boolean - Whether the bars should start at the origin, or the bottom of the scale
+		barBeginAtOrigin: true,
 
 		//Boolean - If there is a stroke on each bar
 		barShowStroke : true,
@@ -2148,18 +2173,33 @@
 
 			this.buildScale(data.labels);
 
-			this.BarClass.prototype.base = this.scale.endPoint;
+			this.BarClass.prototype.base = this.getBase();
 
 			this.eachBars(function(bar, index, datasetIndex){
 				helpers.extend(bar, {
 					width : this.scale.calculateBarWidth(this.datasets.length),
 					x: this.scale.calculateBarX(this.datasets.length, datasetIndex, index),
-					y: this.scale.endPoint
+					y: bar.base
 				});
 				bar.save();
 			}, this);
 
 			this.render();
+		},
+		getBase : function(){
+			if (this.options.barBeginAtOrigin && this.scale.min < 0) {
+				return (
+					this.scale.endPoint
+					- (
+						(-1.00 * this.scale.min)
+						/ ((this.scale.max - this.scale.min) * 1.00)
+						* (this.scale.endPoint - this.scale.startPoint)
+					)
+				);
+			}
+			else {
+				return this.scale.endPoint;
+			}
 		},
 		update : function(){
 			this.scale.update();
@@ -2219,6 +2259,8 @@
 				fontFamily : this.options.scaleFontFamily,
 				valuesCount : labels.length,
 				beginAtZero : this.options.scaleBeginAtZero,
+				alwaysShowZero: this.options.alwaysShowZero,
+				beginAtOrigin : this.options.barBeginAtOrigin,
 				integersOnly : this.options.scaleIntegersOnly,
 				calculateYRange: function(currentHeight){
 					var updatedRanges = helpers.calculateScaleRange(
@@ -2263,9 +2305,9 @@
 					value : value,
 					label : label,
 					x: this.scale.calculateBarX(this.datasets.length, datasetIndex, this.scale.valuesCount+1),
-					y: this.scale.endPoint,
+					y: this.getBase(),
 					width : this.scale.calculateBarWidth(this.datasets.length),
-					base : this.scale.endPoint,
+					base : this.getBase(),
 					strokeColor : this.datasets[datasetIndex].strokeColor,
 					fillColor : this.datasets[datasetIndex].fillColor
 				}));
@@ -2285,8 +2327,8 @@
 		},
 		reflow : function(){
 			helpers.extend(this.BarClass.prototype,{
-				y: this.scale.endPoint,
-				base : this.scale.endPoint
+				y: this.getBase(),
+				base : this.getBase()
 			});
 			var newScaleProps = helpers.extend({
 				height : this.chart.height,
@@ -2306,7 +2348,7 @@
 			helpers.each(this.datasets,function(dataset,datasetIndex){
 				helpers.each(dataset.bars,function(bar,index){
 					if (bar.hasValue()){
-						bar.base = this.scale.endPoint;
+						bar.base = this.getBase();
 						//Transition then draw
 						bar.transition({
 							x : this.scale.calculateBarX(this.datasets.length, datasetIndex, index),
@@ -2690,6 +2732,7 @@
 				fontFamily : this.options.scaleFontFamily,
 				valuesCount : labels.length,
 				beginAtZero : this.options.scaleBeginAtZero,
+				alwaysShowZero: this.options.alwaysShowZero,
 				integersOnly : this.options.scaleIntegersOnly,
 				calculateYRange : function(currentHeight){
 					var updatedRanges = helpers.calculateScaleRange(
@@ -3059,6 +3102,7 @@
 					helpers.min([this.chart.width, this.chart.height])/2,
 					this.options.scaleFontSize,
 					this.options.scaleBeginAtZero,
+					this.options.alwaysShowZero,
 					this.options.scaleIntegersOnly
 				);
 
@@ -3362,6 +3406,7 @@
 					helpers.min([this.chart.width, this.chart.height])/2,
 					this.options.scaleFontSize,
 					this.options.scaleBeginAtZero,
+					this.options.alwaysShowZero,
 					this.options.scaleIntegersOnly
 				);
 
@@ -3475,3 +3520,5 @@
 
 
 }).call(this);
+
+// vim: set noet ts=8 sw=8:

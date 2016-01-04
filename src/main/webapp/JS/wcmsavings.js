@@ -1,18 +1,18 @@
 var app = angular.module("WCMSavings");
 
 app.service('WCMService', function($http) {
-	this.getData = function($id) {
+	this.getData = function($id, $year) {
 		// $http() returns a $promise that we can add handlers with .then()
 		return $http({
 			method: 'GET',
-			url: 'http://wcstool-usg.rhcloud.com/rest/data/wcm/'+$id
+			url: 'http://wcstool-usg.rhcloud.com/rest/data/wcm/'+$id + '/' + $year
 		});
 	};
-	this.saveData = function($data, $id){
+	this.saveData = function($data, $id, $year){
 		// $http() returns a $promise that we can add handlers with .then()
 		return $http({
 			method: 'POST',
-			url: 'http://wcstool-usg.rhcloud.com/rest/data/wcm/'+$id,
+			url: 'http://wcstool-usg.rhcloud.com/rest/data/wcm/'+$id + '/' + $year,
 			data : $data
 		});
 
@@ -32,6 +32,14 @@ app.service('WCMService', function($http) {
 			url: 'http://wcstool-usg.rhcloud.com/rest/data/turnover/'+$id,
 			cache : true
 		});
+	};
+	this.getYears = function($id){
+		//$http() returns a $promise that we can add handlers with .then()
+		return $http({
+			method: 'GET',
+			url: 'http://wcstool-usg.rhcloud.com/rest/data/years/'+$id,
+			cache : true
+		})
 	}
 });
 
@@ -64,13 +72,16 @@ app.controller('WCMSCtrl', ['$scope', 'WCMService', '$location', '$rootScope', f
 	}
 	
 	var getData = function(){
-		WCMService.getData($rootScope.globals.currentUser.companyid).then(function(response){
+		WCMService.getYears($rootScope.globals.currentUser.companyid).then(function(response){
+			$scope.years = response.data;
+		});
+		WCMService.getData($rootScope.globals.currentUser.companyid, $scope.year.name).then(function(response){
 			$scope.data = response.data;
 		});
 	}
 	
 	$scope.save = function(){
-		WCMService.saveData($scope.data, $rootScope.globals.currentUser.companyid).then(function(result){
+		WCMService.saveData($scope.data, $rootScope.globals.currentUser.companyid, $scope.year.name).then(function(result){
 			$scope.data = result.data;
 		});
 	};

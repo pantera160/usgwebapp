@@ -40,6 +40,7 @@ h1{
 
 #input th {
     font-weight: bold;
+    position: relative;
 }
 
 #input th.theadlabel {
@@ -225,4 +226,12 @@ input[type="number"]::-webkit-outer-spin-button {
 #input td img{
 	margin: 0px 15px;
 	vertical-align: middle;
+}
+
+#input .error{
+	background-color: red;
+}
+
+#input .toError{
+	background-color: yellow;
 }
