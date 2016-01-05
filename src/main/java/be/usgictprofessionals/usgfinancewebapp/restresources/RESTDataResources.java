@@ -157,14 +157,14 @@ public class RESTDataResources {
      * @return 
      */
     @POST
-    @Path("/wcm/{id}")
+    @Path("/wcm/{id}/{year}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public WCMData enterWCMData(WCMData data, @Context final HttpServletResponse response, @PathParam("id") String id) {
+    public WCMData enterWCMData(WCMData data, @Context final HttpServletResponse response, @PathParam("id") String id, @PathParam("year") String year) {
         if(!DataDAO.getInstance().inputHasBeenReceived()){
             response.setStatus(HttpServletResponse.SC_CONFLICT);
         }
-        return DataDAO.getInstance().getCalcDataWCM(data, Integer.parseInt(id));
+        return DataDAO.getInstance().getCalcDataWCM(data, Integer.parseInt(id), Integer.parseInt(year));
     }
 
     //
@@ -178,13 +178,13 @@ public class RESTDataResources {
      * savings page
      */
     @GET
-    @Path("/wcm/{id}")
+    @Path("/wcm/{id}/{year}")
     @Produces(MediaType.APPLICATION_JSON)
-    public WCMData getWCMData(@Context final HttpServletResponse response, @PathParam("id") String id) {
+    public WCMData getWCMData(@Context final HttpServletResponse response, @PathParam("id") String id, @PathParam("year") String year) {
         if(!DataDAO.getInstance().inputHasBeenReceived()){
             response.setStatus(HttpServletResponse.SC_CONFLICT);
         }
-        return DataDAO.getInstance().getInitData(Integer.parseInt(id));
+        return DataDAO.getInstance().getInitData(Integer.parseInt(id), Integer.parseInt(year));
     }
     
     @GET
@@ -236,5 +236,12 @@ public class RESTDataResources {
     @Produces(MediaType.APPLICATION_JSON)
     public ArrayList<HashMap<Integer, String>> getSources(){
         return null;
+    }
+    
+    @GET
+    @Path("/years/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public ArrayList<HashMap> getYears(@PathParam("id") String id){
+        return DataDAO.getInstance().getYears(Integer.parseInt(id));
     }
 }

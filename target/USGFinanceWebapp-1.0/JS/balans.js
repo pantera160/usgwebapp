@@ -4,20 +4,19 @@ app.service('BalansService', function($http) {
 		// $http() returns a $promise that we can add handlers with .then()
 		return $http({
 			method: 'GET',
-			url: 'http://wcstool-usg.rhcloud.com/rest/data/balans/'+$id,
-			cache: true
+			url: 'http://wcstool-usg.rhcloud.com/rest/data/balans/'+$id
 		});
 	};
 	this.getCompany = function($id){
 		// $http() returns a $promise that we can add handlers with .then()
 		return $http({
 			method: 'GET',
-			url: 'http://wcstool-usg.rhcloud.com/rest/data/company/'+$id,
-			cache : true
+			url: 'http://wcstool-usg.rhcloud.com/rest/data/company/'+$id
 		});
 	};
 });
-app.service('helpService', function(ngDialog) {
+
+app.service('helpServiceBalans', function(ngDialog) {
 	this.showHelp = function(controller) {
 		console.log('showHelp called');
 		if (angular.equals(controller, 'solvency')) {
@@ -35,9 +34,12 @@ app.service('helpService', function(ngDialog) {
 				template: 'quickratiotemplate',
 				className: 'ngdialog-theme-default'
 			});
+		} else{
+			console.log('Helptype not found');
 		}
 	};
 });
+
 app.controller('headerCtrl', ['$scope', 'BalansService', '$rootScope', function($scope, BalansService, $rootScope){
 	$scope.company = {};
 	BalansService.getCompany($rootScope.globals.currentUser.companyid).then(function(result){
@@ -46,13 +48,10 @@ app.controller('headerCtrl', ['$scope', 'BalansService', '$rootScope', function(
 	})
 }]);
 
-app.controller('SolvencyCtrl', ['$scope', 'BalansService', 'helpService', '$rootScope', function($scope, BalansService, helpService, $rootScope) {
+app.controller('SolvencyCtrl', ['$scope', 'BalansService', 'helpServiceBalans', '$rootScope', function($scope, BalansService, helpServiceBalans, $rootScope) {
 	$scope.help = function() {
 		console.log('help called');
-		helpService.showHelp('solvency');
-	};
-	$scope.options = {
-		scaleShowVerticalLines: false
+		helpServiceBalans.showHelp('solvency');
 	};
 	$scope.data = [
 		[]
@@ -81,7 +80,8 @@ app.controller('SolvencyCtrl', ['$scope', 'BalansService', 'helpService', '$root
 	$scope.options = {
 		scaleLabel: function(valuePayload) {
 			return Number(valuePayload.value).toFixed(1) + '%';
-		}
+		},
+		scaleShowVerticalLines: false
 	};
 	$scope.condition = function(item){
 		if(item >= 28.5){
@@ -95,12 +95,9 @@ app.controller('SolvencyCtrl', ['$scope', 'BalansService', 'helpService', '$root
 		}
 	}
 }]);
-app.controller('CurrRatioCtrl', ['$scope', 'BalansService', 'helpService', '$rootScope', function($scope, BalansService, helpService, $rootScope) {
+app.controller('CurrRatioCtrl', ['$scope', 'BalansService', 'helpServiceBalans', '$rootScope', function($scope, BalansService, helpServiceBalans, $rootScope) {
 	$scope.help = function() {
-		helpService.showHelp('currratio');
-	};
-	$scope.options = {
-		scaleShowVerticalLines: false
+		helpServiceBalans.showHelp('currratio');
 	};
 	$scope.data = [
 		[]
@@ -128,7 +125,8 @@ app.controller('CurrRatioCtrl', ['$scope', 'BalansService', 'helpService', '$roo
 	$scope.options = {
 		scaleLabel: function(valuePayload) {
 			return Number(valuePayload.value).toFixed(1) + '%';
-		}
+		},
+		scaleShowVerticalLines: false
 	};
 	$scope.condition = function(item){
 		if(item >= 118.75){
@@ -142,12 +140,9 @@ app.controller('CurrRatioCtrl', ['$scope', 'BalansService', 'helpService', '$roo
 		}
 	};
 }]);
-app.controller('QuickRatioCtrl', ['$scope', 'BalansService', 'helpService', '$rootScope', function($scope, BalansService, helpService, $rootScope) {
+app.controller('QuickRatioCtrl', ['$scope', 'BalansService', 'helpServiceBalans', '$rootScope', function($scope, BalansService, helpServiceBalans, $rootScope) {
 	$scope.help = function() {
-		helpService.showHelp('quickratio');
-	};
-	$scope.options = {
-		scaleShowVerticalLines: false
+		helpServiceBalans.showHelp('quickratio');
 	};
 	$scope.data = [
 		[]
@@ -175,7 +170,8 @@ app.controller('QuickRatioCtrl', ['$scope', 'BalansService', 'helpService', '$ro
 	$scope.options = {
 		scaleLabel: function(valuePayload) {
 			return Number(valuePayload.value).toFixed(1) + '%';
-		}
+		},
+		scaleShowVerticalLines: false
 	};
 	$scope.condition = function(item){
 		if(item >= 95){

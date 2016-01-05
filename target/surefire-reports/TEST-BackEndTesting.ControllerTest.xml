@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite failures="0" time="0.038" errors="0" skipped="0" tests="2" name="BackEndTesting.ControllerTest">
+<testsuite failures="0" time="0.007" errors="0" skipped="0" tests="2" name="BackEndTesting.ControllerTest">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.7.0_79.jdk/Contents/Home/jre/lib"/>
@@ -64,5 +64,5 @@
     <property name="sun.cpu.isalist" value=""/>
   </properties>
   <testcase time="0" classname="BackEndTesting.ControllerTest" name="WCMCalcInitDataTest_rightDataIsReturnedForGivenInput"/>
-  <testcase time="0.025" classname="BackEndTesting.ControllerTest" name="WCMCalcDataTest_rightDataIsReturnedForGivenInput"/>
+  <testcase time="0" classname="BackEndTesting.ControllerTest" name="WCMCalcDataTest_rightDataIsReturnedForGivenInput"/>
 </testsuite>

@@ -84,143 +84,184 @@ app.controller("MyForm", function($scope, dataService, $location, $rootScope, $c
 	$scope.company = {
 		sector: "0"
 	};
+	$scope.error = false;
 	var company_id = $rootScope.globals.currentUser.companyid;
 	var userId = $rootScope.globals.currentUser.userid;
 	//list of input fields
 	//each data element will be linked to its input/label field to save data automatically
-	var initialiseInput = function() {
+	var initialiseInput = function(year) {
 			$scope.inputs = {
 				"numberOfMonths": [{
 					"data": "0",
-					"year": startyear
+					"year": year
 				}],
 				"fixedAssets": [{
 					"data": "0",
-					"year": startyear
+					"year": year
 				}],
 				"intangiblesAssets": [{
 					"data": "0",
-					"year": startyear
+					"year": year
 				}],
 				"propertyAssets": [{
 					"data": "0",
-					"year": startyear
+					"year": year
 				}],
 				"finFixedAssets": [{
 					"data": "0",
-					"year": startyear
+					"year": year
+				}],
+				"otherFixedAssets": [{
+					"data": "0",
+					"year": year
 				}],
 				"inventory": [{
 					"data": "0",
-					"year": startyear
+					"year": year
 				}],
 				"ar": [{
 					"data": "0",
-					"year": startyear
+					"year": year
 				}],
 				"cash": [{
 					"data": "0",
-					"year": startyear
+					"year": year
+				}],
+				"investments": [{
+					"data": "0",
+					"year": year
+				}],
+				"liquidAssets": [{
+					"data": "0",
+					"year": year
 				}],
 				"currAssets": [{
 					"data": "0",
-					"year": startyear
+					"year": year
 				}],
 				"totAssets": [{
 					"data": "0",
-					"year": startyear
+					"year": year
 				}],
 				"equity": [{
 					"data": "0",
-					"year": startyear
+					"year": year
 				}],
 				"ltFinDebt": [{
 					"data": "0",
-					"year": startyear
+					"year": year
 				}],
 				"subordinatedDebt": [{
 					"data": 0,
-					"year": startyear
+					"year": year
 				}],
 				"stFinDebt": [{
 					"data": "0",
-					"year": startyear
+					"year": year
+				}],
+				"longTermLoans": [{
+					"data": "0",
+					"year": year
+				}],
+				"finDebt": [{
+					"data": "0",
+					"year": year
 				}],
 				"ap": [{
 					"data": "0",
-					"year": startyear
+					"year": year
 				}],
 				"currLiabilities": [{
 					"data": "0",
-					"year": startyear
+					"year": year
 				}],
 				"workingCapital": [{
 					"data": "0",
-					"year": startyear
+					"year": year
 				}],
 				"netDebt": [{
 					"data": "0",
-					"year": startyear
+					"year": year
 				}],
 				"turnover": [{
 					"data": "0",
-					"year": startyear
+					"year": year
 				}],
 				"costOfSales": [{
 					"data": "0",
-					"year": startyear
+					"year": year
+				}],
+				"comMatCon": [{
+					"data": "0",
+					"year": year
+				}],
+				"miscGoods": [{
+					"data": "0",
+					"year": year
 				}],
 				"depreciation": [{
 					"data": "0",
-					"year": startyear
+					"year": year
 				}],
 				"ebit": [{
 					"data": "0",
-					"year": startyear
+					"year": year
 				}],
 				"finRev": [{
 					"data": "0",
-					"year": startyear
+					"year": year
 				}],
 				"finExp": [{
 					"data": "0",
-					"year": startyear
+					"year": year
 				}],
 				"finExpInterest": [{
 					"data": "0",
-					"year": startyear
+					"year": year
 				}],
 				"finExpBank": [{
 					"data": "0",
-					"year": startyear
+					"year": year
 				}],
 				"finExpOther": [{
 					"data": "0",
-					"year": startyear
+					"year": year
 				}],
 				"nrIncome": [{
 					"data": "0",
-					"year": startyear
+					"year": year
 				}],
 				"nrCharges": [{
 					"data": "0",
-					"year": startyear
+					"year": year
 				}],
 				"taxes": [{
 					"data": "0",
-					"year": startyear
+					"year": year
+				}],
+				"incomeTaxes": [{
+					"data": "0",
+					"year": year
+				}],
+				"withDefTaxes": [{
+					"data": "0",
+					"year": year
+				}],
+				"transDefTaxes": [{
+					"data": "0",
+					"year": year
 				}],
 				"recIncome": [{
 					"data": "0",
-					"year": startyear
+					"year": year
 				}],
 				"netIncome": [{
 					"data": "0",
-					"year": startyear
+					"year": year
 				}],
 				"ebitda": [{
 					"data": "0",
-					"year": startyear
+					"year": year
 				}]
 			};
 		};
@@ -252,6 +293,27 @@ app.controller("MyForm", function($scope, dataService, $location, $rootScope, $c
 		id: "1",
 		name: "EUR"
 	};
+	//Errors map
+	var initErrors = function() {
+			$scope.errors = {
+				fixedAssets: {},
+				intangiblesAssets: {},
+				propertyAssets: {},
+				finFixedAssets: {},
+				otherFixedAssets: {},
+				cash: {},
+				investments: {},
+				liquidAssets: {},
+				stFinDebt: {},
+				costOfSales: {},
+				comMatCon: {},
+				miscGoods: {},
+				taxes: {},
+				incomeTaxes: {},
+				withDefTaxes: {},
+				transDefTaxes: {}
+			};
+		};
 	//list of years
 	//used to generate the headers
 	$scope.years = [
@@ -283,20 +345,26 @@ app.controller("MyForm", function($scope, dataService, $location, $rootScope, $c
 	}
 	//Save the input data to server
 	$scope.processForm = function() {
-		$scope.data = [];
-		var count = 0;
-		angular.forEach($scope.years, function() {
-			var inputdata = {};
-			angular.forEach($scope.inputs, function($value, $key) {
-				inputdata[$key] = $value[count].data;
+		initErrors();
+		if (!checkForError()) {
+			$scope.data = [];
+			var count = 0;
+			angular.forEach($scope.years, function() {
+				var inputdata = {};
+				angular.forEach($scope.inputs, function($value, $key) {
+					inputdata[$key] = $value[count].data;
+				});
+				inputdata.year = $scope.inputs.ar[count].year;
+				$scope.data.push(inputdata);
+				count++;
 			});
-			inputdata.year = $scope.inputs.ar[count].year;
-			$scope.data.push(inputdata);
-			count++;
-		});
-		dataService.saveData($scope.data, company_id).then(function(response) {
-			processResponse(response);
-		});
+			dataService.saveData($scope.data, company_id).then(function(response) {
+				processResponse(response);
+			});
+		}
+		else{
+			$scope.error = true;
+		}
 	};
 	//Clear the data from the input fields
 	$scope.clear = function() {
@@ -315,6 +383,14 @@ app.controller("MyForm", function($scope, dataService, $location, $rootScope, $c
 	$scope.next = function() {
 		saveCompanyData();
 		$location.path('/portal');
+	}
+	//remove a year
+	$scope.removeCol = function(year){
+		var yearindex = $scope.years.indexOf(year);
+		angular.forEach($scope.inputs, function(result){
+			result.splice(yearindex, 1);
+		});
+		$scope.years.splice(yearindex, 1);
 	}
 	//get calculated data from server and fill it in inputs 
 	var getCalcData = function() {
@@ -348,7 +424,7 @@ app.controller("MyForm", function($scope, dataService, $location, $rootScope, $c
 				if (value.year > startyear) {
 					startyear = value.year;
 					$scope.years = [startyear];
-					initialiseInput();
+					initialiseInput(value.year);
 				}
 				var year = value.year;
 				if ($scope.years.indexOf(year) < 0 && year !== 0) {
@@ -367,7 +443,46 @@ app.controller("MyForm", function($scope, dataService, $location, $rootScope, $c
 				count++;
 			});
 		}
-	initialiseInput();
+	var checkForError = function() {
+			var inputs = $scope.inputs
+			var response = false;
+			for (i = 0; i < $scope.years.length; i++) {
+				if (Math.round((parseFloat(inputs.intangiblesAssets[i].data) + parseFloat(inputs.propertyAssets[i].data) + parseFloat(inputs.finFixedAssets[i].data) + parseFloat(inputs.otherFixedAssets[i].data)) * 10) / 10 != parseFloat(inputs.fixedAssets[i].data)) {
+					console.log("assets not equal");
+					$scope.errors.fixedAssets[inputs.fixedAssets[i].year] = 'error';
+					$scope.errors.intangiblesAssets[inputs.fixedAssets[i].year] = 'toError';
+					$scope.errors.propertyAssets[inputs.fixedAssets[i].year] = 'toError';
+					$scope.errors.finFixedAssets[inputs.fixedAssets[i].year] = 'toError';
+					$scope.errors.otherFixedAssets[inputs.fixedAssets[i].year] = 'toError';
+					response = true;
+				}
+				if (Math.round((parseFloat(inputs.investments[i].data) + parseFloat(inputs.liquidAssets[i].data)) * 10) / 10 != parseFloat(inputs.cash[i].data)) {
+					console.log("cash not equal");
+					$scope.errors.cash[inputs.cash[i].year] = 'error';
+					$scope.errors.investments[inputs.cash[i].year] = 'toError';
+					$scope.errors.liquidAssets[inputs.cash[i].year] = 'toError';
+					response = true;
+				}
+				if (Math.round((parseFloat(inputs.comMatCon[i].data) + parseFloat(inputs.miscGoods[i].data)) * 10) / 10 != parseFloat(inputs.costOfSales[i].data)) {
+					console.log("cost of sales not equal");
+					$scope.errors.costOfSales[inputs.costOfSales[i].year] = 'error';
+					$scope.errors.comMatCon[inputs.costOfSales[i].year] = 'toError';
+					$scope.errors.miscGoods[inputs.costOfSales[i].year] = 'toError';
+					response = true;
+				}
+				if (Math.round((parseFloat(inputs.incomeTaxes[i].data) - parseFloat(inputs.withDefTaxes[i].data) + parseFloat(inputs.transDefTaxes[i].data)) * 10) / 10 != parseFloat(inputs.taxes[i].data)) {
+					console.log("Taxes not equal");
+					$scope.errors.taxes[inputs.taxes[i].year] = 'error';
+					$scope.errors.incomeTaxes[inputs.taxes[i].year] = 'toError';
+					$scope.errors.withDefTaxes[inputs.taxes[i].year] = 'toError';
+					$scope.errors.transDefTaxes[inputs.taxes[i].year] = 'toError';
+					response = true;
+				}
+			}
+			return response;
+		};
+	initialiseInput(startyear);
+	initErrors();
 	getSectors();
 	getCompanyData();
 	getCalcData();

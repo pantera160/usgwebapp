@@ -4,21 +4,19 @@ app.service('CCCEService', function($http) {
 		// $http() returns a $promise that we can add handlers with .then()
 		return $http({
 			method: 'GET',
-			url: 'http://wcstool-usg.rhcloud.com/rest/data/turnover/'+$id,
-			cache : true
+			url: 'http://wcstool-usg.rhcloud.com/rest/data/turnover/'+$id
 		});
 	};
 	this.getCompany = function(){
 		// $http() returns a $promise that we can add handlers with .then()
 		return $http({
 			method: 'GET',
-			url: 'http://wcstool-usg.rhcloud.com/rest/data/company/'+$id,
-			cache : true
+			url: 'http://wcstool-usg.rhcloud.com/rest/data/company/'+$id
 		});
 	};
 });
 
-app.service('helpService', function(ngDialog){
+app.service('helpServiceCCC', function(ngDialog){
 	this.showHelp = function(controller){
 		console.log('showHelp called');
 		ngDialog.open({
@@ -35,9 +33,9 @@ app.controller('headerCtrl', ['$scope', 'CCCEService', '$rootScope', function($s
 	})
 }]);
 
-app.controller('CCCECtrl', ['$scope', 'CCCEService', 'helpService', '$rootScope', function($scope, CCCEService, helpService, $rootScope) {
+app.controller('CCCECtrl', ['$scope', 'CCCEService', 'helpServiceCCC', '$rootScope', function($scope, CCCEService, helpServiceCCC, $rootScope) {
 	$scope.help = function(){
-		helpService.showHelp('ccce');
+		helpServiceCCC.showHelp('ccce');
 	}
 	$scope.options = {
 		scaleShowVerticalLines: false
@@ -64,8 +62,6 @@ app.controller('CCCECtrl', ['$scope', 'CCCEService', 'helpService', '$rootScope'
 		//Add colours array to correct syntax for charts
 		$scope.colours = [{fillColor: colourArray}];
 	});
-
-	$scope.options = {};
 	$scope.condition = function(item){
 		if(item >= (sectorAvg*0.95)){
 			return "IMG/green.png";

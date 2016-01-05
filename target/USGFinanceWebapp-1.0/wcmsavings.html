@@ -15,11 +15,15 @@
             </div>
 
             <div>
-                <h3>Sector :</h3><label>{{company.sector}}</label>
+                <h3>Sector :</h3><label>{{company.sector.name}}</label>
             </div>
         </div>
 
         <div ng-controller="WCMSCtrl">
+	        <div>
+		        <label><b>Year</b></label> <select ng-model="year" tooltips="" tooltip-content="Please select the year you want the WCM to be calculated from." ng-options="year.name for year in years track by year.id">
+                    </select>
+	        </div>
             <div>
                 <table>
                     <thead>
@@ -246,7 +250,7 @@
                 </table>
             </div>
 
-            <div id="buttonsdiv" class="centered">
+            <div id="buttonsdiv" class="centered" print-remove>
                 <button type="button" ng-click="back()">Back</button> <button type="button" ng-click="save()">Submit</button>
             </div>
         </div>
