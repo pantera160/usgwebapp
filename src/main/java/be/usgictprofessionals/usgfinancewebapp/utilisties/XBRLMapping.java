@@ -14,6 +14,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
@@ -22,6 +23,9 @@ import org.xml.sax.SAXException;
  * @author Pantera
  */
 public class XBRLMapping {
+    
+    private final InputData currentInputData;
+    private final InputData precedingInputData;
     
     public XBRLMapping(File file) throws ParserConfigurationException, SAXException, IOException{
         DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
@@ -34,34 +38,69 @@ public class XBRLMapping {
         
         Element rootElement = (Element) nList.item(0);
         
+        currentInputData = create(rootElement, "CurrentInstant", "CurrentDuration");
+        precedingInputData = create(rootElement, "PrecedingInstant", "PrecedingDuration");
+    }
+    
+    private double get(String searchterm, Element rootElement, String context, String context2){
+        NodeList nlist = rootElement.getElementsByTagName(searchterm);
+        for (int i = 0; i < nlist.getLength(); i++){
+            if(nlist.item(i).getNodeType() == Node.ELEMENT_NODE){
+                if(((Element) nlist.item(i)).getAttribute("contextRef").equals(context) || ((Element) nlist.item(i)).getAttribute("contextRef").equals(context2)){
+                    return Double.parseDouble(nlist.item(i).getTextContent());
+                }
+            }
+        }
+        return 0.1;
+    }
+    
+    private InputData create(Element rootElement, String context, String context2){
         InputData inputData = new InputData();
         
-        inputData.setFixedAssets(Double.parseDouble(rootElement.getElementsByTagName("pfs:FixedAssets").item(0).getTextContent()));
-        //inputData.setIntangiblesAssets(Double.parseDouble(rootElement.getElementsByTagName("pfs:???").item(0).getTextContent()));
-        inputData.setPropertyAssets(Double.parseDouble(rootElement.getElementsByTagName("pfs:TangibleFixedAssets").item(0).getTextContent()));
-        //inputData.setFinFixedAssets(Double.parseDouble(rootElement.getElementsByTagName("pfs:???").item(0).getTextContent()));
-        inputData.setInventory(Double.parseDouble(rootElement.getElementsByTagName("pfs:Stocks").item(0).getTextContent()));
-        inputData.setAr(Double.parseDouble(rootElement.getElementsByTagName("pfs:AmountsReceivableWithinOneYear").item(0).getTextContent()));
-        //TODO inputData.setCash(Double.parseDouble(rootElement.getElementsByTagName("pfs:CashBankHand").item(0).getTextContent()) + ...);
-        inputData.setCurrAssets(Double.parseDouble(rootElement.getElementsByTagName("pfs:CurrentAssets").item(0).getTextContent()));
-        inputData.setTotAssets(Double.parseDouble(rootElement.getElementsByTagName("pfs:EquityLiabilities").item(0).getTextContent()));
-        inputData.setEquity(Double.parseDouble(rootElement.getElementsByTagName("pfs:Equity").item(0).getTextContent()));
-        inputData.setLtFinDebt(Double.parseDouble(rootElement.getElementsByTagName("pfs:FinancialDebtsRemainingTermMoreOneYear").item(0).getTextContent()));
-        inputData.setSubordinatedDebt(Double.parseDouble(rootElement.getElementsByTagName("pfs:FinancialDebtsRemainingTermMoreOneYear").item(0).getTextContent()));
-        //inputData.setStFinDebt(Double.parseDouble(rootElement.getElementsByTagName("pfs:CurrentPortionAmountsPayableMoreOneYearFallingDueWithinOneYear").item(0).getTextContent()));
-        inputData.setAp(Double.parseDouble(rootElement.getElementsByTagName("pfs:TradeDebtsPayableWithinOneYear").item(0).getTextContent()));
-        inputData.setCurrLiabilities(Double.parseDouble(rootElement.getElementsByTagName("pfs:AmountsPayable").item(0).getTextContent()));
-        inputData.setTurnover(Double.parseDouble(rootElement.getElementsByTagName("pfs:OperatingIncome").item(0).getTextContent()));
-        inputData.setCostOfSales(Double.parseDouble(rootElement.getElementsByTagName("pfs:RawMaterialsConsumables").item(0).getTextContent()) + Double.parseDouble(rootElement.getElementsByTagName("pfs:ServicesOtherGoods").item(0).getTextContent()));
-        inputData.setDepreciation(Double.parseDouble(rootElement.getElementsByTagName("pfs:DepreciationOtherAmountsWrittenDownFormationExpensesIntangibleTangibleFixedAssets").item(0).getTextContent()));
-        inputData.setRecIncome(Double.parseDouble(rootElement.getElementsByTagName("pfs:OperatingProfitLoss").item(0).getTextContent()));
-        inputData.setFinRev(Double.parseDouble(rootElement.getElementsByTagName("pfs:FinancialIncome").item(0).getTextContent()));
-        inputData.setFinExp(Double.parseDouble(rootElement.getElementsByTagName("pfs:FinancialCharges").item(0).getTextContent()));
-        inputData.setFinExpInterest(Double.parseDouble(rootElement.getElementsByTagName("pfs:DebtCharges").item(0).getTextContent()));
-        //inputData.setFinExpBank(Double.parseDouble(rootElement.getElementsByTagName("pfs:FinancialCharges").item(0).getTextContent()));
+        inputData.setFixedAssets(get("pfs:FixedAssets", rootElement, context, context2));
+        //inputData.setIntangiblesAssets(getCurrent("pfs:???", rootElement, context, context2));
+        inputData.setPropertyAssets(get("pfs:TangibleFixedAssets", rootElement, context, context2));
+        //inputData.setFinFixedAssets(getCurrent("pfs:???", rootElement, context, context2));
+        inputData.setInventory(get("pfs:Stocks", rootElement, context, context2));
+        inputData.setAr(get("pfs:AmountsReceivableWithinOneYear", rootElement, context, context2));
+        //TODO inputData.setCash(getCurrent("pfs:CashBankHand", rootelement, context, context2)+ ...);
+        //inputData.setInvestments(getCurrent("pfs:???", rootElement, context, context2));
+        inputData.setLiquidAssets(get("pfs:CashBankHand", rootElement, context, context2));
+        inputData.setCurrAssets(get("pfs:CurrentsAssets", rootElement, context, context2));
+        inputData.setTotAssets(get("pfs:EquityLiabilities", rootElement, context, context2));
+        inputData.setEquity(get("pfs:Equity", rootElement, context, context2));
+        inputData.setLtFinDebt(get("pfs:FinancialDebtsRemainingTermMoreOneYear", rootElement, context, context2));
+        inputData.setSubordinatedDebt(get("pfs:FinancialDebtsRemainingTermMoreOneYear", rootElement, context, context2));
+        //inputData.setStFinDebt(getcurrent("pfs:CurrentPortionAmountsPayableMoreOneYearFallingDueWithinOneYear", rootElement, context, context2)+ ...);
+        inputData.setLongTermLoans(get("pfs:CurrentPortionAmountsPayableMoreOneYearFallingDueWithinOneYear", rootElement, context, context2));
+        //inputData.setFinDebt(getCurrent("pfs:???", rootElement, context, context2));
+        inputData.setAp(get("pfs:TradeDebtsPayableWithinOneYear", rootElement, context, context2));
+        inputData.setCurrLiabilities(get("pfs:AmountsPayable", rootElement, context, context2));
+        inputData.setTurnover(get("pfs:OperatingIncome", rootElement, context, context2));
+        inputData.setCostOfSales(get("pfs:RawMaterialsConsumables", rootElement, context, context2)+ get("pfs:ServicesOtherGoods", rootElement, context, context2));
+        inputData.setComMatCon(get("pfs:RawMaterialsConsumables", rootElement, context, context2));
+        inputData.setMiscGoods(get("pfs:ServicesOtherGoods", rootElement, context, context2));
+        inputData.setDepreciation(get("pfs:DepreciationOtherAmountsWrittenDownFormationExpensesIntangibleTangibleFixedAssets", rootElement, context, context2));
+        inputData.setEbit(get("pfs:OperatingProfitLoss", rootElement, context, context2));
+        inputData.setFinRev(get("pfs:FinancialIncome", rootElement, context, context2));
+        inputData.setFinExp(get("pfs:FinancialCharges", rootElement, context, context2));
+        inputData.setFinExpInterest(get("pfs:DebtCharges", rootElement, context, context2));
+        //inputData.setFinExpBank(getCurrent("pfs:FinancialCharges", rootElement, context, context2));
         inputData.setFinExpOther(0.0);
-        inputData.setNrIncome(Double.parseDouble(rootElement.getElementsByTagName("pfs:OtherExtraordinaryIncome").item(0).getTextContent()));
-        inputData.setNrCharges(Double.parseDouble(rootElement.getElementsByTagName("pfs:OtherExtraordinaryCharges").item(0).getTextContent()));
-        //inputData.setTaxes(Double.parseDouble(rootElement.getElementsByTagName("pfs:IncomeTaxes").item(0).getTextContent()) - Double.parseDouble(rootElement.getElementsByTagName("pfs:???").item(0).getTextContent()) + Double.parseDouble(rootElement.getElementsByTagName("pfs:???").item(0).getTextContent()));
+        inputData.setNrIncome(get("pfs:OtherExtraordinaryIncome", rootElement, context, context2));
+        inputData.setNrCharges(get("pfs:OtherExtraordinaryCharges", rootElement, context, context2));
+        //inputData.setTaxes(getCurrent("pfs:IncomeTaxes", rootElement, context, context2) - getCurrent("pfs:???", rootElement, context, context2) + getCurrent("pfs:???", rootElement, context, context2));
+        inputData.setIncomeTaxes(get("pfs:IncomeTaxes", rootElement, context, context2));
+        //inputData.setWithDefTaxes(getCurrent("pfs:???", rootElement, context, context2));
+        //inputData.setTransDefTaxes(getCurrent("pfs:???", rootElement, context, context2));
+        return inputData;
+    }
+    
+    public InputData getCurrentInputData(){
+        return currentInputData;
+    }
+    
+    public InputData getPrecedingInputData(){
+        return precedingInputData;
     }
 }
