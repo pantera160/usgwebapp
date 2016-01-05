@@ -223,7 +223,7 @@ app.controller("MyForm", function($scope, dataService, $location, $rootScope, $c
 					"year": startyear
 				}]
 			};
-		}
+		};
 		//List of available currencies
 		$scope.currencies = [{
 			id: '1',
