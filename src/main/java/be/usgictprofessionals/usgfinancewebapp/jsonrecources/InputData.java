@@ -16,9 +16,9 @@ public class InputData {
 
     //Data from the input fields from the main page
     private double recIncome, netIncome, ebitda;
-    private double turnover, costOfSales, depreciation, ebit, finRev, finExp, finExpInterest, finExpBank, finExpOther, nrIncome, nrCharges, taxes;
+    private double turnover, costOfSales, comMatCon, miscGoods, depreciation, ebit, finRev, finExp, finExpInterest, finExpBank, finExpOther, nrIncome, nrCharges, taxes, incomeTaxes, withDefTaxes, transDefTaxes;
     private double workingCapital, netDebt;
-    private double fixedAssets, inventory, ar, cash, currAssets, totAssets, equity, ltFinDebt, subordinatedDebt,  stFinDebt, ap, currLiabilities;
+    private double fixedAssets, inventory, ar, cash, investments, liquidAssets, currAssets, totAssets, equity, ltFinDebt, subordinatedDebt,  stFinDebt, longTermLoans, finDebt, ap, currLiabilities;
     private double propertyAssets, finFixedAssets, intangiblesAssets;
     private int numberOfMonths;
     private int year;
@@ -293,5 +293,77 @@ public class InputData {
 
     public void setSubordinatedDebt(double subordinatedDebt) {
         this.subordinatedDebt = subordinatedDebt;
+    }
+
+    public double getComMatCon() {
+        return comMatCon;
+    }
+
+    public void setComMatCon(double comMatCon) {
+        this.comMatCon = comMatCon;
+    }
+
+    public double getMiscGoods() {
+        return miscGoods;
+    }
+
+    public void setMiscGoods(double miscGoods) {
+        this.miscGoods = miscGoods;
+    }
+
+    public double getIncomeTaxes() {
+        return incomeTaxes;
+    }
+
+    public void setIncomeTaxes(double incomeTaxes) {
+        this.incomeTaxes = incomeTaxes;
+    }
+
+    public double getWithDefTaxes() {
+        return withDefTaxes;
+    }
+
+    public void setWithDefTaxes(double withDefTaxes) {
+        this.withDefTaxes = withDefTaxes;
+    }
+
+    public double getTransDefTaxes() {
+        return transDefTaxes;
+    }
+
+    public void setTransDefTaxes(double transDefTaxes) {
+        this.transDefTaxes = transDefTaxes;
+    }
+
+    public double getInvestments() {
+        return investments;
+    }
+
+    public void setInvestments(double investments) {
+        this.investments = investments;
+    }
+
+    public double getLiquidAssets() {
+        return liquidAssets;
+    }
+
+    public void setLiquidAssets(double liquidAssets) {
+        this.liquidAssets = liquidAssets;
+    }
+
+    public double getLongTermLoans() {
+        return longTermLoans;
+    }
+
+    public void setLongTermLoans(double longTermLoans) {
+        this.longTermLoans = longTermLoans;
+    }
+
+    public double getFinDebt() {
+        return finDebt;
+    }
+
+    public void setFinDebt(double finDebt) {
+        this.finDebt = finDebt;
     }
 }

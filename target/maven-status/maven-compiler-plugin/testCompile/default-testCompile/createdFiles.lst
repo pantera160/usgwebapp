@@ -1,6 +1,6 @@
-RESTTesting/RESTTest.class
-BackEndTesting/ControllerTest.class
-BackEndTesting/CalcDataResourceTest.class
-BackEndTesting/FormulasTest.class
-BackEndTesting/DatabaseTest.class
-BackEndTesting/CompanyTest.class
+BackEndTesting\DatabaseTest.class
+BackEndTesting\CompanyTest.class
+BackEndTesting\CalcDataResourceTest.class
+RESTTesting\RESTTest.class
+BackEndTesting\FormulasTest.class
+BackEndTesting\ControllerTest.class

@@ -12,100 +12,100 @@ angular.module("Admin", []);
 angular.module('Sectors', []);
 var app = angular.module('Router', ['ngRoute', 'ngCookies', 'USGFinanceWebapp', 'BalansRatio', 'Portal', 'ReturnRatio', 'CCCEvolution', 'CoverageRatio', 'TurnoverRatio', 'WCMSavings', 'Login', 'Overview', 'Admin']);
 app.config(['$routeProvider', function($routeProvider) {
-	$routeProvider.when('/inputs', {
-		templateUrl: 'inputs.html',
-		resolve: {
-      // I will cause a 1 second delay
-      delay: function($q, $timeout) {
-        var delay = $q.defer();
-        $timeout(delay.resolve, 1000);
-        return delay.promise;
-      }
-      }
-	}).when('/balans', {
-		templateUrl: 'balans.html',
-		resolve: {
-      // I will cause a 1 second delay
-      delay: function($q, $timeout) {
-        var delay = $q.defer();
-        $timeout(delay.resolve, 1000);
-        return delay.promise;
-      }
-      }
-	}).when('/portal', {
-		templateUrl: 'portal.html'
-	}).when('/return', {
-		templateUrl: 'return.html',
-		resolve: {
-      // I will cause a 1 second delay
-      delay: function($q, $timeout) {
-        var delay = $q.defer();
-        $timeout(delay.resolve, 1000);
-        return delay.promise;
-      }
-      }
-	}).when('/coverage', {
-		templateUrl: 'coverage.html',
-		resolve: {
-      // I will cause a 1 second delay
-      delay: function($q, $timeout) {
-        var delay = $q.defer();
-        $timeout(delay.resolve, 1000);
-        return delay.promise;
-      }
-      }
-	}).when('/turnover', {
-		templateUrl: 'turnover.html',
-		resolve: {
-      // I will cause a 1 second delay
-      delay: function($q, $timeout) {
-        var delay = $q.defer();
-        $timeout(delay.resolve, 1000);
-        return delay.promise;
-      }
-      }
-	}).when('/wcmsavings', {
-		templateUrl: 'wcmsavings.html',
-		resolve: {
-      // I will cause a 1 second delay
-      delay: function($q, $timeout) {
-        var delay = $q.defer();
-        $timeout(delay.resolve, 1000);
-        return delay.promise;
-      }
-      }
-	}).when('/cccevolution', {
-		templateUrl: 'cccevolution.html',
-		resolve: {
-      // I will cause a 1 second delay
-      delay: function($q, $timeout) {
-        var delay = $q.defer();
-        $timeout(delay.resolve, 1000);
-        return delay.promise;
-      }
-      }
-	}).when('/login', {
-		templateUrl: 'login.html'
-	}).when('/overview', {
-		templateUrl: 'overview.html',
-		resolve: {
-      // I will cause a 1 second delay
-      delay: function($q, $timeout) {
-        var delay = $q.defer();
-        $timeout(delay.resolve, 1000);
-        return delay.promise;
-      }
-      }
-	}).when('/admin', {
-		templateUrl: 'admin.html'
-	}).when('/newuser', {
-		templateUrl: 'newuser.html'
-	}).when('/firstlogin', {
-		templateUrl: 'changepass.html'
-	}).otherwise({
-		redirectTo: '/overview'
-	});
-}]);
+        $routeProvider.when('/inputs', {
+            templateUrl: 'inputs.html',
+            resolve: {
+                // I will cause a 1 second delay
+                delay: function($q, $timeout) {
+                    var delay = $q.defer();
+                    $timeout(delay.resolve, 1000);
+                    return delay.promise;
+                }
+            }
+        }).when('/balans', {
+            templateUrl: 'balans.html',
+            resolve: {
+                // I will cause a 1 second delay
+                delay: function($q, $timeout) {
+                    var delay = $q.defer();
+                    $timeout(delay.resolve, 1000);
+                    return delay.promise;
+                }
+            }
+        }).when('/portal', {
+            templateUrl: 'portal.html'
+        }).when('/return', {
+            templateUrl: 'return.html',
+            resolve: {
+                // I will cause a 1 second delay
+                delay: function($q, $timeout) {
+                    var delay = $q.defer();
+                    $timeout(delay.resolve, 1000);
+                    return delay.promise;
+                }
+            }
+        }).when('/coverage', {
+            templateUrl: 'coverage.html',
+            resolve: {
+                // I will cause a 1 second delay
+                delay: function($q, $timeout) {
+                    var delay = $q.defer();
+                    $timeout(delay.resolve, 1000);
+                    return delay.promise;
+                }
+            }
+        }).when('/turnover', {
+            templateUrl: 'turnover.html',
+            resolve: {
+                // I will cause a 1 second delay
+                delay: function($q, $timeout) {
+                    var delay = $q.defer();
+                    $timeout(delay.resolve, 1000);
+                    return delay.promise;
+                }
+            }
+        }).when('/wcmsavings', {
+            templateUrl: 'wcmsavings.html',
+            resolve: {
+                // I will cause a 1 second delay
+                delay: function($q, $timeout) {
+                    var delay = $q.defer();
+                    $timeout(delay.resolve, 1000);
+                    return delay.promise;
+                }
+            }
+        }).when('/cccevolution', {
+            templateUrl: 'cccevolution.html',
+            resolve: {
+                // I will cause a 1 second delay
+                delay: function($q, $timeout) {
+                    var delay = $q.defer();
+                    $timeout(delay.resolve, 1000);
+                    return delay.promise;
+                }
+            }
+        }).when('/login', {
+            templateUrl: 'login.html'
+        }).when('/overview', {
+            templateUrl: 'overview.html',
+            resolve: {
+                // I will cause a 1 second delay
+                delay: function($q, $timeout) {
+                    var delay = $q.defer();
+                    $timeout(delay.resolve, 1000);
+                    return delay.promise;
+                }
+            }
+        }).when('/admin', {
+            templateUrl: 'admin.html'
+        }).when('/newuser', {
+            templateUrl: 'newuser.html'
+        }).when('/firstlogin', {
+            templateUrl: 'changepass.html'
+        }).otherwise({
+            redirectTo: '/overview'
+        });
+    }]);
 app.directive('myNumberformat', function() {
     /**
      * format(number, n, x, s, c)
