@@ -9,12 +9,16 @@ import be.usgictprofessionals.usgfinancewebapp.jsonrecources.InputData;
 import be.usgictprofessionals.usgfinancewebapp.jsonrecources.ReturnRatioData;
 import be.usgictprofessionals.usgfinancewebapp.jsonrecources.TurnoverRatioData;
 import be.usgictprofessionals.usgfinancewebapp.jsonrecources.WCMData;
-import java.util.AbstractMap.SimpleEntry;
+import be.usgictprofessionals.usgfinancewebapp.utilisties.XBRLMapping;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
+import javax.xml.parsers.ParserConfigurationException;
+import org.xml.sax.SAXException;
 
 /**
  *
@@ -120,5 +124,10 @@ public class DataDAO {
     
     public ArrayList<HashMap> getYears(int id){
         return JdbcDatabase.getInstance().getYears(id);
+    }
+
+    public InputData xbrlToInputdata(File file) throws ParserConfigurationException, SAXException, IOException {
+       XBRLMapping mapper = new XBRLMapping(file);
+       return null;
     }
 }

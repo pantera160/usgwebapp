@@ -14,9 +14,15 @@ import be.usgictprofessionals.usgfinancewebapp.jsonrecources.ReturnRatioData;
 import be.usgictprofessionals.usgfinancewebapp.jsonrecources.Sector;
 import be.usgictprofessionals.usgfinancewebapp.jsonrecources.TurnoverRatioData;
 import be.usgictprofessionals.usgfinancewebapp.jsonrecources.WCMData;
-import java.util.AbstractMap.SimpleEntry;
+import com.sun.jersey.core.header.FormDataContentDisposition;
+import com.sun.jersey.multipart.FormDataParam;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -27,6 +33,9 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
+import javax.xml.parsers.ParserConfigurationException;
+import org.apache.commons.io.FileUtils;
+import org.xml.sax.SAXException;
 
 /**
  *
@@ -243,5 +252,21 @@ public class RESTDataResources {
     @Produces(MediaType.APPLICATION_JSON)
     public ArrayList<HashMap> getYears(@PathParam("id") String id){
         return DataDAO.getInstance().getYears(Integer.parseInt(id));
+    }
+    
+    @POST
+    @Path("/upload")
+    @Consumes(MediaType.MULTIPART_FORM_DATA)
+    @Produces(MediaType.APPLICATION_JSON)
+    public InputData uploadXbrlToInputdata(@FormDataParam("file") InputStream fileInputStream,
+                                 @FormDataParam("file") FormDataContentDisposition contentDispositionHeader){
+        try {
+            File file = File.createTempFile("tempxbrl", ".xbrl");
+            FileUtils.copyInputStreamToFile(fileInputStream, file);
+            return DataDAO.getInstance().xbrlToInputdata(file);
+        } catch (IOException | ParserConfigurationException | SAXException ex) {
+            ex.printStackTrace();
+            return null;
+        }
     }
 }
