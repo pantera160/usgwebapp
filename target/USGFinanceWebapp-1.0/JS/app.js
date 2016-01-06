@@ -216,14 +216,14 @@ app.filter('NumberEU2', function() {
         return out;
     }
 });
-app.run(['$rootScope', '$location', '$cookieStore', '$http', function($rootScope, $location, $cookieStore, $http) {
+app.run(['$rootScope', '$location', '$cookieStore', '$http', '$window', function($rootScope, $location, $cookieStore, $http, $window) {
         //force https connection
         var forceSSL = function() {
             if ($location.protocol() !== 'https') {
                 $window.location.href = $location.absUrl().replace('http', 'https');
             }
         };
-        forceSSL();
+        //forceSSL();
         // keep user logged in after page refresh
         $rootScope.globals = $cookieStore.get('globals') || {};
         if ($rootScope.globals.currentUser) {

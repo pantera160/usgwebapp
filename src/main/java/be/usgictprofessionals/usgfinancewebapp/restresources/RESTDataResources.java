@@ -258,7 +258,7 @@ public class RESTDataResources {
     @Path("/upload")
     @Consumes(MediaType.MULTIPART_FORM_DATA)
     @Produces(MediaType.APPLICATION_JSON)
-    public InputData uploadXbrlToInputdata(@FormDataParam("file") InputStream fileInputStream,
+    public ArrayList<InputData> uploadXbrlToInputdata(@FormDataParam("file") InputStream fileInputStream,
                                  @FormDataParam("file") FormDataContentDisposition contentDispositionHeader){
         try {
             File file = File.createTempFile("tempxbrl", ".xbrl");

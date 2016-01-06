@@ -126,8 +126,11 @@ public class DataDAO {
         return JdbcDatabase.getInstance().getYears(id);
     }
 
-    public InputData xbrlToInputdata(File file) throws ParserConfigurationException, SAXException, IOException {
+    public ArrayList<InputData> xbrlToInputdata(File file) throws ParserConfigurationException, SAXException, IOException {
+        ArrayList<InputData> list = new ArrayList<>();
        XBRLMapping mapper = new XBRLMapping(file);
-       return mapper.getCurrentInputData();
+       list.add(mapper.getCurrentInputData());
+       list.add(mapper.getPrecedingInputData());
+       return list;
     }
 }
