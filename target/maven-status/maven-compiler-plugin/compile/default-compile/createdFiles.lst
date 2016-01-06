@@ -16,5 +16,6 @@ be\usgictprofessionals\usgfinancewebapp\jsonrecources\TurnoverRatioData.class
 be\usgictprofessionals\usgfinancewebapp\Database\Database.class
 be\usgictprofessionals\usgfinancewebapp\jsonrecources\JSONResponse.class
 be\usgictprofessionals\usgfinancewebapp\jsonrecources\CompanyInfoData.class
+be\usgictprofessionals\usgfinancewebapp\utilisties\XBRLMapping.class
 be\usgictprofessionals\usgfinancewebapp\Model\CalculatedDataResource.class
 be\usgictprofessionals\usgfinancewebapp\jsonrecources\Sector.class

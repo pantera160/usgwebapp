@@ -37,6 +37,10 @@ app.service('dataService', function($http) {
 			url: 'http://wcstool-usg.rhcloud.com/rest/data/sectors'
 		});
 	}
+	this.uploadFile = function($file){
+		// $http() returns a $promise that we can add handlers with .then()
+		
+	}
 });
 app.directive('number', function() {
 	return {
@@ -470,7 +474,7 @@ app.controller("MyForm", function($scope, dataService, $location, $rootScope, $c
 					$scope.errors.miscGoods[inputs.costOfSales[i].year] = 'toError';
 					response = true;
 				}
-				if (Math.round((parseFloat(inputs.incomeTaxes[i].data) - parseFloat(inputs.withDefTaxes[i].data) + parseFloat(inputs.transDefTaxes[i].data)) * 10) / 10 != parseFloat(inputs.taxes[i].data)) {
+				if (Math.round((parseFloat(inputs.incomeTaxes[i].data) - (parseFloat(inputs.withDefTaxes[i].data) + parseFloat(inputs.transDefTaxes[i].data))) * 10) / 10 != parseFloat(inputs.taxes[i].data)) {
 					console.log("Taxes not equal");
 					$scope.errors.taxes[inputs.taxes[i].year] = 'error';
 					$scope.errors.incomeTaxes[inputs.taxes[i].year] = 'toError';
@@ -481,6 +485,17 @@ app.controller("MyForm", function($scope, dataService, $location, $rootScope, $c
 			}
 			return response;
 		};
+	$scope.uploadxbrl_popup = function(){
+		ngDialog.open({
+			template: 'uploadtemplate',
+			className: 'ngdialog-theme-default'
+		});
+	}
+	$scope.upload = function(){
+		dataService.uploadFile($scope.uploadfile).then(function(response){
+			$scope.inputdata = response.data;
+		});
+	} 
 	initialiseInput(startyear);
 	initErrors();
 	getSectors();
