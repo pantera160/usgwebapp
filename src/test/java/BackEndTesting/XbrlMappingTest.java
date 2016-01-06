@@ -29,8 +29,8 @@ public class XbrlMappingTest {
         try {
             File file = new File("D:\\Pantera\\Downloads\\2015-23700037.xbrl");
             XBRLMapping mapper = new XBRLMapping(file);
-            System.out.println(mapper.getCurrentInputData().getAp());
-            System.out.println(mapper.getCurrentInputData().getAr());
+            //System.out.println(mapper.getCurrentInputData().getAp());
+            //System.out.println(mapper.getCurrentInputData().getAr());
         } catch (ParserConfigurationException | SAXException | IOException ex) {
             Logger.getLogger(XbrlMappingTest.class.getName()).log(Level.SEVERE, null, ex);
         }
