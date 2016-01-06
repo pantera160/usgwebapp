@@ -546,9 +546,9 @@
 <![CDATA[
             <div id="template">
             <h1>Upload a File</h1>
-            <form action="rest/files/upload" method="post" enctype="multipart/form-data">
+            <form>
             <p>
-            Select a file : <input ng-model="uploadfile" type="file" name="file" size="50" />
+            Select a file : <input type="file" ng-model-instant id="uploadfile" multiple onchange="angular.element(this).scope().setFiles(this)" />
             </p>
             <input type="submit" value="Upload It" />
             </form>

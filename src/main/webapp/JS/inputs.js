@@ -39,7 +39,13 @@ app.service('dataService', function($http) {
 	}
 	this.uploadFile = function($file){
 		// $http() returns a $promise that we can add handlers with .then()
-		
+		return $http({
+			method: 'POST',
+			url: "http://wcstool-usg.rhcloud.com/rest/data/upload",
+			data: $file,
+			transformRequest: angular.identity,
+			headers: {'Content-Type' : undefined}
+		})
 	}
 });
 app.directive('number', function() {
@@ -80,7 +86,7 @@ app.controller("HelpCtrl", function($scope, ngDialog) {
 		});
 	}
 });
-app.controller("MyForm", function($scope, dataService, $location, $rootScope, $cookieStore) {
+app.controller("MyForm", function($scope, dataService, $location, $rootScope, $cookieStore, ngDialog) {
 	var startyear = new Date().getFullYear();
 	var nextyear = new Date().getFullYear() - 1;
 	$scope.data = null;
@@ -490,12 +496,26 @@ app.controller("MyForm", function($scope, dataService, $location, $rootScope, $c
 			template: 'uploadtemplate',
 			className: 'ngdialog-theme-default'
 		});
-	}
+	};
 	$scope.upload = function(){
-		dataService.uploadFile($scope.uploadfile).then(function(response){
-			$scope.inputdata = response.data;
+		console.log("upload clicked");
+		console.log("uploadfile: " + $scope.files[0]);
+		var fd = new FormData();
+		fd.append('file', $scope.files[0], 'xbrlfile.xbrl');
+		dataService.uploadFile(fd).then(function(response){
+			console.log(response.data);
 		});
-	} 
+	};
+	$scope.setFiles = function(element) {
+		$scope.$apply(function(scope) {
+			console.log('files:', element.files);
+			// Turn the FileList object into an Array
+			$scope.files = []
+			for (var i = 0; i < element.files.length; i++) {
+				$scope.files.push(element.files[i])
+			}
+      });
+    }; 
 	initialiseInput(startyear);
 	initErrors();
 	getSectors();
