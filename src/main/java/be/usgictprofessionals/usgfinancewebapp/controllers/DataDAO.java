@@ -128,6 +128,6 @@ public class DataDAO {
 
     public InputData xbrlToInputdata(File file) throws ParserConfigurationException, SAXException, IOException {
        XBRLMapping mapper = new XBRLMapping(file);
-       return null;
+       return mapper.getCurrentInputData();
     }
 }

@@ -52,7 +52,7 @@ public class XBRLMapping {
                 }
             }
         }
-        return 0.1;
+        return 0.0;
     }
     
     private InputData create(Element rootElement, String context, String context2){
