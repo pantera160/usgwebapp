@@ -544,13 +544,13 @@
             ]]>
             </script> <script type="text/ng-template" id="uploadtemplate">
 <![CDATA[
-            <div id="template">
+            <div id="template" ng-controller="uploadCtrl">
             <h1>Upload a File</h1>
             <form>
             <p>
-            Select a file : <input type="file" ng-model-instant id="uploadfile" multiple onchange="angular.element(this).scope().setFiles(this)" />
+            Select a file : <input type="file" ng-model-instant id="uploadfile" ng-model="myfile" multiple ng-change="$scope.setFiles(this)" />
             </p>
-            <input type="submit" value="Upload It" />
+            <input type="button" value="Upload It" ng-click="upload()" />
             </form>
             </div>
             ]]>
