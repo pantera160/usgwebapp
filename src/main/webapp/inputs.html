@@ -6,6 +6,7 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="inputcss.css" />
     <link rel="stylesheet" type="text/css" href="flaticons/flaticon.css" />
+    
 </head>
 
 <body>
@@ -548,7 +549,7 @@
             <h1>Upload a File</h1>
             <form>
             <p>
-            Select a file : <input type="file" ng-model-instant id="uploadfile" ng-model="myfile" multiple ng-change="$scope.setFiles(this)" />
+            Select a file : <input type="file" ng-model-instant id="uploadfile" multiple onchange="angular.element(this).scope().setFiles(this)" />
             </p>
             <input type="button" value="Upload It" ng-click="upload()" />
             </form>

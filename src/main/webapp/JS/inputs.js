@@ -491,40 +491,51 @@ app.controller("MyForm", function($scope, dataService, $location, $rootScope, $c
         }
         return response;
     };
-    this.setInputData = function(inputdata){
+    this.setInputData = function(inputdata) {
         $scope.inputs = inputdata;
     }
     $scope.uploadxbrl_popup = function() {
-            ngDialog.open({
-                template: 'uploadtemplate',
-                className: 'ngdialog-theme-default'
-            });
-        };
+        ngDialog.open({
+            template: 'uploadtemplate',
+            className: 'ngdialog-theme-default',
+            scope: $scope
+        });
+    };
+    $scope.upload = function() {
+        console.log("upload clicked");
+        console.log("uploadfile: " + $scope.files[0]);
+        var fd = new FormData();
+        fd.append('file', $scope.files[0], 'xbrlfile.xbrl');
+        dataService.uploadFile(fd).then(function(response) {
+            $scope.removeCol($scope.years[0]);
+            for (i = 0; i < response.data.length; i++) {
+                var temp = response.data[i]
+                $scope.years.push(temp.year);
+                angular.forEach(temp, function(value, key) {
+                    if (key !== 'year')
+                        $scope.inputs[key].push({
+                            "data": value,
+                            "year": temp.year
+                        })
+                })
+            }
+            nextyear = $scope.years[$scope.years.length -1] - 1;
+            ngDialog.closeAll();
+        });
+    };
+    $scope.setFiles = function(element) {
+        $scope.$apply(function($scope) {
+            console.log('files:', element.files);
+            // Turn the FileList object into an Array
+            $scope.files = []
+            for (var i = 0; i < element.files.length; i++) {
+                $scope.files.push(element.files[i])
+            }
+        });
+    };
     initialiseInput(startyear);
     initErrors();
     getSectors();
     getCompanyData();
     getCalcData();
 });
-app.controller("UploadCtrl", ['$scope', 'dataService', 'MyForm', function($scope, dataService, MyForm) {
-        $scope.myFile = null;
-        $scope.upload = function() {
-            console.log("upload clicked");
-            console.log("uploadfile: " + $scope.files[0]);
-            var fd = new FormData();
-            fd.append('file', $scope.files[0], 'xbrlfile.xbrl');
-            dataService.uploadFile(fd).then(function(response) {
-                MyForm.setInputData(response.data);
-            });
-        };
-        $scope.setFiles = function(element) {
-            $scope.$apply(function($scope) {
-                console.log('files:', element.files);
-                // Turn the FileList object into an Array
-                $scope.files = []
-                for (var i = 0; i < element.files.length; i++) {
-                    $scope.files.push(element.files[i])
-                }
-            });
-        };
-    }]);

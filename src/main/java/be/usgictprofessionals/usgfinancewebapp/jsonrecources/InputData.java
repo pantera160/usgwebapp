@@ -19,7 +19,7 @@ public class InputData {
     private double turnover, costOfSales, comMatCon, miscGoods, depreciation, ebit, finRev, finExp, finExpInterest, finExpBank, finExpOther, nrIncome, nrCharges, taxes, incomeTaxes, withDefTaxes, transDefTaxes;
     private double workingCapital, netDebt;
     private double fixedAssets, inventory, ar, cash, investments, liquidAssets, currAssets, totAssets, equity, ltFinDebt, subordinatedDebt,  stFinDebt, longTermLoans, finDebt, ap, currLiabilities;
-    private double propertyAssets, finFixedAssets, intangiblesAssets;
+    private double propertyAssets, finFixedAssets, intangiblesAssets, otherFixedAssets;
     private int numberOfMonths;
     private int year;
 
@@ -365,5 +365,13 @@ public class InputData {
 
     public void setFinDebt(double finDebt) {
         this.finDebt = finDebt;
+    }
+
+    public double getOtherFixedAssets() {
+        return otherFixedAssets;
+    }
+
+    public void setOtherFixedAssets(double otherFixedAssets) {
+        this.otherFixedAssets = otherFixedAssets;
     }
 }

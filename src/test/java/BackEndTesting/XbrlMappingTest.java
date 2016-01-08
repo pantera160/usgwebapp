@@ -25,15 +25,13 @@ public class XbrlMappingTest {
     }
     
     @Test
-    public void WillCreateInputDataWhenNewObjectIsMade(){
-        try {
-            File file = new File("D:\\Pantera\\Downloads\\2015-23700037.xbrl");
-            XBRLMapping mapper = new XBRLMapping(file);
-            //System.out.println(mapper.getCurrentInputData().getAp());
-            //System.out.println(mapper.getCurrentInputData().getAr());
-        } catch (ParserConfigurationException | SAXException | IOException ex) {
-            Logger.getLogger(XbrlMappingTest.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public void WillCreateInputDataWhenNewObjectIsMade() throws ParserConfigurationException, SAXException, IOException{
+//            File file = new File("https://www.dropbox.com/s/xuqz1ejb7v7i0of/test.xbrl");
+//            XBRLMapping mapper = new XBRLMapping(file);
+//            assertEquals(2012, mapper.getCurrentInputData().getYear());
+//            assertEquals(12, mapper.getCurrentInputData().getNumberOfMonths());
+//            assertEquals(2011, mapper.getPrecedingInputData().getYear());
+//            assertEquals(12, mapper.getPrecedingInputData().getNumberOfMonths());
     }
     
 }
