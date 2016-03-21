@@ -452,7 +452,13 @@ app.controller("MyForm", function($scope, dataService, $location, $rootScope, $c
             });
             count++;
         });
+        if (dataResponse.data[0] != null) {
+            if (dataResponse.data[0].year < $scope.years[0]) {
+                $scope.removeCol($scope.years[0]);
+            }
+        }
     }
+    //Check weither the input data is valid according to the different sums
     var checkForError = function() {
         var inputs = $scope.inputs
         var response = false;
@@ -480,7 +486,7 @@ app.controller("MyForm", function($scope, dataService, $location, $rootScope, $c
                 $scope.errors.miscGoods[inputs.costOfSales[i].year] = 'toError';
                 response = true;
             }
-            if (Math.round((parseFloat(inputs.incomeTaxes[i].data) - (parseFloat(inputs.withDefTaxes[i].data) + parseFloat(inputs.transDefTaxes[i].data))) * 10) / 10 != parseFloat(inputs.taxes[i].data)) {
+            if (Math.round((parseFloat(inputs.incomeTaxes[i].data) - parseFloat(inputs.withDefTaxes[i].data) + parseFloat(inputs.transDefTaxes[i].data)) * 10) / 10 != parseFloat(inputs.taxes[i].data)) {
                 console.log("Taxes not equal");
                 $scope.errors.taxes[inputs.taxes[i].year] = 'error';
                 $scope.errors.incomeTaxes[inputs.taxes[i].year] = 'toError';
@@ -507,7 +513,10 @@ app.controller("MyForm", function($scope, dataService, $location, $rootScope, $c
         var fd = new FormData();
         fd.append('file', $scope.files[0], 'xbrlfile.xbrl');
         dataService.uploadFile(fd).then(function(response) {
-            $scope.removeCol($scope.years[0]);
+            initialiseInput(startyear);
+            if ($scope.years.lenght > 0) {
+                $scope.removeCol($scope.years[0]);
+            }
             for (i = 0; i < response.data.length; i++) {
                 var temp = response.data[i]
                 $scope.years.push(temp.year);
@@ -519,7 +528,7 @@ app.controller("MyForm", function($scope, dataService, $location, $rootScope, $c
                         })
                 })
             }
-            nextyear = $scope.years[$scope.years.length -1] - 1;
+            nextyear = $scope.years[$scope.years.length - 1] - 1;
             ngDialog.closeAll();
         });
     };
