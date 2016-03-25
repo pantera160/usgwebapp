@@ -119,11 +119,11 @@ app.directive('myNumberformat', function() {
     var format = function(number, n, x, s, c) {
         var re = '\\d(?=(\\d{' + (x || 3) + '})+' + (n > 0 ? '\\D' : '$') + ')',
                 num = Number(number).toFixed(Math.max(0, ~~n));
-        return (c ? num.replace('.', c) : num).replace(new RegExp(re, 'g'), '$&' + (s || ','));
+        return (c ? num.replace(new RegExp("\\.", "g"), c) : num).replace(new RegExp(re, 'g'), '$&' + (s || ','));
     }
     var validNumber = function(number) {
         if (number.indexOf(',') > -1) {
-            var number2 = number.replace('.', '');
+            var number2 = number.replace(new RegExp("\\.", "g"), '');
             return number2.replace(',', '.');
         }
         return number.replace(',', '.');

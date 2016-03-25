@@ -67,7 +67,7 @@ app.controller('DIOCtrl', ['$scope', 'TurnoverService', 'helpServiceTurnover', '
 			}
 			else{
 				$scope.data[0].unshift(round($value.dio));
-				sectorAvg = round($value.dio);
+				sectorAvgDIO = round($value.dio);
 				$scope.labels.unshift("Sector Average");
 			}
 		});

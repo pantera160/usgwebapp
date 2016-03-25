@@ -1,3 +1,7 @@
+b {
+    font-weight: bold;
+}
+
 #ratios .inline {
 	display:inline-block;
 	width:600px;
@@ -146,3 +150,16 @@
 #ratios td div img{
 	margin: 0 10px;
 }
+
+#ratios .template li{
+    text-decoration: none;
+    padding-top: 5px;
+    margin-left: 15px;
+    padding-left: 15px;
+    list-style-type: disc;
+}
+
+#ratios .template{
+    padding-bottom: 35px;
+}
+

@@ -160,19 +160,19 @@ div#buttonsdiv{
 	display : block;
 }
 
-#input #template{
+#template{
 	padding: 5px;
 	color: red;
 	border: 1px solid red;
 }
 
-#input #template h1{
+#template h1{
 	font-weight: bold;
 	color: red;
 	text-align: center;
 }
 
-#input #template li{
+#template li{
 	margin: 3px 0px;
 }
 

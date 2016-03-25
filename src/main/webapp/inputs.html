@@ -13,7 +13,7 @@
     <div id="input">
         <div id="banner" ng-controller="HelpCtrl">
             <div>
-                <a href="http://www.usgprofessionals.com/belgium/finance"><img src="IMG/logoUSG-Finance-Professionals.gif" alt="logo USG Finance Professionals" width="160" height="80" /></a>
+                <a href="https://www.usgprofessionals.be/"><img src="IMG/logo-usg-professionals.png" alt="logo USG Professionals" width="200" height="40" /></a>
             </div>
 
             <div id="titlenbutton">
@@ -61,7 +61,7 @@
                                 <tr>
                                     <th class="theadlabel">(in 1.000 )</th><!-- generate the table headers based on the # of years found in $scope.years -->
 
-                                    <th ng-repeat="year in years">{{year}}</th>
+                                    <th ng-repeat="year in years">{{year}}<i class="flaticon-close42" ng-click="removeCol(year)"></i></th>
 
                                     <th class="NBBCodesHeader">NBB Codes</th>
 
@@ -449,7 +449,7 @@
 
                                     <td ng-repeat="cols in inputs.taxes"><input ng-class="errors.taxes[cols.year]" my-numberformat="" ng-model="cols.data" type="text" required="" onclick="this.select()" /></td>
 
-                                    <td class="NBBCodes">67/77 - (780+680)</td>
+                                    <td class="NBBCodes">67/77 - 780 + 680</td>
 
                                     <td class="source">Financial Statements</td>
                                 </tr>

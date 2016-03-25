@@ -1,55 +1,76 @@
 <div id="ratios">
     <div>
-      
-    <div id="banner">
-        <a href="http://www.usgprofessionals.com/belgium/finance"><img src="IMG/logoUSG-Finance-Professionals.gif" alt="logo USG Finance Professionals" width="160" height="80"></a>
 
-        <h1>CASH CONVERSION CYCLE EVOLUTION</h1>
-    </div>
-	<div ng-controller="headerCtrl" id="compInfo">
-	    <div><h3>Company  :</h3> <label>{{company.name}}</label></div>
-        <div><h3>Sector  :</h3> <label>{{company.sector.name}}</label></div>
-    </div>
-    
-    <div ng-controller="CCCECtrl" class="inline">
-        
-        <div>
-            <h2>Cash Conversion Cycle Evolution<a class="questionmark" ng-click="help()" print-remove></a></h2>
+        <div id="banner">
+            <a href="http://www.usgprofessionals.be"><img src="IMG/logo-usg-professionals.png" alt="logo USG Professionals" width="200" height="40"></a>
+
+            <h1>CASH CONVERSION CYCLE EVOLUTION</h1>
+        </div>
+        <div ng-controller="headerCtrl" id="compInfo">
+            <div><h3>Company  :</h3> <label>{{company.name}}</label></div>
+            <div><h3>Sector  :</h3> <label>{{company.sector.name}}</label></div>
         </div>
 
-        <div class="top-border">
-            <canvas id="CCCE" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-options="options" chart-colours="colours"></canvas>
-        </div>
+        <div ng-controller="CCCECtrl" class="inline">
 
-        <div class="top-border">
-            <table>
-                <thead>
-                    <tr>
-	                    <th></th>
-                        <th ng-repeat="label in labels track by $index">{{label}}</th>
-                    </tr>
-                </thead>
+            <div>
+                <h2>Cash Conversion Cycle Evolution<a class="questionmark" ng-click="help()" print-remove></a></h2>
+            </div>
 
-                <tbody>
-                    <tr>
-	                    <td>CCC</td>
-                        <td ng-repeat="item in data[0] track by $index"><div><img ng-src="{{condition(item)}}" alt="condition"/>{{item | NumberEU}}</div></td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="top-border">
+                <canvas id="CCCE" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-options="options" chart-colours="colours"></canvas>
+            </div>
+
+            <div class="top-border">
+                <table>
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th ng-repeat="label in labels track by $index">{{label}}</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>CCC</td>
+                            <td ng-repeat="item in data[0] track by $index"><div><img ng-src="{{condition(item)}}" alt="condition"/>{{item | NumberEU}}</div></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="top-border formula-div">
+                <div class="formula"><label>Formula:</label></div><div class="formula"><label>DIO + DSO - DPO</label></div>
+            </div>
         </div>
-        <div class="top-border formula-div">
-	        <div class="formula"><label>Formula:</label></div><div class="formula"><label>DIO + DSO - DPO</label></div>
+        <div id="buttonsdiv" class="centered" ng-controller="ButtonsCtrl" print-remove>
+            <button type="button" ng-click="back()">Back</button>
         </div>
     </div>
-    <div id="buttonsdiv" class="centered" ng-controller="ButtonsCtrl" print-remove>
-        <button type="button" ng-click="back()">Back</button>
-    </div>
+    <script type="text/ng-template" id="cccetemplate">
+        <div id="ratios">
+        <div class="template">
+        <h2>Cash Conversion Cycle <b>OR</b> Operation Cycle</h2>
+        <p>The cash conversion cycle (CCC) is a metric that expresses the length of time, in days, that it takes for a company to convert resource inputs into cash flows.<br /> 
+        The CCC represents the number of days a firm's cash remains tied up within the operations of the business. A cash flow analysis using CCC also reveals in, an overall manner, how efficiently the company is managing its working capital.<br />
+        The CCC is also referred to as <b>the cash cycle</b>, <b>asset conversion cycle</b> or <b>net operating cycle</b>.<br />
+        <h3>Calculation</h3>
+        <p>The cycle is composed of three main working capital components: Days Inventory Outstanding (DIO), Days sales outstanding (DSO) and Days Payable Outstanding (DPO). It is calculated as follows: </p>
+        <p> Inventory conversion period (DIO) <br /><br />
+         + Receivable collection period (DSO) <br /><br />
+         = Operating cycle<br /><br />
+         - Payables deferral period (DPO)<br /><br />
+         <b>= Cash conversion cycle</b></p>
+        <h3>Interpretation of the outcome</h3>
+        <p>The value of the cash conversion cycle is sector dependent. It is recommended to compare the value to industry averages. A firm could even achieve a negative CCC: this means that the company does pay its suppliers for the goods that it buys after it receives payment for selling those goods (see e.g. some retailers).</p>
+        <p><img src="IMG/green.png" alt="green" width="24" height="28" />CCC &lt; industry average: a low CCC signifies a well-managed company, and thus can be used to help evaluate potential investments. A small conversion cycle means that a company's money is tied up in inventory for less time. In other words, a company with a small conversion cycle can buy inventory, sell it, and receive cash from customers in less time.</p>
+        <p><img src="IMG/orange.png" alt="orange" width="27" height="31" />CCC slightly above industry average: Be careful! This is a warning sign. It can indicates that the company has a big timespan between its disbursing and collecting cash.</p>
+        <p><img src="IMG/red.png" alt="red" width="24" height="30" />CCC &gt; industry average: a high CCC indicates a too big timespan between a firm's disbursements to its suppliers and its collection of the cash from its clients. The company will have larger working capital requirements then competitors with a shorter cash conversion cycle.</p>
+        <h3>Recommendation </h3>
+        <p>Shortening cash conversion cycle frees up cash to reinvest in business or to reduce debt and interest. To achieve this result we refer to the recommendations of:</p>
+        <ul><li>Days inventory outstanding</li>
+        <li>Days sales outstanding</li>
+        <li>Days purchases outstanding</li></ul>
 </div>
-<script type="text/ng-template" id="cccetemplate">
-	<div class="template">
-		<h2>Cash Conversion Cycle <b>OR</b> Operation Cycle</h2>
-		<p>The length of time between a firm's purchase of inventory and the receipt of cash from accounts receivable. It is the time required for a business to turn purchases into cash receipts from customers. CCC represents the number of days that a firm's cash remains tied up within the operations of the business. A cash flow analysis using CCC also reveals, how efficiently the company is managing its working capital.</p>
-	</div>
-</script>
+        </div>
+    </script>
 </div>

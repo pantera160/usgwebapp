@@ -53,7 +53,7 @@ public class XBRLMapping {
         for (int i = 0; i < nlist.getLength(); i++) {
             if (nlist.item(i).getNodeType() == Node.ELEMENT_NODE) {
                 if (((Element) nlist.item(i)).getAttribute("contextRef").equals(context) || ((Element) nlist.item(i)).getAttribute("contextRef").equals(context2)) {
-                    return Double.parseDouble(nlist.item(i).getTextContent());
+                    return Math.round(Double.parseDouble(nlist.item(i).getTextContent())*10)/10;
                 }
             }
         }
