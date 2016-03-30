@@ -434,7 +434,12 @@ app.controller("MyForm", function($scope, dataService, $location, $rootScope, $c
     var processResponse = function(dataResponse) {
         $scope.data = dataResponse.data;
         var count = 0;
+        var newestYear = 0;
         angular.forEach($scope.data, function(value) {
+            if(value.year > newestYear){
+                newestYear = value.year;
+            }
+            
             if (value.year > startyear) {
                 startyear = value.year;
                 $scope.years = [startyear];
@@ -456,11 +461,13 @@ app.controller("MyForm", function($scope, dataService, $location, $rootScope, $c
             });
             count++;
         });
-        if (dataResponse.data[0] != null) {
-            if (dataResponse.data[0].year < $scope.years[0]) {
+        if (newestYear !== 0) {
+            if (newestYear < $scope.years[0]) {
                 $scope.removeCol($scope.years[0]);
             }
         }
+        
+        new Date().getFullYear();
     }
     //Check weither the input data is valid according to the different sums
     var checkForError = function() {
