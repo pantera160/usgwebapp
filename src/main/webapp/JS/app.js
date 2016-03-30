@@ -255,15 +255,15 @@ app.controller('LogoutCtrl', ['AuthenticationService', '$scope', '$rootScope', '
         $scope.logout = function() {
             AuthenticationService.ClearCredentials();
             $location.path("/login");
-        }
+        };
         $scope.isLoggedin = function() {
             checkAdmin();
             return $rootScope.loggedin;
-        }
+        };
         $scope.back = function() {
             $location.path("/overview")
-        }
+        };
         $scope.admin = function() {
             $location.path('/admin');
-        }
+        };
     }]);
