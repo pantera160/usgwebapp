@@ -242,6 +242,7 @@ public class JdbcDatabase implements Database {
                 temp.setYear(result.getInt("INPUTYEAR"));
                 temp.setInvestments(result.getDouble("INVESTMENTS"));
                 temp.setLiquidAssets(result.getDouble("LIQUIDASSETS"));
+                temp.setOtherFixedAssets(result.getDouble("OTHERFIXEDASSETS"));
                 temp.setSubordinatedDebt(result.getDouble("SUBORDINATEDDEBT"));
                 temp.setLongTermLoans(result.getDouble("LONGTERMLOANS"));
                 temp.setFinDebt(result.getDouble("FINDEBT"));
@@ -303,6 +304,17 @@ public class JdbcDatabase implements Database {
                 temp.setTurnover(result.getDouble("TURNOVER"));
                 temp.setWorkingCapital(result.getDouble("WORKINGCAPITAL"));
                 temp.setYear(result.getInt("INPUTYEAR"));
+                temp.setInvestments(result.getDouble("INVESTMENTS"));
+                temp.setLiquidAssets(result.getDouble("LIQUIDASSETS"));
+                temp.setOtherFixedAssets(result.getDouble("OTHERFIXEDASSETS"));
+                temp.setSubordinatedDebt(result.getDouble("SUBORDINATEDDEBT"));
+                temp.setLongTermLoans(result.getDouble("LONGTERMLOANS"));
+                temp.setFinDebt(result.getDouble("FINDEBT"));
+                temp.setComMatCon(result.getDouble("COMMATCOM"));
+                temp.setMiscGoods(result.getDouble("MISCGOODS"));
+                temp.setIncomeTaxes(result.getDouble("INCOMETAXES"));
+                temp.setWithDefTaxes(result.getDouble("WITHDEFTAXES"));
+                temp.setTransDefTaxes(result.getDouble("TRANSDEFTAXES"));
                 data.put(temp.getYear(),temp);
             }
             result.close();
