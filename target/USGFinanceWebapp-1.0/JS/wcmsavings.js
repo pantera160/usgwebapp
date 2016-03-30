@@ -57,7 +57,9 @@ app.controller('WCMSCtrl', ['$scope', 'WCMService', '$location', '$rootScope', f
         $scope.sector = {};
         $scope.back = function() {
             $location.path('/portal');
-        }
+        };
+        
+        $scope.year = {};
 
         var getSectorAvg = function() {
             WCMService.getTurnover($rootScope.globals.currentUser.companyid).then(function(result) {
@@ -80,7 +82,7 @@ app.controller('WCMSCtrl', ['$scope', 'WCMService', '$location', '$rootScope', f
                 });
             });
 
-        }
+        };
 
         $scope.save = function() {
             WCMService.saveData($scope.data, $rootScope.globals.currentUser.companyid, $scope.year.name).then(function(result) {
@@ -91,7 +93,7 @@ app.controller('WCMSCtrl', ['$scope', 'WCMService', '$location', '$rootScope', f
             WCMService.getData($rootScope.globals.currentUser.companyid, $scope.year.name).then(function(response) {
                 $scope.data = response.data;
             });
-        }
+        };
         getData();
         getSectorAvg();
     }]);

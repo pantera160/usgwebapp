@@ -18,7 +18,7 @@ public class InputData {
     private double recIncome, netIncome, ebitda;
     private double turnover, costOfSales, comMatCon, miscGoods, depreciation, ebit, finRev, finExp, finExpInterest, finExpBank, finExpOther, nrIncome, nrCharges, taxes, incomeTaxes, withDefTaxes, transDefTaxes;
     private double workingCapital, netDebt;
-    private double fixedAssets, inventory, ar, cash, investments, liquidAssets, currAssets, totAssets, equity, ltFinDebt, subordinatedDebt,  stFinDebt, longTermLoans, finDebt, ap, currLiabilities;
+    private double fixedAssets, inventory, ar, cash, investments, liquidAssets, currAssets, totAssets, equity, ltFinDebt, subordinatedDebt, stFinDebt, longTermLoans, finDebt, ap, currLiabilities;
     private double propertyAssets, finFixedAssets, intangiblesAssets, otherFixedAssets;
     private int numberOfMonths;
     private int year;
@@ -374,4 +374,19 @@ public class InputData {
     public void setOtherFixedAssets(double otherFixedAssets) {
         this.otherFixedAssets = otherFixedAssets;
     }
+
+    @Override
+    public String toString() {
+        return "InputData{" + "recIncome=" + recIncome + ", netIncome=" + netIncome + ", ebitda=" + ebitda + ", turnover=" + turnover 
+                + ", costOfSales=" + costOfSales + ", comMatCon=" + comMatCon + ", miscGoods=" + miscGoods + ", depreciation=" + depreciation 
+                + ", ebit=" + ebit + ", finRev=" + finRev + ", finExp=" + finExp + ", finExpInterest=" + finExpInterest + ", finExpBank=" + finExpBank 
+                + ", finExpOther=" + finExpOther + ", nrIncome=" + nrIncome + ", nrCharges=" + nrCharges + ", taxes=" + taxes + ", incomeTaxes=" + incomeTaxes 
+                + ", withDefTaxes=" + withDefTaxes + ", transDefTaxes=" + transDefTaxes + ", workingCapital=" + workingCapital + ", netDebt=" + netDebt 
+                + ", fixedAssets=" + fixedAssets + ", inventory=" + inventory + ", ar=" + ar + ", cash=" + cash + ", investments=" + investments 
+                + ", liquidAssets=" + liquidAssets + ", currAssets=" + currAssets + ", totAssets=" + totAssets + ", equity=" + equity + ", ltFinDebt=" + ltFinDebt 
+                + ", subordinatedDebt=" + subordinatedDebt + ", stFinDebt=" + stFinDebt + ", longTermLoans=" + longTermLoans + ", finDebt=" + finDebt + ", ap=" + ap 
+                + ", currLiabilities=" + currLiabilities + ", propertyAssets=" + propertyAssets + ", finFixedAssets=" + finFixedAssets 
+                + ", intangiblesAssets=" + intangiblesAssets + ", otherFixedAssets=" + otherFixedAssets + ", numberOfMonths=" + numberOfMonths + ", year=" + year + '}';
+    }
+
 }

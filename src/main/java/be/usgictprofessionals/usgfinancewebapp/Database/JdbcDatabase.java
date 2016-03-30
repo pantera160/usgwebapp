@@ -144,12 +144,13 @@ public class JdbcDatabase implements Database {
             stmt = conn.createStatement();
             stmt.execute("insert into input_data(company_id, recincome, netincome, ebitda, turnover, costofsales, depreciation, ebit, finrev, finexp, finexpinterest, finexpbank, finexpother, "
                     + "nrincome, nrcharges, taxes, workingcapital, netdebt, fixedassets, inventory, ar, cash, currassets, totassets, equity, ltfindebt, stfindebt, ap, currliabilities, numberofmonths, "
-                    + "inputyear, finfixedassets,intangiblesassets, otherfixedassets, propertyassets) "
+                   + "inputyear, finfixedassets, otherfixedassets,intangiblesassets, propertyassets, liquidassets,subordinateddebt, longtermloans, findebt, commatcom, miscgoods, incometaxes, withdeftaxes, transdeftaxes, investments) "
                     + "values(" + userID + "," + data.getRecIncome() + " , " + data.getNetIncome() + "," + data.getEbitda() + "," + data.getTurnover() + "," + data.getCostOfSales() + "," + data.getDepreciation()
                     + "," + data.getEbit() + "," + data.getFinRev() + "," + data.getFinExp() + "," + data.getFinExpInterest() + "," + data.getFinExpBank() + "," + data.getFinExpOther() + "," + data.getNrIncome()
                     + "," + data.getNrCharges() + "," + data.getTaxes() + "," + data.getWorkingCapital() + "," + data.getNetDebt() + "," + data.getFixedAssets() + "," + data.getInventory() + "," + data.getAr() + "," + data.getCash()
                     + "," + data.getCurrAssets() + "," + data.getTotAssets() + "," + data.getEquity() + "," + data.getLtFinDebt() + "," + data.getStFinDebt() + "," + data.getAp() + "," + data.getCurrLiabilities() + ","
-                    + data.getNumberOfMonths() + "," + data.getYear() + "," + data.getFinFixedAssets() + ", " + data.getOtherFixedAssets() +"," + data.getIntangiblesAssets() + "," + data.getPropertyAssets() + ")");
+                    + data.getNumberOfMonths() + "," + data.getYear() + "," + data.getFinFixedAssets() + ","+ data.getOtherFixedAssets()+ "," + data.getIntangiblesAssets() + "," + data.getPropertyAssets() + "," + data.getLiquidAssets() +"," + data.getSubordinatedDebt()+ "," 
+                    + data.getLongTermLoans() + "," + data.getFinDebt()+ "," +data.getComMatCon()+ "," +data.getMiscGoods()+ "," +data.getIncomeTaxes() + "," +data.getWithDefTaxes()+ "," +data.getTransDefTaxes()+ "," +data.getInvestments() + ")");
             stmt.close();
         } catch (SQLException sqlExcept) {
             sqlExcept.printStackTrace();
@@ -166,7 +167,10 @@ public class JdbcDatabase implements Database {
                     + ", nrcharges=" + data.getNrCharges() + ", taxes=" + data.getTaxes() + ", workingcapital=" + data.getWorkingCapital() + ", netdebt=" + data.getNetDebt() + ", fixedassets=" + data.getFixedAssets()
                     + ", inventory=" + data.getInventory() + ", ar=" + data.getAr() + ", cash=" + data.getCash() + ", currassets=" + data.getCurrAssets() + ", totassets=" + data.getTotAssets() + ", equity=" + data.getEquity()
                     + ", ltfindebt=" + data.getLtFinDebt() + ", stfindebt=" + data.getStFinDebt() + ", ap=" + data.getAp() + ", currliabilities=" + data.getCurrLiabilities() + ", numberofmonths=" + data.getNumberOfMonths()
-                    + ", finfixedassets=" + data.getFinFixedAssets() + ",intangiblesassets=" + data.getIntangiblesAssets() + ", propertyassets=" + data.getPropertyAssets() + " where company_id=" + userID + " AND inputyear = " + data.getYear() + "");
+                    + ", finfixedassets=" + data.getFinFixedAssets() +",otherfixedassets="+ data.getOtherFixedAssets() + ",intangiblesassets=" + data.getIntangiblesAssets() + ", propertyassets=" + data.getPropertyAssets() + ", liquidassets ="+data.getLiquidAssets()
+                    +", subordinateddebt="+data.getSubordinatedDebt()+" , longtermloans="+data.getLongTermLoans() +", findebt="+data.getFinDebt()+", commatcom=" +data.getComMatCon()
+                    + ", miscgoods="+data.getMiscGoods() + ", incometaxes="+data.getIncomeTaxes()+", withdeftaxes=" +data.getWithDefTaxes()+", transdeftaxes="+data.getTransDefTaxes()
+                    +", investments="+data.getInvestments() + " where company_id=" + userID + " AND inputyear = " + data.getYear() + "");
             stmt.close();
         } catch (SQLException sqlExcept) {
             sqlExcept.printStackTrace();
@@ -232,6 +236,16 @@ public class JdbcDatabase implements Database {
                 temp.setTurnover(result.getDouble("TURNOVER"));
                 temp.setWorkingCapital(result.getDouble("WORKINGCAPITAL"));
                 temp.setYear(result.getInt("INPUTYEAR"));
+                temp.setInvestments(result.getDouble("INVESTMENTS"));
+                temp.setLiquidAssets(result.getDouble("LIQUIDASSETS"));
+                temp.setSubordinatedDebt(result.getDouble("SUBORDINATEDDEBT"));
+                temp.setLongTermLoans(result.getDouble("LONGTERMLOANS"));
+                temp.setFinDebt(result.getDouble("FINDEBT"));
+                temp.setComMatCon(result.getDouble("COMMATCOM"));
+                temp.setMiscGoods(result.getDouble("MISCGOODS"));
+                temp.setIncomeTaxes(result.getDouble("INCOMETAXES"));
+                temp.setWithDefTaxes(result.getDouble("WITHDEFTAXES"));
+                temp.setTransDefTaxes(result.getDouble("TRANSDEFTAXES"));
                 data.add(temp);
             }
             result.close();

@@ -371,9 +371,11 @@ app.controller("MyForm", function($scope, dataService, $location, $rootScope, $c
             dataService.saveData($scope.data, company_id).then(function(response) {
                 processResponse(response);
             });
+            return true;
         }
         else {
             $scope.error = true;
+            return false;
         }
     };
     //Clear the data from the input fields
@@ -392,7 +394,9 @@ app.controller("MyForm", function($scope, dataService, $location, $rootScope, $c
     //save and redirect
     $scope.next = function() {
         saveCompanyData();
-        $location.path('/portal');
+        if (!checkForError()) {
+            $location.path('/portal');
+        }
     }
     //remove a year
     $scope.removeCol = function(year) {
