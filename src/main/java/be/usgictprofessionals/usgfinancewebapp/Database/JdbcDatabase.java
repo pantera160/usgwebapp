@@ -144,12 +144,12 @@ public class JdbcDatabase implements Database {
             stmt = conn.createStatement();
             stmt.execute("insert into input_data(company_id, recincome, netincome, ebitda, turnover, costofsales, depreciation, ebit, finrev, finexp, finexpinterest, finexpbank, finexpother, "
                     + "nrincome, nrcharges, taxes, workingcapital, netdebt, fixedassets, inventory, ar, cash, currassets, totassets, equity, ltfindebt, stfindebt, ap, currliabilities, numberofmonths, "
-                    + "inputyear, finfixedassets,intangiblesassets, propertyassets) "
+                    + "inputyear, finfixedassets,intangiblesassets, otherfixedassets, propertyassets) "
                     + "values(" + userID + "," + data.getRecIncome() + " , " + data.getNetIncome() + "," + data.getEbitda() + "," + data.getTurnover() + "," + data.getCostOfSales() + "," + data.getDepreciation()
                     + "," + data.getEbit() + "," + data.getFinRev() + "," + data.getFinExp() + "," + data.getFinExpInterest() + "," + data.getFinExpBank() + "," + data.getFinExpOther() + "," + data.getNrIncome()
                     + "," + data.getNrCharges() + "," + data.getTaxes() + "," + data.getWorkingCapital() + "," + data.getNetDebt() + "," + data.getFixedAssets() + "," + data.getInventory() + "," + data.getAr() + "," + data.getCash()
                     + "," + data.getCurrAssets() + "," + data.getTotAssets() + "," + data.getEquity() + "," + data.getLtFinDebt() + "," + data.getStFinDebt() + "," + data.getAp() + "," + data.getCurrLiabilities() + ","
-                    + data.getNumberOfMonths() + "," + data.getYear() + "," + data.getFinFixedAssets() + "," + data.getIntangiblesAssets() + "," + data.getPropertyAssets() + ")");
+                    + data.getNumberOfMonths() + "," + data.getYear() + "," + data.getFinFixedAssets() + ", " + data.getOtherFixedAssets() +"," + data.getIntangiblesAssets() + "," + data.getPropertyAssets() + ")");
             stmt.close();
         } catch (SQLException sqlExcept) {
             sqlExcept.printStackTrace();
