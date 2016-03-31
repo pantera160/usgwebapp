@@ -1,178 +1,179 @@
 <div id="ratios">
-	<div>
-    <div id="banner">
-        <a href="http://www.usgprofessionals.be"><img src="IMG/logo-usg-professionals.png" alt="logo USG Professionals" width="200" height="40"></a>
+    <div>
+        <div id="banner">
+            <a href="http://www.usgprofessionals.be"><img src="IMG/logo-usg-professionals.png" alt="logo USG Professionals" width="200" height="40"></a>
 
-        <h1>TURNOVER RATIOS</h1>
+            <h1>TURNOVER RATIOS</h1>
+        </div>
+        <div ng-controller="headerCtrl" id="compInfo">
+            <div><h3>Company  :</h3> <label>{{company.name}}</label></div>
+            <div><h3>Sector  :</h3> <label>{{company.sector.name}}</label></div>
+            <div><h3>Sector Average Source</h3> <label>{{source_name}}</label></div>
+        </div>
+        <div ng-controller="DIOCtrl" class="inline">
+            <div>
+                <h2>Days inventory outstanding<a class="questionmark" ng-click="help()" print-remove></a></h2>
+            </div>
+
+            <div class="top-border">
+                <canvas id="DIO" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-options="options" chart-colours="colours"></canvas>
+            </div>
+
+            <div class="top-border">
+                <table>
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th ng-repeat="label in labels track by $index">{{label}}</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>DIO</td>
+                            <td ng-repeat="item in data[0] track by $index"><div><img ng-src="{{condition(item)}}" alt="condition"/>{{item | NumberEU}}</div></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="top-border formula-div">
+                <div class="formula"><label>Formula:</label></div><div class="formula"><label class="bottom-border">Inventory x 365</label><br /><label>Cost of Sales</label></div>
+            </div>
+        </div>
+
+        <div ng-controller="DSOCtrl" class="inline">
+            <div>
+                <h2>Days sales outstanding<a class="questionmark" ng-click="help()" print-remove></a></h2>
+            </div>
+
+            <div class="top-border">
+                <canvas id="DSO" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-options="options" chart-colours="colours"></canvas>
+            </div>
+
+            <div class="top-border">
+                <table>
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th ng-repeat="label in labels track by $index">{{label}}</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>DSO</td>
+                            <td ng-repeat="item in data[0] track by $index"><div><img ng-src="{{condition(item)}}" alt="condition"/>{{item | NumberEU}}</div></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="top-border formula-div">
+                <div class="formula"><label>Formula:</label></div><div class="formula"><label class="bottom-border">Receivables x 365</label><br /><label>Annual Sales</label></div>
+            </div>
+        </div>
+
+        <div ng-controller="DPOCtrl" class="inline">
+            <div>
+                <h2>Days purchases outstanding<a class="questionmark" ng-click="help()" print-remove></a></h2>
+            </div>
+
+            <div class="top-border">
+                <canvas id="DPO" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-options="options" chart-colours="colours"></canvas>
+            </div>
+
+            <div class="top-border">
+                <table>
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th ng-repeat="label in labels track by $index">{{label}}</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>DPO</td>
+                            <td ng-repeat="item in data[0] track by $index"><div><img ng-src="{{condition(item)}}" alt="condition"/>{{item | NumberEU}}</div></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="top-border formula-div">
+                <div class="formula"><label>Formula: </label></div><div class="formula"><label class="bottom-border">Payables x 365</label><br /><label>Cost of Sales</label></div>
+            </div>
+        </div>
+
+        <div id="buttonsdiv" class="centered" ng-controller="ButtonsCtrl" print-remove>
+            <button type="button" ng-click="back()">Back</button>
+        </div>
     </div>
-	<div ng-controller="headerCtrl" id="compInfo">
-	    <div><h3>Company  :</h3> <label>{{company.name}}</label></div>
-        <div><h3>Sector  :</h3> <label>{{company.sector.name}}</label></div>
-    </div>
-    <div ng-controller="DIOCtrl" class="inline">
-        <div>
-            <h2>Days inventory outstanding<a class="questionmark" ng-click="help()" print-remove></a></h2>
+    <script type="text/ng-template" id="diotemplate">
+        <div id="ratios">
+        <div class="template">
+        <h2>Days Inventory Outstanding</h2>
+        <p>The days sales of inventory value, or DSI, is a financial measure of a company's performance that gives investors an idea of how long it takes a company to convert its inventory (including raw materials and goods in transformation, if applicable) into sales. The average DIO varies from one industry to another. However, whenever the DIO exceeds 60 days, this is according to us a trigger that potential action is needed. As the inventory is composed of finished goods, goods in process and raw materials, we consider that the best approximation is to use the cost of sales (same denominator as for the DPO). Seasonality in sales can distort DIO. For this reason, some analysts use a moving average of sales based, not on the whole year but, on the last 2 or 3 months of sales. This does not eliminate the problem of seasonal shifts, but it does mitigate their impact.
+        </p>
+        <br />
+        <h3>Interpretation of the outcome</h3>
+        <p>The value of DIO varies from industry and company. It is recommended to compare the DIO to industry averages.</p>
+        <p><img src="IMG/green.png" alt="green" width="24" height="28" />DIO &lt; industry average: It shows that the management can turn inventories quickly into cash. In general, a decrease in days inventory outstanding (DIO) is an improvement to working capital.</p>
+        <p><img src="IMG/orange.png" alt="orange" width="27" height="31" />DIO slightly above industry average: Be careful! This is a warning sign. This means a higher risk for obsolete stock and a sign for inefficient inventory management.</p>
+        <p><img src="IMG/red.png" alt="red" width="24" height="30" />DIO &gt; industry average: an indicator of inventory turns. It shows that the management cannot turn inventories quickly into cash. In general, an increase in days inventory outstanding (DIO) shows a deterioration in working capital. It can also be an indicator or obsolete stocks</p>
+        <h3>Recommendations</h3>
+        <p>A few of the ways to battle high DIO are:</p>
+        <ul><li>implementing inventory optimization tools to determine how much inventory to hold. These optimization tools take into account demand variability, supply variability, and replenishment parameters to determine how much inventory to hold in order to guard against that variability.</li>
+        <li>It is also important to keep an eye on your suppliers. There are suppliers that don’t necessarily stick to their schedule or deliver on their commitments. </li>
+        <li>Finally companies need to be smart about the slow-moving and obsolete items. While it makes sense to focus on the more profitable fast movers, you can’t ignore your slower-moving merchandise. Indeed, they occupy space, utilize labor and resources, run the risk of obsolescence, and in many cases actually can be an obstacle of your more popular items.</li></ul>
+        </div>
+        </div>
+    </script>
+    <script type="text/ng-template" id="dsotemplate">
+        <div id="ratios">
+        <div class="template">
+        <h2>Days Sales Outstanding</h2>
+        <p>A measure of the average number of days that a company takes to collect revenue after a sale has been made. DSO is often determined on a monthly, quarterly or annual basis.</p>
+        <br />
+        <h3>Interpretation of the outcome</h3>
+        <p>Whenever the DSO exceeds 60 days, this is for us a trigger that potential action is needed. 
+        Each industry has different standard payment terms so it is not possible to say that every company should have a DSO of X. Regarding to the standard selling terms, the DSO is compared to industry averages.
+        </p>
+        <p><img src="IMG/green.png" alt="green" width="24" height="28" />DSO &lt; 60 days: an indicator that a company is collecting receivables quickly; generally this is a positive sign.</p>
+        <p><img src="IMG/orange.png" alt="orange" width="27" height="31" />DSO slightly above 60 days: Be careful! This is a warning sign. Could be an indicator that the company has inefficient debt collection processes or bad debtor problems.</p>
+        <p><img src="IMG/red.png" alt="red" width="24" height="30" />DSO &gt; 60 days: proves that a company takes longer to collect on credit sales and can indicate current or impending cash flow problems, operational issues, or a lack of effort or focus on credit collections. </p>
+        <br />
+        <p><b>Note!</b> Changing seasonality in sales can distort DSO. For this reason, some analysts use a daily average of sales based, not on the whole year but, on the last 2 or 3 months of sales. This does not eliminate the problem of seasonal shifts, but it does mitigate the result.<p>
+        <h3>Recommendations</h3>
+        <p>A few of the ways to challenge a high DSO is by:</p>
+        <ul><li>Increase the focus on credit collection – a consistent follow up with the debtors can improve the speed of the client payments.</li>
+        <li>Implementing accounts receivable management software </li>
+        <li>Running more in depth credit checks before extending credit to customers.</li>
+        <li>Focusing on the payment terms, making sure that they are clear and negotiating the lowest possible credit periods.</li></ul>
         </div>
 
-        <div class="top-border">
-            <canvas id="DIO" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-options="options" chart-colours="colours"></canvas>
         </div>
+    </script>
+    <script type="text/ng-template" id="dpotemplate">
+        <div id="ratios">
+        <div class="template">
+        <h2>Days Purchases Outstanding</h2>
+        <p>A company's average payable period. Days payable outstanding tells how long it takes a company to pay its invoices from trade creditors, such as suppliers. DPO is typically looked at either quarterly or yearly.</p>
+        <br />
+        <h3>Interpretation of the outcome</h3>
+        <p>DPO can vary by industry, and a company can compare its DPO to the industry average to see if it is paying its suppliers too quickly or too slowly. However whenever the DPO varies too much from the 50 to 60 days range, this is for us a trigger that potential action is needed. <b>For these reasons, the color of the traffic lights needs to be relativized.</b> 
+        </p>
+        <p><img src="IMG/green.png" alt="green" width="24" height="28" />DPO &lt; 60 days: an indicator that a company is paying the suppliers quickly, and possibly does not get the interest free financing. On the other hand this can be a deliberate policy aiming at obtaining discounts for early payment. </p>
+        <p><img src="IMG/orange.png" alt="orange" width="27" height="31" />DPO slightly above 60 days: Be careful! This is a warning sign. It can indicates that the company is paying the suppliers slowly.</p>
+        <p><img src="IMG/red.png" alt="red" width="24" height="30" />DPO &gt; 60 days: an indicator that a company is obtaining attractive payment terms form its suppliers. As such it obtains interest free financing. However this can be equally an indicator that the company has difficulties in paying its suppliers.</p>
+        <br />
+        <p><b>Note!</b> If a company has an easy access to financing, it might be interesting to pay its suppliers quicker if it can get discounts that are higher than its financing costs.</p>
+        <p><b>Note!</b> Changing seasonality in sales can distort DSO. For this reason, some analysts use a daily average of sales based, not on the whole year but, on the last 2 or 3 months of sales. This does not eliminate the problem of seasonal shifts, but it does mitigate the result.</p>
+        <h3>Recommendation </h3>
+        <p>A few of the ways to optimize the DPO is to consider following actions:</p>
 
-        <div class="top-border">
-            <table>
-                <thead>
-                    <tr>
-	                    <th></th>
-                        <th ng-repeat="label in labels track by $index">{{label}}</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    <tr>
-	                    <td>DIO</td>
-                        <td ng-repeat="item in data[0] track by $index"><div><img ng-src="{{condition(item)}}" alt="condition"/>{{item | NumberEU}}</div></td>
-                    </tr>
-                </tbody>
-            </table>
+        <ul><li>a high supplier payment term can improve the cash flow, as the company gets interest-free financing, hence long payment terms are to be favored.</li><li>
+        However, fi a company has easy access to financing, we recommend to negotiate discounts in return for shorter credit terms</li><li>
+        In all cases, we recommend to improve the relationship with the vendor and to look at win-win situations.</li></ul>
         </div>
-        <div class="top-border formula-div">
-	        <div class="formula"><label>Formula:</label></div><div class="formula"><label class="bottom-border">Inventory x 365</label><br /><label>Cost of Sales</label></div>
         </div>
-    </div>
-
-    <div ng-controller="DSOCtrl" class="inline">
-        <div>
-            <h2>Days sales outstanding<a class="questionmark" ng-click="help()" print-remove></a></h2>
-        </div>
-
-        <div class="top-border">
-            <canvas id="DSO" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-options="options" chart-colours="colours"></canvas>
-        </div>
-
-        <div class="top-border">
-            <table>
-                <thead>
-                    <tr>
-	                    <th></th>
-                        <th ng-repeat="label in labels track by $index">{{label}}</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    <tr>
-	                    <td>DSO</td>
-                        <td ng-repeat="item in data[0] track by $index"><div><img ng-src="{{condition(item)}}" alt="condition"/>{{item | NumberEU}}</div></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="top-border formula-div">
-	        <div class="formula"><label>Formula:</label></div><div class="formula"><label class="bottom-border">Receivables x 365</label><br /><label>Annual Sales</label></div>
-        </div>
-    </div>
-
-    <div ng-controller="DPOCtrl" class="inline">
-        <div>
-            <h2>Days purchases outstanding<a class="questionmark" ng-click="help()" print-remove></a></h2>
-        </div>
-
-        <div class="top-border">
-            <canvas id="DPO" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-options="options" chart-colours="colours"></canvas>
-        </div>
-
-        <div class="top-border">
-            <table>
-                <thead>
-                    <tr>
-	                    <th></th>
-                        <th ng-repeat="label in labels track by $index">{{label}}</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    <tr>
-	                    <td>DPO</td>
-                        <td ng-repeat="item in data[0] track by $index"><div><img ng-src="{{condition(item)}}" alt="condition"/>{{item | NumberEU}}</div></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="top-border formula-div">
-	        <div class="formula"><label>Formula: </label></div><div class="formula"><label class="bottom-border">Payables x 365</label><br /><label>Cost of Sales</label></div>
-        </div>
-    </div>
-
-    <div id="buttonsdiv" class="centered" ng-controller="ButtonsCtrl" print-remove>
-        <button type="button" ng-click="back()">Back</button>
-    </div>
-</div>
-<script type="text/ng-template" id="diotemplate">
-    <div id="ratios">
-	<div class="template">
-		<h2>Days Inventory Outstanding</h2>
-		<p>The days sales of inventory value, or DSI, is a financial measure of a company's performance that gives investors an idea of how long it takes a company to convert its inventory (including raw materials and goods in transformation, if applicable) into sales. The average DIO varies from one industry to another. However, whenever the DIO exceeds 60 days, this is according to us a trigger that potential action is needed. As the inventory is composed of finished goods, goods in process and raw materials, we consider that the best approximation is to use the cost of sales (same denominator as for the DPO). Seasonality in sales can distort DIO. For this reason, some analysts use a moving average of sales based, not on the whole year but, on the last 2 or 3 months of sales. This does not eliminate the problem of seasonal shifts, but it does mitigate their impact.
-</p>
-		<br />
-		<h3>Interpretation of the outcome</h3>
-                <p>The value of DIO varies from industry and company. It is recommended to compare the DIO to industry averages.</p>
-		<p><img src="IMG/green.png" alt="green" width="24" height="28" />DIO &lt; industry average: It shows that the management can turn inventories quickly into cash. In general, a decrease in days inventory outstanding (DIO) is an improvement to working capital.</p>
-		<p><img src="IMG/orange.png" alt="orange" width="27" height="31" />DIO slightly above industry average: Be careful! This is a warning sign. This means a higher risk for obsolete stock and a sign for inefficient inventory management.</p>
-		<p><img src="IMG/red.png" alt="red" width="24" height="30" />DIO &gt; industry average: an indicator of inventory turns. It shows that the management cannot turn inventories quickly into cash. In general, an increase in days inventory outstanding (DIO) shows a deterioration in working capital. It can also be an indicator or obsolete stocks</p>
-                <h3>Recommendations</h3>
-<p>A few of the ways to battle high DIO are:</p>
-<ul><li>implementing inventory optimization tools to determine how much inventory to hold. These optimization tools take into account demand variability, supply variability, and replenishment parameters to determine how much inventory to hold in order to guard against that variability.</li>
-<li>It is also important to keep an eye on your suppliers. There are suppliers that don’t necessarily stick to their schedule or deliver on their commitments. </li>
-<li>Finally companies need to be smart about the slow-moving and obsolete items. While it makes sense to focus on the more profitable fast movers, you can’t ignore your slower-moving merchandise. Indeed, they occupy space, utilize labor and resources, run the risk of obsolescence, and in many cases actually can be an obstacle of your more popular items.</li></ul>
-	</div>
-        </div>
-</script>
-<script type="text/ng-template" id="dsotemplate">
-    <div id="ratios">
-	<div class="template">
-		<h2>Days Sales Outstanding</h2>
-		<p>A measure of the average number of days that a company takes to collect revenue after a sale has been made. DSO is often determined on a monthly, quarterly or annual basis.</p>
-		<br />
-		<h3>Interpretation of the outcome</h3>
-                <p>Whenever the DSO exceeds 60 days, this is for us a trigger that potential action is needed. 
-Each industry has different standard payment terms so it is not possible to say that every company should have a DSO of X. Regarding to the standard selling terms, the DSO is compared to industry averages.
-</p>
-		<p><img src="IMG/green.png" alt="green" width="24" height="28" />DSO &lt; 60 days: an indicator that a company is collecting receivables quickly; generally this is a positive sign.</p>
-		<p><img src="IMG/orange.png" alt="orange" width="27" height="31" />DSO slightly above 60 days: Be careful! This is a warning sign. Could be an indicator that the company has inefficient debt collection processes or bad debtor problems.</p>
-		<p><img src="IMG/red.png" alt="red" width="24" height="30" />DSO &gt; 60 days: proves that a company takes longer to collect on credit sales and can indicate current or impending cash flow problems, operational issues, or a lack of effort or focus on credit collections. </p>
-		<br />
-		<p><b>Note!</b> Changing seasonality in sales can distort DSO. For this reason, some analysts use a daily average of sales based, not on the whole year but, on the last 2 or 3 months of sales. This does not eliminate the problem of seasonal shifts, but it does mitigate the result.<p>
-                <h3>Recommendations</h3>
-<p>A few of the ways to challenge a high DSO is by:</p>
-<ul><li>Increase the focus on credit collection – a consistent follow up with the debtors can improve the speed of the client payments.</li>
-<li>Implementing accounts receivable management software </li>
-<li>Running more in depth credit checks before extending credit to customers.</li>
-<li>Focusing on the payment terms, making sure that they are clear and negotiating the lowest possible credit periods.</li></ul>
-</div>
-
-	</div>
-</script>
-<script type="text/ng-template" id="dpotemplate">
-    <div id="ratios">
-	<div class="template">
-		<h2>Days Purchases Outstanding</h2>
-		<p>A company's average payable period. Days payable outstanding tells how long it takes a company to pay its invoices from trade creditors, such as suppliers. DPO is typically looked at either quarterly or yearly.</p>
-		<br />
-		<h3>Interpretation of the outcome</h3>
-                <p>DPO can vary by industry, and a company can compare its DPO to the industry average to see if it is paying its suppliers too quickly or too slowly. However whenever the DPO varies too much from the 50 to 60 days range, this is for us a trigger that potential action is needed. <b>For these reasons, the color of the traffic lights needs to be relativized.</b> 
-</p>
-		<p><img src="IMG/green.png" alt="green" width="24" height="28" />DPO &lt; 60 days: an indicator that a company is paying the suppliers quickly, and possibly does not get the interest free financing. On the other hand this can be a deliberate policy aiming at obtaining discounts for early payment. </p>
-		<p><img src="IMG/orange.png" alt="orange" width="27" height="31" />DPO slightly above 60 days: Be careful! This is a warning sign. It can indicates that the company is paying the suppliers slowly.</p>
-		<p><img src="IMG/red.png" alt="red" width="24" height="30" />DPO &gt; 60 days: an indicator that a company is obtaining attractive payment terms form its suppliers. As such it obtains interest free financing. However this can be equally an indicator that the company has difficulties in paying its suppliers.</p>
-		<br />
-		<p><b>Note!</b> If a company has an easy access to financing, it might be interesting to pay its suppliers quicker if it can get discounts that are higher than its financing costs.</p>
-                <p><b>Note!</b> Changing seasonality in sales can distort DSO. For this reason, some analysts use a daily average of sales based, not on the whole year but, on the last 2 or 3 months of sales. This does not eliminate the problem of seasonal shifts, but it does mitigate the result.</p>
-                <h3>Recommendation </h3>
-<p>A few of the ways to optimize the DPO is to consider following actions:</p>
-
-<ul><li>a high supplier payment term can improve the cash flow, as the company gets interest-free financing, hence long payment terms are to be favored.</li><li>
-However, fi a company has easy access to financing, we recommend to negotiate discounts in return for shorter credit terms</li><li>
-In all cases, we recommend to improve the relationship with the vendor and to look at win-win situations.</li></ul>
-</div>
-	</div>
-</script>
+    </script>
 </div>

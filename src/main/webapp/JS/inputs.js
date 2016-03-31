@@ -4,7 +4,8 @@ app.service('dataService', function($http) {
         // $http() returns a $promise that we can add handlers with .then()
         return $http({
             method: 'GET',
-            url: 'http://wcstool-usg.rhcloud.com/rest/data/input/' + $id
+            url: 'http://wcstool-usg.rhcloud.com/rest/data/input/' + $id,
+            cache:false
         });
     }
     this.saveData = function($data, $id) {
@@ -19,7 +20,8 @@ app.service('dataService', function($http) {
         // $http() returns a $promise that we can add handlers with .then()
         return $http({
             method: 'GET',
-            url: 'http://wcstool-usg.rhcloud.com/rest/data/company/' + $id
+            url: 'http://wcstool-usg.rhcloud.com/rest/data/company/' + $id,
+            cache:false
         });
     }
     this.saveCompData = function($data, $id) {

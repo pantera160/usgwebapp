@@ -30,7 +30,7 @@ app.service('WCMService', function($http) {
         return $http({
             method: 'GET',
             url: 'http://wcstool-usg.rhcloud.com/rest/data/turnover/' + $id,
-            cache: true
+            cache: false
         });
     };
     this.getYears = function($id) {
@@ -40,7 +40,7 @@ app.service('WCMService', function($http) {
             url: 'http://wcstool-usg.rhcloud.com/rest/data/years/' + $id,
             cache: true
         })
-    }
+    };
 });
 
 

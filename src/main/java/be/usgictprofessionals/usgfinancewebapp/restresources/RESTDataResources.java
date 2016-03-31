@@ -227,10 +227,10 @@ public class RESTDataResources {
     }
     
     @PUT
-    @Path("/source/{id}")
+    @Path("/source/{id}/{type}")
     @Consumes(MediaType.APPLICATION_JSON)
-    public void updateSource(@PathParam("id") String id){
-    
+    public String updateSource(@PathParam("id") String id, @PathParam("type") String type){
+        return DataDAO.getInstance().getSource(id, type);
     }
     
     @GET

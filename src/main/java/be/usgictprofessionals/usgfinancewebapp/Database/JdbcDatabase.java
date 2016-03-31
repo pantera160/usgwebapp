@@ -19,6 +19,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -586,5 +588,25 @@ public class JdbcDatabase implements Database {
             e.printStackTrace();
             return list;
         }
+    }
+    
+    public String getSource(String sectorid, String source_type){
+        try {
+            createConnection();
+            
+            stmt = conn.createStatement();
+            ResultSet result = stmt.executeQuery("SELECT source_name FROM sources WHERE source_id = (SELECT "+source_type+ "FROM sector_averages WHERE sector_id = "+sectorid+")");
+            if(result.next()){
+                return result.getString(1);
+            }
+            else{
+                System.out.println("The source for sector id "+sectorid +" is not found! Empty source returned");
+                return "";
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(JdbcDatabase.class.getName()).log(Level.SEVERE, null, ex);
+            return "";
+        }
+        
     }
 }
