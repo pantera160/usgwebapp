@@ -113,8 +113,6 @@ public class XBRLMapping {
         inputData.setInventory(get("pfs:Stocks", rootElement, context, context2));
         inputData.setAr(get("pfs:AmountsReceivableWithinOneYear", rootElement, context, context2));
         inputData.setCash(get("pfs:CashBankHand", rootElement, context, context2) + get("pfs:CurrentInvestments", rootElement, context, context2));
-        inputData.setInvestments(get("pfs:CurrentInvestments", rootElement, context, context2));
-        inputData.setLiquidAssets(get("pfs:CashBankHand", rootElement, context, context2));
         inputData.setCurrAssets(get("pfs:CurrentsAssets", rootElement, context, context2));
         inputData.setTotAssets(get("pfs:EquityLiabilities", rootElement, context, context2));
         inputData.setEquity(get("pfs:Equity", rootElement, context, context2));
@@ -139,9 +137,6 @@ public class XBRLMapping {
         inputData.setNrIncome(get("pfs:OtherExtraordinaryIncome", rootElement, context, context2));
         inputData.setNrCharges(get("pfs:OtherExtraordinaryCharges", rootElement, context, context2));
         inputData.setTaxes(get("pfs:IncomeTaxes", rootElement, context, context2) - (get("pfs:TransferFromDeferredTaxes", rootElement, context, context2) + get("pfs:TransferToDeferredTaxes", rootElement, context, context2)));
-        inputData.setIncomeTaxes(get("pfs:IncomeTaxes", rootElement, context, context2));
-        inputData.setWithDefTaxes(get("pfs:TransferFromDeferredTaxes", rootElement, context, context2));
-        inputData.setTransDefTaxes(get("pfs:TransferToDeferredTaxes", rootElement, context, context2));
         return inputData;
     }
 

@@ -165,26 +165,6 @@
                                 </tr>
 
                                 <tr>
-                                    <td class="sublabel">Investments</td>
-
-                                    <td ng-repeat="cols in inputs.investments"><input ng-class="errors.investments[cols.year]" my-numberformat="" ng-model="cols.data" type="text" required="" onclick="this.select()" /></td>
-
-                                    <td class="NBBCodes">50/53</td>
-
-                                    <td class="source">Financial Statements</td>
-                                </tr>
-
-                                <tr>
-                                    <td class="sublabel">Liquid assets</td>
-
-                                    <td ng-repeat="cols in inputs.liquidAssets"><input ng-class="errors.liquidAssets[cols.year]" my-numberformat="" ng-model="cols.data" type="text" required="" onclick="this.select()" /></td>
-
-                                    <td class="NBBCodes">54/58</td>
-
-                                    <td class="source">Financial Statements</td>
-                                </tr>
-
-                                <tr>
                                     <td>Current assets</td>
 
                                     <td ng-repeat="cols in inputs.currAssets"><input my-numberformat="" ng-model="cols.data" type="text" required="" onclick="this.select()" /></td>
@@ -289,7 +269,7 @@
                                 <tr>
                                     <td>Working capital</td>
 
-                                    <td ng-repeat="cols in inputs.workingCapital">{{cols.data | NumberEU}}</td>
+                                    <td ng-repeat="cols in inputs.workingCapital" tooltips="" tooltip-content=" = Current Assets - Current Liability">{{cols.data | NumberEU}}</td>
 
                                     <td></td>
 
@@ -299,7 +279,7 @@
                                 <tr>
                                     <td>Net debt</td>
 
-                                    <td ng-repeat="cols in inputs.netDebt">{{cols.data | NumberEU}}</td>
+                                    <td ng-repeat="cols in inputs.netDebt" tooltips="" tooltip-content=" = Long term Financial debt + Short term Financial debt - cash">{{cols.data | NumberEU}}</td>
 
                                     <td></td>
 
@@ -453,43 +433,13 @@
 
                                     <td class="source">Financial Statements</td>
                                 </tr>
-
-                                <tr>
-                                    <td class="sublabel">Of which income taxes</td>
-
-                                    <td ng-repeat="cols in inputs.incomeTaxes"><input ng-class="errors.incomeTaxes[cols.year]" my-numberformat="" ng-model="cols.data" type="text" required="" onclick="this.select()" /></td>
-
-                                    <td class="NBBCodes">67/77</td>
-
-                                    <td class="source">Financial Statements</td>
-                                </tr>
-
-                                <tr>
-                                    <td class="sublabel">Of which withdrawals from deferred taxes</td>
-
-                                    <td ng-repeat="cols in inputs.withDefTaxes"><input ng-class="errors.withDefTaxes[cols.year]" my-numberformat="" ng-model="cols.data" type="text" required="" onclick="this.select()" /></td>
-
-                                    <td class="NBBCodes">780</td>
-
-                                    <td class="source">Financial Statements</td>
-                                </tr>
-
-                                <tr>
-                                    <td class="sublabel">Of which transfer to deferred taxes</td>
-
-                                    <td ng-repeat="cols in inputs.transDefTaxes"><input ng-class="errors.transDefTaxes[cols.year]" my-numberformat="" ng-model="cols.data" type="text" required="" onclick="this.select()" /></td>
-
-                                    <td class="NBBCodes">680</td>
-
-                                    <td class="source">Financial Statements</td>
-                                </tr>
                             </tbody>
 
                             <tbody class="calculated">
                                 <tr>
                                     <td>Recurring income</td>
 
-                                    <td ng-repeat="cols in inputs.recIncome">{{cols.data | NumberEU}}</td>
+                                    <td ng-repeat="cols in inputs.recIncome" tooltips="" tooltip-content=" = REBIT + Financial Revenue - Financial Expences">{{cols.data | NumberEU}}</td>
 
                                     <td>9902</td>
 
@@ -499,7 +449,7 @@
                                 <tr>
                                     <td>Net income</td>
 
-                                    <td ng-repeat="cols in inputs.netIncome">{{cols.data | NumberEU}}</td>
+                                    <td ng-repeat="cols in inputs.netIncome" tooltips="" tooltip-content=" = Recurring Income + Non-Recurring Income - Non-Recurring Charges - Taxes">{{cols.data | NumberEU}}</td>
 
                                     <td>9904</td>
 
@@ -510,7 +460,7 @@
                                     <td>EBITDA (Earnings before Interest, Taxes,<br />
                                     <span id="tabin">Depreciation and Amortization)</span></td>
 
-                                    <td ng-repeat="cols in inputs.ebitda">{{cols.data | NumberEU}}</td>
+                                    <td ng-repeat="cols in inputs.ebitda" tooltips="" tooltip-content=" = REBIT + deprication">{{cols.data | NumberEU}}</td>
 
                                     <td></td>
 
@@ -522,9 +472,10 @@
                         <div ng-show="error">
                             <span>Some of the input data seems to be incorrect. The <span class="toError">yellow labeled</span> fields must combine to the <span class="error">red labeled</span> field.</span>
                         </div>
+                        <uib-alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</uib-alert>
 
                         <div id="buttonsdiv" class="centered">
-                            <span><span class="button" ng-click="clearing = true" ng-show="!clearing" tooltips="" tooltip-side="bottom" tooltip-content="Set all data to 0">Clear</span> <span class="wrapper" ng-show="clearing"><img ng-click="clear()" src="IMG/approved-151676.svg" alt="accept" width="25" height="25" /><img ng-click="clearing = false" src="IMG/remove-151678.svg" alt="cancel" width="25" height="25" /></span></span><span class="button" ng-click="save()" tooltips="" tooltip-side="top" tooltip-content="Save and stay">Save</span> <span class="button" ng-click="next()" tooltips="" tooltip-side="bottom" tooltip-content="Save and continue">Next</span>
+                            <span><span class="button" ng-click="clearing = true" ng-show="!clearing" tooltips="" tooltip-side="bottom" tooltip-content="Set all data to 0">Clear</span> <span class="wrapper" ng-show="clearing"><img ng-click="clearing = clear()" src="IMG/approved-151676.svg" alt="accept" width="25" height="25" /><img ng-click="clearing = false" src="IMG/remove-151678.svg" alt="cancel" width="25" height="25" /></span></span><span class="button" ng-click="save()" tooltips="" tooltip-side="top" tooltip-content="Save and stay">Save</span> <span class="button" ng-click="next()" tooltips="" tooltip-side="bottom" tooltip-content="Save and continue">Next</span>
                         </div>
                     </div>
                 </div>

@@ -137,14 +137,6 @@ app.controller("MyForm", function($scope, dataService, $location, $rootScope, $c
                     "data": "0",
                     "year": year
                 }],
-            "investments": [{
-                    "data": "0",
-                    "year": year
-                }],
-            "liquidAssets": [{
-                    "data": "0",
-                    "year": year
-                }],
             "currAssets": [{
                     "data": "0",
                     "year": year
@@ -249,18 +241,6 @@ app.controller("MyForm", function($scope, dataService, $location, $rootScope, $c
                     "data": "0",
                     "year": year
                 }],
-            "incomeTaxes": [{
-                    "data": "0",
-                    "year": year
-                }],
-            "withDefTaxes": [{
-                    "data": "0",
-                    "year": year
-                }],
-            "transDefTaxes": [{
-                    "data": "0",
-                    "year": year
-                }],
             "recIncome": [{
                     "data": "0",
                     "year": year
@@ -312,16 +292,11 @@ app.controller("MyForm", function($scope, dataService, $location, $rootScope, $c
             finFixedAssets: {},
             otherFixedAssets: {},
             cash: {},
-            investments: {},
-            liquidAssets: {},
             stFinDebt: {},
             costOfSales: {},
             comMatCon: {},
             miscGoods: {},
-            taxes: {},
-            incomeTaxes: {},
-            withDefTaxes: {},
-            transDefTaxes: {}
+            taxes: {}
         };
     };
     //list of years
@@ -371,10 +346,13 @@ app.controller("MyForm", function($scope, dataService, $location, $rootScope, $c
             dataService.saveData($scope.data, company_id).then(function(response) {
                 processResponse(response);
             });
+            $scope.error = false;
+            addAlert('succes', "Data has been succesfully saved.")
             return true;
         }
         else {
             $scope.error = true;
+            addAlert("danger", "There still remain some errors in the input data, please check the marked fields adn try again.");
             return false;
         }
     };
@@ -385,6 +363,7 @@ app.controller("MyForm", function($scope, dataService, $location, $rootScope, $c
                 value2.data = "0";
             });
         });
+        return false;
     };
     //save without redirect
     //get the calculated data from server
@@ -483,26 +462,11 @@ app.controller("MyForm", function($scope, dataService, $location, $rootScope, $c
                 $scope.errors.otherFixedAssets[inputs.fixedAssets[i].year] = 'toError';
                 response = true;
             }
-            if (Math.round((parseFloat(inputs.investments[i].data) + parseFloat(inputs.liquidAssets[i].data)) * 10) / 10 != parseFloat(inputs.cash[i].data)) {
-                console.log("cash not equal");
-                $scope.errors.cash[inputs.cash[i].year] = 'error';
-                $scope.errors.investments[inputs.cash[i].year] = 'toError';
-                $scope.errors.liquidAssets[inputs.cash[i].year] = 'toError';
-                response = true;
-            }
             if (Math.round((parseFloat(inputs.comMatCon[i].data) + parseFloat(inputs.miscGoods[i].data)) * 10) / 10 != parseFloat(inputs.costOfSales[i].data)) {
                 console.log("cost of sales not equal");
                 $scope.errors.costOfSales[inputs.costOfSales[i].year] = 'error';
                 $scope.errors.comMatCon[inputs.costOfSales[i].year] = 'toError';
                 $scope.errors.miscGoods[inputs.costOfSales[i].year] = 'toError';
-                response = true;
-            }
-            if (Math.round((parseFloat(inputs.incomeTaxes[i].data) - parseFloat(inputs.withDefTaxes[i].data) + parseFloat(inputs.transDefTaxes[i].data)) * 10) / 10 != parseFloat(inputs.taxes[i].data)) {
-                console.log("Taxes not equal");
-                $scope.errors.taxes[inputs.taxes[i].year] = 'error';
-                $scope.errors.incomeTaxes[inputs.taxes[i].year] = 'toError';
-                $scope.errors.withDefTaxes[inputs.taxes[i].year] = 'toError';
-                $scope.errors.transDefTaxes[inputs.taxes[i].year] = 'toError';
                 response = true;
             }
         }
@@ -553,6 +517,17 @@ app.controller("MyForm", function($scope, dataService, $location, $rootScope, $c
             }
         });
     };
+    
+    $scope.alerts = {};
+    
+    $scope.closeAlert = function(index){
+      $scope.alerts.splice(index, 1);  
+    };
+    
+    addAlert = function(errortype, errormsg){
+        $scope.alerts.push({type: errortype, msg: errormsg});
+    }
+    
     initialiseInput(startyear);
     initErrors();
     getSectors();

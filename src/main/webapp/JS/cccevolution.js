@@ -63,10 +63,10 @@ app.controller('CCCECtrl', ['$scope', 'CCCEService', 'helpServiceCCC', '$rootSco
 		$scope.colours = [{fillColor: colourArray}];
 	});
 	$scope.condition = function(item){
-		if(item >= (sectorAvg*0.95)){
+		if(item <= (sectorAvg*1.0)){
 			return "IMG/green.png";
 		}
-		else if(item >= (sectorAvg*0.85)){
+		else if(item <= (sectorAvg*1.2)){
 			return "IMG/orange.png";
 		}
 		else{

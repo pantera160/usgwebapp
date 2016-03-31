@@ -16,9 +16,9 @@ public class InputData {
 
     //Data from the input fields from the main page
     private double recIncome, netIncome, ebitda;
-    private double turnover, costOfSales, comMatCon, miscGoods, depreciation, ebit, finRev, finExp, finExpInterest, finExpBank, finExpOther, nrIncome, nrCharges, taxes, incomeTaxes, withDefTaxes, transDefTaxes;
+    private double turnover, costOfSales, comMatCon, miscGoods, depreciation, ebit, finRev, finExp, finExpInterest, finExpBank, finExpOther, nrIncome, nrCharges, taxes;
     private double workingCapital, netDebt;
-    private double fixedAssets, inventory, ar, cash, investments, liquidAssets, currAssets, totAssets, equity, ltFinDebt, subordinatedDebt, stFinDebt, longTermLoans, finDebt, ap, currLiabilities;
+    private double fixedAssets, inventory, ar, cash, currAssets, totAssets, equity, ltFinDebt, subordinatedDebt, stFinDebt, longTermLoans, finDebt, ap, currLiabilities;
     private double propertyAssets, finFixedAssets, intangiblesAssets, otherFixedAssets;
     private int numberOfMonths;
     private int year;
@@ -311,46 +311,6 @@ public class InputData {
         this.miscGoods = miscGoods;
     }
 
-    public double getIncomeTaxes() {
-        return incomeTaxes;
-    }
-
-    public void setIncomeTaxes(double incomeTaxes) {
-        this.incomeTaxes = incomeTaxes;
-    }
-
-    public double getWithDefTaxes() {
-        return withDefTaxes;
-    }
-
-    public void setWithDefTaxes(double withDefTaxes) {
-        this.withDefTaxes = withDefTaxes;
-    }
-
-    public double getTransDefTaxes() {
-        return transDefTaxes;
-    }
-
-    public void setTransDefTaxes(double transDefTaxes) {
-        this.transDefTaxes = transDefTaxes;
-    }
-
-    public double getInvestments() {
-        return investments;
-    }
-
-    public void setInvestments(double investments) {
-        this.investments = investments;
-    }
-
-    public double getLiquidAssets() {
-        return liquidAssets;
-    }
-
-    public void setLiquidAssets(double liquidAssets) {
-        this.liquidAssets = liquidAssets;
-    }
-
     public double getLongTermLoans() {
         return longTermLoans;
     }
@@ -377,16 +337,14 @@ public class InputData {
 
     @Override
     public String toString() {
-        return "InputData{" + "recIncome=" + recIncome + ", netIncome=" + netIncome + ", ebitda=" + ebitda + ", turnover=" + turnover 
-                + ", costOfSales=" + costOfSales + ", comMatCon=" + comMatCon + ", miscGoods=" + miscGoods + ", depreciation=" + depreciation 
-                + ", ebit=" + ebit + ", finRev=" + finRev + ", finExp=" + finExp + ", finExpInterest=" + finExpInterest + ", finExpBank=" + finExpBank 
-                + ", finExpOther=" + finExpOther + ", nrIncome=" + nrIncome + ", nrCharges=" + nrCharges + ", taxes=" + taxes + ", incomeTaxes=" + incomeTaxes 
-                + ", withDefTaxes=" + withDefTaxes + ", transDefTaxes=" + transDefTaxes + ", workingCapital=" + workingCapital + ", netDebt=" + netDebt 
-                + ", fixedAssets=" + fixedAssets + ", inventory=" + inventory + ", ar=" + ar + ", cash=" + cash + ", investments=" + investments 
-                + ", liquidAssets=" + liquidAssets + ", currAssets=" + currAssets + ", totAssets=" + totAssets + ", equity=" + equity + ", ltFinDebt=" + ltFinDebt 
-                + ", subordinatedDebt=" + subordinatedDebt + ", stFinDebt=" + stFinDebt + ", longTermLoans=" + longTermLoans + ", finDebt=" + finDebt + ", ap=" + ap 
-                + ", currLiabilities=" + currLiabilities + ", propertyAssets=" + propertyAssets + ", finFixedAssets=" + finFixedAssets 
-                + ", intangiblesAssets=" + intangiblesAssets + ", otherFixedAssets=" + otherFixedAssets + ", numberOfMonths=" + numberOfMonths + ", year=" + year + '}';
+        return "InputData{" + "recIncome=" + recIncome + ", netIncome=" + netIncome + ", ebitda=" + ebitda + ", turnover=" + turnover + ", costOfSales=" +
+                costOfSales + ", comMatCon=" + comMatCon + ", miscGoods=" + miscGoods + ", depreciation=" + depreciation + ", ebit=" + ebit + ", finRev=" + 
+                finRev + ", finExp=" + finExp + ", finExpInterest=" + finExpInterest + ", finExpBank=" + finExpBank + ", finExpOther=" + finExpOther + ", nrIncome=" + 
+                nrIncome + ", nrCharges=" + nrCharges + ", taxes=" + taxes + ", workingCapital=" + workingCapital + ", netDebt=" + netDebt + ", fixedAssets=" + 
+                fixedAssets + ", inventory=" + inventory + ", ar=" + ar + ", cash=" + cash + ", currAssets=" + currAssets + ", totAssets=" + totAssets + ", equity=" + 
+                equity + ", ltFinDebt=" + ltFinDebt + ", subordinatedDebt=" + subordinatedDebt + ", stFinDebt=" + stFinDebt + ", longTermLoans=" + longTermLoans +
+                ", finDebt=" + finDebt + ", ap=" + ap + ", currLiabilities=" + currLiabilities + ", propertyAssets=" + propertyAssets + ", finFixedAssets=" + finFixedAssets + 
+                ", intangiblesAssets=" + intangiblesAssets + ", otherFixedAssets=" + otherFixedAssets + ", numberOfMonths=" + numberOfMonths + ", year=" + year + '}';
     }
 
 }
