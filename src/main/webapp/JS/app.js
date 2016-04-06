@@ -1,4 +1,4 @@
-angular.module("USGFinanceWebapp", ['720kb.tooltips', 'ngDialog', 'AngularPrint', "ui.bootstrap"]);
+angular.module("USGFinanceWebapp", ['720kb.tooltips', 'ngDialog', 'AngularPrint', 'ui.bootstrap']);
 angular.module("BalansRatio", ['chart.js', 'ngDialog', 'AngularPrint']);
 angular.module("Portal", []);
 angular.module("ReturnRatio", ['chart.js', 'ngDialog', 'AngularPrint']);
