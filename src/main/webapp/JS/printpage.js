@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 var app = angular.module("USGWAPrint");
-app.service('dataService', function($http) {
+app.service('DataService', function($http) {
     this.getData = function($id) {
         // $http() returns a $promise that we can add handlers with .then()
         return $http({
@@ -39,7 +39,7 @@ app.filter('NumberEU', function() {
         return out;
     }
 });
-app.controller('PrintCtrl', function($scope, dataService, $cookieStore){
-    
-});
+app.controller('inputsCtrl', ["DataService", function(DataService){
+        
+}]);
 
