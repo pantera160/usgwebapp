@@ -15,4 +15,8 @@ public class DatabaseException extends Exception{
     public DatabaseException(String msg){
         super(msg);
     }
+    
+    public DatabaseException(){
+        super("An error has occured while performing an action on the database. Please contact support.");
+    }
 }
