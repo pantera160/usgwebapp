@@ -4,7 +4,7 @@
 
     <groupId>be.usgictprofessionals</groupId>
     <artifactId>USGFinanceWebapp</artifactId>
-    <version>1.0</version>
+    <version>1.1</version>
     <packaging>war</packaging>
 
     <name>USGFinanceWebapp</name>
@@ -13,6 +13,12 @@
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+    
+    <profiles>
+        <profile>
+            <id>openshift</id>
+        </profile>
+    </profiles>
     
     <dependencies>
         <dependency>

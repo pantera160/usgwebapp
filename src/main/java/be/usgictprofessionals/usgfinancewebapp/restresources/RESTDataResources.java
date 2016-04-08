@@ -268,5 +268,11 @@ public class RESTDataResources {
             ex.printStackTrace();
             return null;
         }
-    }  
+    }
+    
+    @GET
+    @Path("/test")
+    public String test(){
+        return "Tests seem to be succesfull. REST Service can now be accessed.";
+    }
 }
