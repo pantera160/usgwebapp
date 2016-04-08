@@ -16,11 +16,6 @@
         <maven.compiler.target>1.6</maven.compiler.target>
     </properties>
     
-    <profiles>
-        <profile>
-            <id>openshift</id>
-        </profile>
-    </profiles>
     <repositories>
         <repository>
             <id>eap</id>
