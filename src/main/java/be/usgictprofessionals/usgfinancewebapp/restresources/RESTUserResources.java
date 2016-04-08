@@ -117,4 +117,10 @@ public class RESTUserResources {
             return map;
         }
     }
+    
+    @GET
+    @Path("/test")
+    public String test(){
+        return "Test succesfull. RESTService is now available.";
+    }
 }
